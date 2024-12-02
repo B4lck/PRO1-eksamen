@@ -27,6 +27,10 @@ public class Employee extends Person {
         super(name);
     }
 
+    /**
+     *
+     * @return beskrivelse på medarbejderen
+     */
 
     public String getDescription() {
         return description;
