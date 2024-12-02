@@ -5,12 +5,12 @@ import java.util.Objects;
 public class Sale {
     private double finalPrice;
     private int animalId;
-    private int costumerId;
+    private int customerId;
     private int employeeId;
     private Date dateOfSale;
 
-    public Sale(double finalPrice, int animalId, int costumerId, int employeeId, Date dateOfSale) {
-        this.set(finalPrice, animalId, costumerId, employeeId, dateOfSale);
+    public Sale(double finalPrice, int animalId, int customerId, int employeeId, Date dateOfSale) {
+        this.set(finalPrice, animalId, customerId, employeeId, dateOfSale);
     }
 
     public Date getDateOfSale() {
@@ -25,19 +25,19 @@ public class Sale {
         return animalId;
     }
 
-    public int getCostumerId() {
-        return costumerId;
+    public int getCustomerId() {
+        return customerId;
     }
 
     public int getEmployeeId() {
         return employeeId;
     }
 
-    public void set(double finalPrice, int animalId, int costumerId, int employeeId, Date dateOfSale) {
+    public void set(double finalPrice, int animalId, int customerId, int employeeId, Date dateOfSale) {
         if (dateOfSale == null) throw new IllegalArgumentException("dateOfSale cannot be null");
         this.finalPrice = finalPrice;
         this.animalId = animalId;
-        this.costumerId = costumerId;
+        this.customerId = customerId;
         this.employeeId = employeeId;
         this.dateOfSale = dateOfSale;
     }
@@ -47,11 +47,11 @@ public class Sale {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sale sale = (Sale) o;
-        return Double.compare(finalPrice, sale.finalPrice) == 0 && animalId == sale.animalId && costumerId == sale.costumerId && employeeId == sale.employeeId && Objects.equals(dateOfSale, sale.dateOfSale);
+        return Double.compare(finalPrice, sale.finalPrice) == 0 && animalId == sale.animalId && customerId == sale.customerId && employeeId == sale.employeeId && Objects.equals(dateOfSale, sale.dateOfSale);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(finalPrice, animalId, costumerId, employeeId, dateOfSale);
+        return Objects.hash(finalPrice, animalId, customerId, employeeId, dateOfSale);
     }
 }

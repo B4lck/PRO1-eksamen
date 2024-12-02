@@ -77,7 +77,7 @@ public class ReservationList {
         }
     }
 
-    public sortBy(String sortBy, Cos)
+    public sortBy(String sortBy, Customer)
 
     public ReservationList getReservationsForAnimal(int animalId) {
         ReservationList reservationList = new ReservationList();

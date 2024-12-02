@@ -15,7 +15,7 @@ public class Customer extends Person {
     /**
      * Kundens ID
      */
-    private int costumerId;
+    private int customerId;
 
     /**
      * Konstruktør til kunden
@@ -49,8 +49,8 @@ public class Customer extends Person {
     /**
      * @return Id'et på kunden
      */
-    public int getCostumerId() {
-        return costumerId;
+    public int getCustomerId() {
+        return customerId;
     }
 
     /**

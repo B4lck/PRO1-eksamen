@@ -24,7 +24,7 @@ public class VIAPetsModelManager implements VIAPetsModel {
     }
 
     @Override
-    public CustomerList getCostumerList() {
+    public CustomerList getCustomerList() {
         return customerList;
     }
 

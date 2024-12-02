@@ -20,13 +20,13 @@ public class Reservation {
 
     /**
      * Konstruktør for Reservation
-     * @param costumerId Id'et på kunden
+     * @param customerId Id'et på kunden
      * @param animalId Id'et på dyret
      * @param period Dato Interval med start of slut dato
      */
-    public Reservation(int costumerId, int animalId, DateInterval period) {
+    public Reservation(int customerId, int animalId, DateInterval period) {
         this.positionId = -1;
-        this.customerId = costumerId;
+        this.customerId = customerId;
         this.animalId = animalId;
         this.period = period;
     }

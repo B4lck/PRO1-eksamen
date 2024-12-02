@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class CustomerList {
     private ArrayList<Customer> customerList =new ArrayList<>();
 
-    public void addCostumer(Customer customer) {
+    public void addCustomer(Customer customer) {
         this.customerList.add(customer);
     }
 
-    public void removeCostumer(Customer customer) {
+    public void removeCustomer(Customer customer) {
         this.customerList.remove(customer);
     }
 
-    public void removeCostumerById(int customer) {
+    public void removeCustomerById(int customer) {
         for (Customer c : this.customerList) {
-            if (c.getCostumerId() == customer) {
+            if (c.getCustomerId() == customer) {
                 this.customerList.remove(c);
             }
         }
@@ -23,7 +23,7 @@ public class CustomerList {
 
     public Customer getCustomerById(int customer) {
         for (Customer c : this.customerList) {
-            if (c.getCostumerId() == customer) {
+            if (c.getCustomerId() == customer) {
                 return c;
             }
         }
@@ -39,7 +39,7 @@ public class CustomerList {
        CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
             if (c.getPhone() == phone) {
-                list.addCostumer(c);
+                list.addCustomer(c);
             }
         }
         return list;
@@ -48,7 +48,7 @@ public class CustomerList {
         CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
             if (c.getName() == name) {
-                list.addCostumer(c);
+                list.addCustomer(c);
             }
         }
         return list;
@@ -57,7 +57,7 @@ public class CustomerList {
         CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
             if (c.getEmail() == email) {
-                list.addCostumer(c);
+                list.addCustomer(c);
             }
         }
         return list;

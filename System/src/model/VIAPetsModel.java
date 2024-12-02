@@ -4,7 +4,7 @@ public interface VIAPetsModel {
     public AnimalList getAnimalList();
     public ReservationList getReservationList();
     public SalesList getSalesList();
-    public CustomerList getCostumerList();
+    public CustomerList getCustomerList();
     public EmployeeList getEmployeeList();
 
 }
