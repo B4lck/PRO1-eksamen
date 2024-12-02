@@ -1,4 +1,7 @@
 package model;
+
+import java.time.LocalDate;
+
 /**
  *
  * En klasse der holder styr på datoer
@@ -25,12 +28,15 @@ public class Date {
      * @param year års-tallet
      */
     public Date(int day, int month, int year) {
-        // Tjek for fejl
-        if (day == 0 || day > 30)       throw new IllegalArgumentException("Invalid day");
-        if (month == 0 || month > 12)   throw new IllegalArgumentException("Invalid month");
-        if (year < 2024)                throw new IllegalArgumentException("Invalid year");
-
         set(day, month, year);
+    }
+
+    /**
+     * Konstruktør til Date, hvor den opretter ud fra dags dato
+     */
+    public Date() {
+        LocalDate date = LocalDate.now();
+        set(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
     }
 
     /**
@@ -69,6 +75,11 @@ public class Date {
      * @param year Års-tallet
      */
     public void set(int day, int month, int year) {
+        // Tjek for fejl
+        if (day == 0 || day > 30)       throw new IllegalArgumentException("Invalid day");
+        if (month == 0 || month > 12)   throw new IllegalArgumentException("Invalid month");
+        if (year < 2024)                throw new IllegalArgumentException("Invalid year");
+
         this.day = day;
         this.month = month;
         this.year = year;
