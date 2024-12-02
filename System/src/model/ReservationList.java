@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Map;
 
 public class ReservationList {
     private ArrayList<Reservation> reservations = new ArrayList<>();
@@ -38,12 +37,12 @@ public class ReservationList {
             case "start-date-reverse":
                 reverse = true;
             case "start-date":
-                reservations.sort(Comparator.comparingInt(reservation -> reservation.getPeriod().getStartDate().getDays()));
+                reservations.sort(Date.comparingDates(reservation -> reservation.getPeriod().getStartDate()));
                 break;
             case "end-date-reverse":
                 reverse = true;
             case "end-date":
-                reservations.sort(Comparator.comparingInt(reservation -> reservation.getPeriod().getEndDate().getDays()));
+                reservations.sort(Date.comparingDates(reservation -> reservation.getPeriod().getEndDate()));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort by. Valid ones are start-date-reverse, start-date, end-date-reverse, end-date");
@@ -77,7 +76,23 @@ public class ReservationList {
         }
     }
 
-    public sortBy(String sortBy, Customer)
+    public void sortBy(String sortBy, CustomerList customerList) {
+        boolean reverse = false;
+        switch (sortBy) {
+            case "costumer-name-reverse":
+                reverse = true;
+            case "costumer-name":
+                reservations.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getName()));
+                break;
+            case "costumer-email-reverse":
+                reverse = true;
+            case "costumer-email":
+                reservations.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getEmail().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getEmail()));
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort by. Valid ones are costumer-name-reverse, costumer-name, costumer-email-reverse, costumer-email");
+        }
+    }
 
     public ReservationList getReservationsForAnimal(int animalId) {
         ReservationList reservationList = new ReservationList();

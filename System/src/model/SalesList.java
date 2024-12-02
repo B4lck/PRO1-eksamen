@@ -52,7 +52,7 @@ public class SalesList {
             case "date-reverse":
                 reverse = true;
             case "date":
-                sales.sort(Comparator.comparingInt(sale -> sale.getDateOfSale().getDays()));
+                sales.sort(Date.comparingDates(Sale::getDateOfSale));
                 break;
             case "customer-reverse", "customer":
                 throw new IllegalArgumentException("CustomerList is missing");

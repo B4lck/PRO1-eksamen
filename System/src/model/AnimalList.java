@@ -119,12 +119,12 @@ public class AnimalList {
             case "creation-reverse":
                 reverse = true;
             case "creation":
-                animals.sort(Comparator.comparingInt(animal -> animal.getCreationDate().getDays()));
+                animals.sort(Date.comparingDates(Animal::getCreationDate));
                 break;
             case "age-reverse":
                 reverse = true;
             case "age":
-                animals.sort(Comparator.comparingInt(animal -> animal.getBirthday().getDays()));
+                animals.sort(Date.comparingDates(Animal::getBirthday));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort method: Valid ones are name, name-reverse, price, price-reverse, category, category-reverse, creation, creation-reverse, age, age-reverse.");
@@ -256,15 +256,12 @@ public class AnimalList {
     public AnimalList getAnimalsByAge(int min, int max) {
         if (min > max) throw new IllegalArgumentException("Minimum age cannot be higher than maximum!");
 
-        Date yearStart = new Date();
-        yearStart.set(yearStart.getDay(), yearStart.getMonth(), yearStart.getYear() - min);
-        Date yearEnd = new Date();
-        yearEnd.set(yearEnd.getDay(), yearEnd.getMonth(), yearEnd.getYear() - max);
-        DateInterval validBirthdays = new DateInterval(yearStart, yearEnd);
+        Date today = new Date();
 
         AnimalList list = new AnimalList();
         for (Animal animal : animals) {
-            if (validBirthdays.contains(animal.getBirthday())) {
+            int age = animal.getBirthday().yearsBetween(today);
+            if (age >= min && age <= max) {
                 list.add(animal);
             }
         }

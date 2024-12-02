@@ -41,7 +41,7 @@ public class DateInterval {
      * @return Længden af intervallet i antal dage
      */
     public int getLengthInDays() {
-        return startDate.getDays() - endDate.getDays();
+        return startDate.daysBetween(endDate);
     }
 
     /**
@@ -84,8 +84,11 @@ public class DateInterval {
      * @return Om den overlapper eller ikke overlapper
      */
     public boolean intersects(DateInterval interval) {
-        return endDate.getDays() >= interval.getStartDate().getDays() &&
-                startDate.getDays() >= interval.getEndDate().getDays();
+        if (this.startDate == interval.endDate) return true;
+        if (this.endDate == interval.startDate) return true;
+        if (this.endDate.isBefore(interval.startDate)) return false;
+        if (interval.endDate.isBefore(this.startDate)) return false;
+        return true;
     }
 
     /**
@@ -94,7 +97,7 @@ public class DateInterval {
      * @return Om den er inde i intervallet eller ikke
      */
     public boolean contains(Date date) {
-        return startDate.getDays() <= date.getDays() && endDate.getDays() >= date.getDays();
+        return this.startDate.equals(date) || this.endDate.equals(date) || (this.startDate.isBefore(date) && date.isBefore(this.endDate));
     }
 
     /**
