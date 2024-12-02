@@ -73,15 +73,15 @@ public class SalesList {
      *
      * @param sorting Sorteringsmetoden: Skal være costumer-reverse eller costumer
      */
-    public void sortBy(String sorting, CostumerList costumerList) {
-        if (costumerList == null) throw new IllegalArgumentException("CostumerList cannot be null!");
+    public void sortBy(String sorting, CustomerList customerList) {
+        if (customerList == null) throw new IllegalArgumentException("CostumerList cannot be null!");
 
         boolean reverse = false;
         switch (sorting) {
             case "costumer-reverse":
                 reverse = true;
             case "costumer":
-                sales.sort((a,b) -> costumerList.getCostumerById(a.getCostumerId()).getName().compareToIgnoreCase(costumerList.getCostumerById(b.getCostumerId()).getName()));
+                sales.sort((a,b) -> customerList.getCostumerById(a.getCostumerId()).getName().compareToIgnoreCase(customerList.getCostumerById(b.getCostumerId()).getName()));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; costumer-reverse and costumer with a costumer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");

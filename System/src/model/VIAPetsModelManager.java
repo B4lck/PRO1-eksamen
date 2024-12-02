@@ -5,7 +5,7 @@ public class VIAPetsModelManager implements VIAPetsModel {
     private AnimalList animalList;
     private ReservationList reservationList;
     private SalesList salesList;
-    private CostumerList costumerList;
+    private CustomerList customerList;
     private EmployeeList employeeList;
 
     @Override
@@ -24,8 +24,8 @@ public class VIAPetsModelManager implements VIAPetsModel {
     }
 
     @Override
-    public CostumerList getCostumerList() {
-        return costumerList;
+    public CustomerList getCostumerList() {
+        return customerList;
     }
 
     @Override
