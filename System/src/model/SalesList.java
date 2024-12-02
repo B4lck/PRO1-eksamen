@@ -54,13 +54,13 @@ public class SalesList {
             case "date":
                 sales.sort(Comparator.comparingInt(sale -> sale.getDateOfSale().getDays()));
                 break;
-            case "costumer-reverse", "costumer":
+            case "customer-reverse", "customer":
                 throw new IllegalArgumentException("CostumerList is missing");
             case "animal-type-reverse", "animal-type", "animal-name-reverse",
                  "animal-name":
                 throw new IllegalArgumentException("AnimalList is missing");
             default:
-                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; costumer-reverse and costumer with a costumer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
+                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
         }
 
         if (reverse) {
@@ -71,20 +71,20 @@ public class SalesList {
     /**
      * Sorter listen med costumers
      *
-     * @param sorting Sorteringsmetoden: Skal være costumer-reverse eller costumer
+     * @param sorting Sorteringsmetoden: Skal være customer-reverse eller customer
      */
     public void sortBy(String sorting, CustomerList customerList) {
         if (customerList == null) throw new IllegalArgumentException("CostumerList cannot be null!");
 
         boolean reverse = false;
         switch (sorting) {
-            case "costumer-reverse":
+            case "customer-reverse":
                 reverse = true;
-            case "costumer":
+            case "customer":
                 sales.sort((a,b) -> customerList.getCostumerById(a.getCostumerId()).getName().compareToIgnoreCase(customerList.getCostumerById(b.getCostumerId()).getName()));
                 break;
             default:
-                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; costumer-reverse and costumer with a costumer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
+                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
         }
 
         if (reverse) {
@@ -112,7 +112,7 @@ public class SalesList {
                 sales.sort((a,b) -> animalList.getAnimalById(a.getAnimalId()).getName().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getName()));
                 break;
             default:
-                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; costumer-reverse and costumer with a costumer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
+                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
         }
 
         if (reverse) {

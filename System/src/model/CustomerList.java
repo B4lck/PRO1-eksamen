@@ -13,29 +13,29 @@ public class CustomerList {
         this.customerList.remove(customer);
     }
 
-    public void removeCostumerById(int costumer) {
+    public void removeCostumerById(int customer) {
         for (Customer c : this.customerList) {
-            if (c.getCostumerId() == costumer) {
+            if (c.getCostumerId() == customer) {
                 this.customerList.remove(c);
             }
         }
     }
 
-    public Customer getCostumerById(int costumer) {
+    public Customer getCustomerById(int customer) {
         for (Customer c : this.customerList) {
-            if (c.getCostumerId() == costumer) {
+            if (c.getCostumerId() == customer) {
                 return c;
             }
         }
         return null;
     }
 
-    public Customer[] getAllCostumers() {
+    public Customer[] getAllCustomers() {
         return this.customerList.toArray(new Customer[this.customerList.size()]);
     }
     //sortBY skal laves
 
-    public CustomerList getCostumerByPhone(long phone) {
+    public CustomerList getCustomerByPhone(long phone) {
        CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
             if (c.getPhone() == phone) {
@@ -44,7 +44,7 @@ public class CustomerList {
         }
         return list;
     }
-    public CustomerList getCostumerByName(String name) {
+    public CustomerList getCustomerByName(String name) {
         CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
             if (c.getName() == name) {
@@ -53,7 +53,7 @@ public class CustomerList {
         }
         return list;
     }
-    public CustomerList getCostumerByEmail(String email) {
+    public CustomerList getCustomerByEmail(String email) {
         CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
             if (c.getEmail() == email) {
