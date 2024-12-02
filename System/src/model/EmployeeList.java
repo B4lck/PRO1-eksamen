@@ -18,20 +18,11 @@ public class EmployeeList {
     }
 
     public void removeById(int id) {
-        for (Employee employee : employees) {
-            if (employee.getEmployeeId() == id) {
-                employees.remove(employee);
-            }
-        }
+        employees.remove(id);
     }
 
-    public int getById(int employeeId) {
-        for (Employee employee : employees) {
-            if (employee.getEmployeeId() == employeeId) {
-                return employee.getEmployeeId();
-            }
-        }
-        return employeeId;
+    public Employee getById(int employeeId) {
+        return employees.get(employeeId);
     }
 
     public Employee[] getAllEmployees() {

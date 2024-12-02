@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class CustomerList {
-    private ArrayList<Customer> customerList =new ArrayList<>();
+    private ArrayList<Customer> customerList = new ArrayList<>();
 
     public void addCustomer(Customer customer) {
         this.customerList.add(customer);
@@ -36,7 +36,7 @@ public class CustomerList {
     //sortBY skal laves
 
     public CustomerList getCustomerByPhone(long phone) {
-       CustomerList list = new CustomerList();
+        CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
             if (c.getPhone() == phone) {
                 list.addCustomer(c);
@@ -44,6 +44,7 @@ public class CustomerList {
         }
         return list;
     }
+
     public CustomerList getCustomerByName(String name) {
         CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {
@@ -53,6 +54,7 @@ public class CustomerList {
         }
         return list;
     }
+
     public CustomerList getCustomerByEmail(String email) {
         CustomerList list = new CustomerList();
         for (Customer c : this.customerList) {

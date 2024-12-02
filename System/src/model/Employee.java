@@ -28,7 +28,6 @@ public class Employee extends Person {
     }
 
     /**
-     *
      * @return beskrivelse på medarbejderen
      */
 
@@ -36,17 +35,36 @@ public class Employee extends Person {
         return description;
     }
 
+    /**
+     * Sætter en beskrivelse om medarbejderen
+     *
+     * @param description beskrivelse om medarbejder
+     */
+
     public void setDescription(String description) {
         this.description = description;
     }
+
+    /**
+     * @return linket til billedet af medarbejder
+     */
 
     public String getPortraitUrl() {
         return portraitUrl;
     }
 
+    /**
+     * sætter url til billedet
+     *
+     * @param portraitUrl URL med billedet af medarbejderen
+     */
     public void setPortraitUrl(String portraitUrl) {
         this.portraitUrl = portraitUrl;
     }
+
+    /**
+     * @return medarbejderen ID
+     */
 
     public int getEmployeeId() {
         return employeeId;
