@@ -54,13 +54,13 @@ public class SalesList {
             case "date":
                 sales.sort(Comparator.comparingInt(sale -> sale.getDateOfSale().getDays()));
                 break;
-            case "costumer-reverse", "costumer":
-                throw new IllegalArgumentException("CostumerList is missing");
+            case "customer-reverse", "customer":
+                throw new IllegalArgumentException("CustomerList is missing");
             case "animal-type-reverse", "animal-type", "animal-name-reverse",
                  "animal-name":
                 throw new IllegalArgumentException("AnimalList is missing");
             default:
-                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; costumer-reverse and costumer with a costumer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
+                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
         }
 
         if (reverse) {
@@ -69,22 +69,22 @@ public class SalesList {
     }
 
     /**
-     * Sorter listen med costumers
+     * Sorter listen med customers
      *
-     * @param sorting Sorteringsmetoden: Skal være costumer-reverse eller costumer
+     * @param sorting Sorteringsmetoden: Skal være customer-reverse eller customer
      */
-    public void sortBy(String sorting, CostumerList costumerList) {
-        if (costumerList == null) throw new IllegalArgumentException("CostumerList cannot be null!");
+    public void sortBy(String sorting, CustomerList customerList) {
+        if (customerList == null) throw new IllegalArgumentException("CustomerList cannot be null!");
 
         boolean reverse = false;
         switch (sorting) {
-            case "costumer-reverse":
+            case "customer-reverse":
                 reverse = true;
-            case "costumer":
-                sales.sort((a,b) -> costumerList.getCostumerById(a.getCostumerId()).getName().compareToIgnoreCase(costumerList.getCostumerById(b.getCostumerId()).getName()));
+            case "customer":
+                sales.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getName()));
                 break;
             default:
-                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; costumer-reverse and costumer with a costumer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
+                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
         }
 
         if (reverse) {
@@ -112,7 +112,7 @@ public class SalesList {
                 sales.sort((a,b) -> animalList.getAnimalById(a.getAnimalId()).getName().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getName()));
                 break;
             default:
-                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; costumer-reverse and costumer with a costumer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
+                throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
         }
 
         if (reverse) {
@@ -171,13 +171,13 @@ public class SalesList {
     /**
      * Returner en ny SalesList, kun med salg der er solgt til kunden
      *
-     * @param costumerId Kundens ID
+     * @param customerId Kundens ID
      * @return En ny SalesList
      */
-    public SalesList getSalesForCostumer(int costumerId) {
+    public SalesList getSalesForCustomer(int customerId) {
         SalesList list = new SalesList();
         for (Sale sale : sales) {
-            if (sale.getCostumerId() == costumerId) {
+            if (sale.getCustomerId() == customerId) {
                 list.add(sale);
             }
         }

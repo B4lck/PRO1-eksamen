@@ -3,7 +3,7 @@ package model;
 /**
  * En klasse der opretter en kund
  */
-public class Costumer extends Person {
+public class Customer extends Person {
     /**
      * kundens telefon nummer
      */
@@ -15,7 +15,7 @@ public class Costumer extends Person {
     /**
      * Kundens ID
      */
-    private int costumerId;
+    private int customerId;
 
     /**
      * Konstruktør til kunden
@@ -25,7 +25,7 @@ public class Costumer extends Person {
      * @param email kundens mailadresse
      */
 
-    public Costumer(String name, long phone, String email) {
+    public Customer(String name, long phone, String email) {
         super(name);
         setPhone(phone);
         setEmail(email);
@@ -49,8 +49,8 @@ public class Costumer extends Person {
     /**
      * @return Id'et på kunden
      */
-    public int getCostumerId() {
-        return costumerId;
+    public int getCustomerId() {
+        return customerId;
     }
 
     /**
@@ -81,7 +81,7 @@ public class Costumer extends Person {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Costumer user = (Costumer) obj;
+        Customer user = (Customer) obj;
         return getName().equals(user.getName()) && phone == user.getPhone() && email.equals(user.getEmail());
     }
 }
