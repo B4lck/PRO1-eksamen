@@ -10,3 +10,6 @@
 ### Sale:
 - Get metode til dateOfSale
 - dateOfSale argument i konstruktøren og set metoden
+
+### SalesList
+- Flere sortingsmetoder
