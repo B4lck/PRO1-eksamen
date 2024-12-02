@@ -52,6 +52,16 @@ public class Animal {
     private int ownerId = -1;
 
     /**
+     * Tilføjelsesdato
+     */
+    private Date creationDate;
+
+    /**
+     * Fødselsdagsdato
+     */
+    private Date birthday;
+
+    /**
      * Static
      */
     public static final String CATEGORY_BIRD = "Bird";
@@ -60,8 +70,9 @@ public class Animal {
 
     /**
      * Konstruktør til dyr til salg
-     * @param name Navnet på dyret
-     * @param price Pris på dyret
+     *
+     * @param name     Navnet på dyret
+     * @param price    Pris på dyret
      * @param animalId Id til selve dyret
      */
     public Animal(String name, double price, int animalId) {
@@ -73,8 +84,9 @@ public class Animal {
 
     /**
      * Konstruktør til dyr til salg
-     * @param name Navnet på dyret
-     * @param ownerId Id til ejer af dyret
+     *
+     * @param name     Navnet på dyret
+     * @param ownerId  Id til ejer af dyret
      * @param animalId Id til selve dyret
      */
     public Animal(String name, int ownerId, int animalId) {
@@ -148,7 +160,22 @@ public class Animal {
     }
 
     /**
+     * Henter dyrets fødselsdagsdato
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * Henter dyrets oprettelsesdato
+     */
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    /**
      * Konverter dyret til et dyr til pasning
+     *
      * @param ownerId Ejerens Id
      */
     public void convertToOwnedAnimal(int ownerId) {
@@ -158,6 +185,7 @@ public class Animal {
 
     /**
      * Konverter dyret til et dyr til salg
+     *
      * @param price Pris på dyret
      */
     public void convertToSale(double price) {
@@ -167,6 +195,7 @@ public class Animal {
 
     /**
      * Set dyrets kategori
+     *
      * @param category
      */
     public void setCategory(String category) {
@@ -175,6 +204,7 @@ public class Animal {
 
     /**
      * Set dyrets navn
+     *
      * @param name
      */
     public void setName(String name) {
@@ -183,6 +213,7 @@ public class Animal {
 
     /**
      * Set dyrets imageUrl
+     *
      * @param imageUrl
      */
     public void setImageUrl(String imageUrl) {
@@ -191,6 +222,7 @@ public class Animal {
 
     /**
      * Set dyrets mad
+     *
      * @param food
      */
     public void setFood(String food) {
@@ -199,6 +231,7 @@ public class Animal {
 
     /**
      * Set dyrets kommentar
+     *
      * @param comment
      */
     public void setComment(String comment) {
@@ -207,10 +240,25 @@ public class Animal {
 
     /**
      * Set dyrets pris
+     *
      * @param price
      */
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    /**
+     * Set dyrets oprettelsesdato
+     */
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    /**
+     * Set dyrets fødselsdagsdato
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     @Override
