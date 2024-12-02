@@ -22,7 +22,7 @@ public class Date {
     }
 
     public int getDays() {
-        return day * 86400 + month * 3600 + year * 31556926;
+        return day + month * 12 + year * 366;
     }
 
     public void set(int day, int month, int year) {
