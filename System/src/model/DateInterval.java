@@ -120,4 +120,11 @@ public class DateInterval {
         return startDate.equals(other.getStartDate()) && endDate.equals(other.getEndDate());
     }
 
+    /**
+     * Retunere en kopi af Date Interval objektet
+     * @return en kopi af Date Interval
+     */
+    public DateInterval copy() {
+        return new DateInterval(startDate, endDate);
+    }
 }
