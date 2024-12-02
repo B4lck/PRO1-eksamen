@@ -5,8 +5,10 @@ package model;
  */
 public class AnimalReptile extends Animal {
 
+    /**
+     * Om dyret er giftigt
+     */
     private boolean venomous;
-
     /**
      * Konstruktør til dyr til salg
      * @param name Navnet på dyret
@@ -31,15 +33,15 @@ public class AnimalReptile extends Animal {
     }
 
     /**
-     * Er reptilet giftigt?
+     * Henter om reptilet er giftigt?
      */
     public boolean isVenomous() {
         return venomous;
     }
 
     /**
-     * Set om reptilet giftigt eller ej
-     * @param venomous
+     * Sæt om reptilet giftigt eller ikke
+     * @param venomous Giftigt eller ikke
      */
     public void setVenomous(boolean venomous) {
         this.venomous = venomous;

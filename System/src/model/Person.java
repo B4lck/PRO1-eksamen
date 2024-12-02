@@ -7,12 +7,11 @@ public class Person {
     private String name;
 
     /**
-     * konstruktør med en parameter
+     * Konstruktøren for Person
      *
      * @param name personens navn
      */
     public Person(String name) {
-
         setName(name);
     }
 
@@ -24,7 +23,7 @@ public class Person {
     }
 
     /**
-     * sætter navnet på personen i name objektet
+     * Sætter navnet på personen i name objektet
      *
      * @param name personens navn
      */

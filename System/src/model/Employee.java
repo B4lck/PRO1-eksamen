@@ -5,7 +5,7 @@ package model;
  */
 public class Employee extends Person {
     /**
-     * medarbejderen beskrivelse
+     * Medarbejderens beskrivelse
      */
     private String description;
     /**
@@ -13,7 +13,7 @@ public class Employee extends Person {
      */
     private String portraitUrl;
     /**
-     * medarbejderen ID
+     * Medarbejderens ID
      */
     private int employeeId;
 

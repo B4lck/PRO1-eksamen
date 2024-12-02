@@ -1,11 +1,8 @@
 package model;
 
-/**
- * En klasse der opretter en kund
- */
 public class Customer extends Person {
     /**
-     * kundens telefon nummer
+     * Kundens telefon nummer
      */
     private long phone;
     /**
@@ -21,7 +18,7 @@ public class Customer extends Person {
      * Konstruktør til kunden
      *
      * @param name  navnet på kunden
-     * @param phone kundens telfon nummer
+     * @param phone kundens telefon nummer
      * @param email kundens mailadresse
      */
 
@@ -32,14 +29,14 @@ public class Customer extends Person {
     }
 
     /**
-     * @return telefon nummer på kunden
+     * @return Telefon nummer på kunden
      */
     public long getPhone() {
         return phone;
     }
 
     /**
-     * @return mailen på kunden
+     * @return Mailen på kunden
      */
 
     public String getEmail() {
@@ -54,8 +51,7 @@ public class Customer extends Person {
     }
 
     /**
-     * sætter telefonnummeret i objektet
-     *
+     * Sætter telefonnummeret på kunden
      * @param phone kundens telefon nummer
      */
     public void setPhone(long phone) {
@@ -63,8 +59,7 @@ public class Customer extends Person {
     }
 
     /**
-     * sætter mailen i objektet
-     *
+     * Sætter mailen på kunden
      * @param email kundens mailadresse
      */
     public void setEmail(String email) {
@@ -72,7 +67,7 @@ public class Customer extends Person {
     }
 
     /**
-     * @param obj Objekt skal sammenlignes
+     * @param obj Objekt der skal sammenlignes
      * @return Om objektet er ens
      */
     @Override
