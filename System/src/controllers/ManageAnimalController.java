@@ -12,10 +12,12 @@ public class ManageAnimalController {
     public ManageAnimalController() {
     }
     
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root, int animalId) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
+
+        System.out.println(animalId);
     }
     
     public void reset() {
