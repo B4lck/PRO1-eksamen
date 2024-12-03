@@ -28,12 +28,12 @@
                     <Font name="System Italic" size="16.0"/>
                 </font>
             </Button>
-            <Button prefHeight="36.0" prefWidth="200.0" text="Kunder" onAction="#gotoPage" userData="Employees">
+            <Button prefHeight="36.0" prefWidth="200.0" text="Kunder" onAction="#gotoPage" userData="Customers">
                 <font>
                     <Font name="System Italic" size="16.0"/>
                 </font>
             </Button>
-            <Button prefHeight="36.0" prefWidth="200.0" text="Medarbejdere">
+            <Button prefHeight="36.0" prefWidth="200.0" text="Medarbejdere" onAction="#gotoPage" userData="Employees">
                 <font>
                     <Font name="System Italic" size="16.0"/>
                 </font>

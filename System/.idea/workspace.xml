@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controllers/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/CustomerGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/EmployeeGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EmployeeGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +20,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -126,7 +129,7 @@
       <workItem from="1733213480135" duration="3475000" />
       <workItem from="1733219334584" duration="164000" />
       <workItem from="1733219505010" duration="30000" />
-      <workItem from="1733219542400" duration="4984000" />
+      <workItem from="1733219542400" duration="1261000" />
     </task>
     <servers />
   </component>
