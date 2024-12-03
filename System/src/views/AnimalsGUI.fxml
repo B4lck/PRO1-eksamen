@@ -26,12 +26,12 @@
             <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" />
             <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Tilføj" />
+                  <Button mnemonicParsing="false" prefWidth="100.0" text="Tilføj" onAction="#createAnimal" />
                   <Button mnemonicParsing="false" prefWidth="100.0" text="Slet" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Rediger" />
+                  <Button mnemonicParsing="false" prefWidth="100.0" text="Rediger" onAction="#editAnimal" />
                </children>
             </VBox>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" />
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" onAction="#back"/>
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />

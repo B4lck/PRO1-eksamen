@@ -77,7 +77,7 @@
                 </GridPane>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" text="Annuller" />
+                  <Button mnemonicParsing="false" text="Annuller" onAction="#back" />
                   <Button mnemonicParsing="false" text="Opret/rediger" />
                </children>
             </HBox>

@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import model.VIAPetsModelManager;
 
@@ -23,5 +24,10 @@ public class ManageAnimalController {
     
     public Region getRoot() {
         return root;
+    }
+
+    @FXML
+    public void back() {
+        viewHandler.openView("Animals");
     }
 }
