@@ -23,14 +23,32 @@ public class ReservationList {
         reservations.remove(reservation);
     }
 
-    public Reservation getReservation(int id) {
-        return reservations.get(id);
+    /**
+     * Henter reservation ud fra index
+     * @param index Index
+     * @return Reservation
+     */
+    public Reservation getReservation(int index) {
+        try {
+            return reservations.get(index);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
+    /**
+     * Henter alle reservationer som en array
+     * @return Reservation[]
+     */
     public Reservation[] getAllReservations() {
         return reservations.toArray(new Reservation[reservations.size()]);
     }
 
+    /**
+     * Sortere efter ud fra datoer<br><br>
+     * Gyldig sortering er "start-date-reverse", "start-date", "end-date-reverse", "end-date"
+     * @param sortBy Sorterings type
+     */
     public void sortBy(String sortBy) {
         boolean reverse = false;
         switch (sortBy) {
@@ -53,6 +71,12 @@ public class ReservationList {
         }
     }
 
+    /**
+     * Sortere ud fra dyrene i reservationerne<br><br>
+     * Gyldige sorteringer er "animal-name-reverse", "animal-name", "animal-category-reverse", "animal-category", "animal-food-reverse", "animal-food"
+     * @param sortBy Sorterings type
+     * @param animalList Listen over dyr, hvor informationerne kommer fra
+     */
     public void sortBy(String sortBy, AnimalList animalList) {
         boolean reverse = false;
         switch (sortBy) {
@@ -76,24 +100,39 @@ public class ReservationList {
         }
     }
 
+    /**
+     * Sortere ud fra kunderne i reservationerne<br><br>
+     * Gyldige sorteringer er "customer-name-reverse", "customer-name", "customer-email-reverse", "customer-email"
+     * @param sortBy Sorterings type
+     * @param customerList Listen over kunder, hvor informationerne kommer fra
+     */
     public void sortBy(String sortBy, CustomerList customerList) {
         boolean reverse = false;
         switch (sortBy) {
-            case "costumer-name-reverse":
+            case "customer-name-reverse":
                 reverse = true;
-            case "costumer-name":
+            case "customer-name":
                 reservations.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getName()));
                 break;
-            case "costumer-email-reverse":
+            case "customer-email-reverse":
                 reverse = true;
-            case "costumer-email":
+            case "customer-email":
                 reservations.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getEmail().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getEmail()));
                 break;
             default:
-                throw new IllegalArgumentException("Invalid sort by. Valid ones are costumer-name-reverse, costumer-name, costumer-email-reverse, costumer-email");
+                throw new IllegalArgumentException("Invalid sort by. Valid ones are customer-name-reverse, customer-name, customer-email-reverse, customer-email");
+        }
+
+        if (reverse) {
+            Collections.reverse(reservations);
         }
     }
 
+    /**
+     * Henter alle reservationer med bestemt dyr, ud fra et dyrets ID
+     * @param animalId Dyret's ID
+     * @return ReservationList
+     */
     public ReservationList getReservationsForAnimal(int animalId) {
         ReservationList reservationList = new ReservationList();
         for (Reservation reservation : reservations) {
@@ -104,6 +143,11 @@ public class ReservationList {
         return reservationList;
     }
 
+    /**
+     * Henter alle reservationer med bestemt kunde, ud fra kundens ID
+     * @param customerId Kunden's ID
+     * @return ReservationList
+     */
     public ReservationList getReservationsForOwner(int customerId) {
         ReservationList reservationList = new ReservationList();
         for (Reservation reservation : reservations) {
@@ -114,6 +158,11 @@ public class ReservationList {
         return reservationList;
     }
 
+    /**
+     * Henter alle reservationer, indenfor en given periode
+     * @param period DateInterval over periode
+     * @return ReservationList
+     */
     public ReservationList getReservationsForPeriod(DateInterval period) {
         ReservationList reservationList = new ReservationList();
         for (Reservation reservation : reservations) {
@@ -124,6 +173,11 @@ public class ReservationList {
         return reservationList;
     }
 
+    /**
+     * Henter alle reservationer som indeholder en bestemt dato
+     * @param date Dato
+     * @return ReservationList
+     */
     public ReservationList getReservationsForDate(Date date) {
         ReservationList reservationList = new ReservationList();
         for (Reservation reservation : reservations) {
@@ -134,6 +188,11 @@ public class ReservationList {
         return reservationList;
     }
 
+    /**
+     * Henter alle reservationer på bestemt position, ud fra et positions ID
+     * @param positionId Positions ID
+     * @return ReservationList
+     */
     public ReservationList getReservationsForPosition(int positionId) {
         ReservationList reservationList = new ReservationList();
         for (Reservation reservation : reservations) {
