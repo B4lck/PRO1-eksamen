@@ -10,7 +10,7 @@ public class SalesList {
     /**
      * Tilføj et salg til listen
      *
-     * @param animal Salget der skal tilføjes til listen
+     * @param sale Salget der skal tilføjes til listen
      */
     public void add(Sale sale) {
         sales.add(sale);
