@@ -1,14 +1,13 @@
 package controllers;
-import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import model.VIAPetsModelManager;
 
-public class EmployeeGUI {
+public class EmployeesController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
 
-    public EmployeeGUI() {}
+    public EmployeesController() {}
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
