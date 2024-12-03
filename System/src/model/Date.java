@@ -63,6 +63,10 @@ public class Date {
     }
 
 
+    /**
+     * (til sammenligning af dato) En funktion der laver T om til et date objekt
+     * @param <T>
+     */
     @FunctionalInterface
     public interface DateFunction<T> {
         Date getDate(T a);

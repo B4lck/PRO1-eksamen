@@ -45,6 +45,17 @@ public class AnimalList {
     }
 
     /**
+     * Hent et nyt id
+     */
+    public int getUniqueId() {
+        int highestId = 0;
+        for (Animal animal : animals) {
+            if (animal.getAnimalId() > highestId) highestId = animal.getAnimalId();
+        }
+        return highestId + 1;
+    }
+
+    /**
      * Tilføj et dyr til animal listen
      *
      * @param animal Dyret der skal tilføjes til listen
@@ -287,15 +298,8 @@ public class AnimalList {
         }
         return list;
     }
-
-    /**
-     * Hent et nyt id
-     */
-    public int getUniqueId() {
-        int highestId = 0;
-        for (Animal animal : animals) {
-            if (animal.getAnimalId() > highestId) highestId = animal.getAnimalId();
-        }
-        return highestId + 1;
+    
+    public ArrayList<Animal> getList() {
+        return animals;
     }
 }

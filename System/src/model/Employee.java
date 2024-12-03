@@ -23,8 +23,9 @@ public class Employee extends Person {
      * @param name navnet på medarbejder
      */
 
-    public Employee(String name) {
+    public Employee(String name, int employeeId) {
         super(name);
+        this.employeeId = employeeId;
     }
 
     /**

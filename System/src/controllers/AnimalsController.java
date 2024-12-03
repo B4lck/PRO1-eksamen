@@ -1,12 +1,15 @@
 package controllers;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import model.AnimalList;
-import model.VIAPetsModelManager;
+import model.*;
 
 public class AnimalsController {
     private ViewHandler viewHandler;
@@ -14,30 +17,30 @@ public class AnimalsController {
     private VIAPetsModelManager model;
 
     @FXML
-    private TableView<AnimalModel> animalsTable;
+    private TableView<Animal> animalsTable;
 
     @FXML
-    private TableColumn<AnimalModel, String> ownerColumn;
+    private TableColumn<Animal, String> ownerColumn;
     @FXML
-    private TableColumn<AnimalModel, String> categoryColumn;
+    private TableColumn<Animal, String> categoryColumn;
     @FXML
-    private TableColumn<AnimalModel, String> nameColumn;
+    private TableColumn<Animal, String> nameColumn;
     @FXML
-    private TableColumn<AnimalModel, String> foodColumn;
+    private TableColumn<Animal, String> foodColumn;
     @FXML
-    private TableColumn<AnimalModel, String> forSaleColumn;
+    private TableColumn<Animal, String> forSaleColumn;
     @FXML
-    private TableColumn<AnimalModel, String> priceColumn;
+    private TableColumn<Animal, String> priceColumn;
     @FXML
-    private TableColumn<AnimalModel, String> waterColumn;
+    private TableColumn<Animal, String> waterColumn;
     @FXML
-    private TableColumn<AnimalModel, String> venomousColumn;
+    private TableColumn<Animal, String> venomousColumn;
     @FXML
-    private TableColumn<AnimalModel, String> tameColumn;
+    private TableColumn<Animal, String> tameColumn;
     @FXML
-    private TableColumn<AnimalModel, String> commentColumn;
+    private TableColumn<Animal, String> commentColumn;
 
-    private AnimalListModel animalListModel;
+    ObservableList<Animal> list;
 
     public AnimalsController() {
     }
@@ -46,25 +49,31 @@ public class AnimalsController {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
-        animalListModel = new AnimalListModel(model);
 
-        nameColumn.setCellValueFactory(celldata -> celldata.getValue().getName());
-        ownerColumn.setCellValueFactory(celldata -> celldata.getValue().getOwner());
-        categoryColumn.setCellValueFactory(celldata -> celldata.getValue().getCategory());
-        foodColumn.setCellValueFactory(celldata -> celldata.getValue().getFood());
-        forSaleColumn.setCellValueFactory(celldata -> celldata.getValue().getForSale());
-        priceColumn.setCellValueFactory(celldata -> celldata.getValue().getPrice());
-        waterColumn.setCellValueFactory(celldata -> celldata.getValue().getWater());
-        venomousColumn.setCellValueFactory(celldata -> celldata.getValue().getVenomous());
-        tameColumn.setCellValueFactory(celldata -> celldata.getValue().getTamed());
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        ownerColumn.setCellValueFactory(cellData -> {
+            Animal animal = cellData.getValue();
+            if (animal.isForSale()) return new SimpleStringProperty("-");
+            Customer customer = model.getCustomerList().getById(animal.getOwnerId());
+            if (customer == null) return new SimpleStringProperty("Kunde findes ikke");
+            return new SimpleStringProperty(customer.getName());
+        });
+        categoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategory()));
+        foodColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFood()));
+        forSaleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isForSale() ? "Til salg" : "Til pasning"));
+        priceColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isForSale() ? String.format("%.2f kr.", cellData.getValue().getPrice()) : "-"));
+        waterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue() instanceof AnimalFish ? (((AnimalFish) cellData.getValue()).isFreshWater() ? "Ferskvand" : "Saltvand") : "-"));
+        venomousColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue() instanceof AnimalReptile ? (((AnimalReptile) cellData.getValue()).isVenomous() ? "Giftig" : "Ikke giftig") : "-"));
+        tameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue() instanceof AnimalBird ? (((AnimalBird) cellData.getValue()).isTamed() ? "Tæmmet" : "Ikke tæmmet") : "-"));
+        commentColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getComment()));
 
+        reset();
 
-        animalsTable.setItems(animalListModel.getList());
-        animalListModel.update();
+        animalsTable.setItems(list);
     }
 
     public void reset() {
-        animalListModel.update();
+        list = FXCollections.observableArrayList(model.getAnimalList().getList());
     }
 
     public Region getRoot() {

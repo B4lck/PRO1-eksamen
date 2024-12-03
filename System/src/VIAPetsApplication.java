@@ -19,7 +19,7 @@ public class VIAPetsApplication extends Application {
         model.getAnimalList().add(model.getAnimalList().createNewAnimal(Animal.CATEGORY_REPTILE, "Mazen Sharaf", 69.0));
         model.getAnimalList().add(model.getAnimalList().createNewAnimal(Animal.CATEGORY_BIRD, "Mazen Sharaf", 1));
 
-        model.getCustomerList().addCustomer(new Customer("Nikolai Balck", 12345678, "12345@gmail.com", 1));
+        model.getCustomerList().add(new Customer("Nikolai Balck", 12345678, "12345@gmail.com", 1));
 
         ViewHandler viewHandler = new ViewHandler(model);
         viewHandler.start(primaryStage);

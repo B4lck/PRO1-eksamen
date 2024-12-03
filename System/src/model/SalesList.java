@@ -81,7 +81,7 @@ public class SalesList {
             case "customer-reverse":
                 reverse = true;
             case "customer":
-                sales.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getName()));
+                sales.sort((a,b) -> customerList.getById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getName()));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");

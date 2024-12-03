@@ -6,32 +6,55 @@ public class CustomerList {
     /**
      * Liste over alle kunder
      */
-    private ArrayList<Customer> customerList = new ArrayList<>();
+    private ArrayList<Customer> customers = new ArrayList<>();
+
+
+    /**
+     * Opretter en ny kunde, der bagefter kan lægges i customer listen
+     * @param name Navn på kunde
+     * @param phone Telefon nr. på kunde
+     * @param email Kundens email adresse
+     * @return Et nyt kunde objekt
+     */
+    public Customer createNewCustomer(String name, long phone, String email) {
+        return new Customer(name, phone, email, getUniqueId());
+    }
+
+    /**
+     * Hent et nyt id
+     */
+    public int getUniqueId() {
+        int highestId = 0;
+        for (Customer customer : customers) {
+            if (customer.getCustomerId() > highestId) highestId = customer.getCustomerId();
+        }
+        return highestId + 1;
+    }
 
     /**
      * Tilføjer kunde til liste
      * @param customer Kunde
      */
-    public void addCustomer(Customer customer) {
-        this.customerList.add(customer);
+    public void add(Customer customer) {
+        this.customers.add(customer);
     }
 
     /**
      * Fjerner kunde ud fra objekt
      * @param customer Kunde objekt
      */
-    public void removeCustomer(Customer customer) {
-        this.customerList.remove(customer);
+    public void remove(Customer customer) {
+        this.customers.remove(customer);
     }
 
     /**
      * Fjerner kunde ud fra ID
      * @param customer Kunde ID
      */
-    public void removeCustomerById(int customer) {
-        for (Customer c : this.customerList) {
+    public void removeById(int customer) {
+        for (Customer c : this.customers) {
             if (c.getCustomerId() == customer) {
-                this.customerList.remove(c);
+                this.customers.remove(c);
             }
         }
     }
@@ -41,8 +64,8 @@ public class CustomerList {
      * @param customer Kunde ID
      * @return Customer
      */
-    public Customer getCustomerById(int customer) {
-        for (Customer c : this.customerList) {
+    public Customer getById(int customer) {
+        for (Customer c : this.customers) {
             if (c.getCustomerId() == customer) {
                 return c;
             }
@@ -55,7 +78,7 @@ public class CustomerList {
      * @return Customer[]
      */
     public Customer[] getAllCustomers() {
-        return this.customerList.toArray(new Customer[this.customerList.size()]);
+        return this.customers.toArray(new Customer[this.customers.size()]);
     }
     //sortBY skal laves
 
@@ -66,9 +89,9 @@ public class CustomerList {
      */
     public CustomerList getCustomerByPhone(long phone) {
         CustomerList list = new CustomerList();
-        for (Customer c : this.customerList) {
+        for (Customer c : this.customers) {
             if (c.getPhone() == phone) {
-                list.addCustomer(c);
+                list.add(c);
             }
         }
         return list;
@@ -81,9 +104,9 @@ public class CustomerList {
      */
     public CustomerList getCustomerByName(String name) {
         CustomerList list = new CustomerList();
-        for (Customer c : this.customerList) {
+        for (Customer c : this.customers) {
             if (c.getName() == name) {
-                list.addCustomer(c);
+                list.add(c);
             }
         }
         return list;
@@ -96,9 +119,9 @@ public class CustomerList {
      */
     public CustomerList getCustomerByEmail(String email) {
         CustomerList list = new CustomerList();
-        for (Customer c : this.customerList) {
+        for (Customer c : this.customers) {
             if (c.getEmail() == email) {
-                list.addCustomer(c);
+                list.add(c);
             }
         }
         return list;
