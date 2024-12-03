@@ -26,7 +26,7 @@ public class ViewHandler {
     public ManageAnimalController manageAnimalController;
     public ReservationsController reservationsController;
     public EmployeesController employeesController;
-    public CustomerController customerController;
+    public CustomersController customersController;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -192,19 +192,19 @@ public class ViewHandler {
     }
 
     private Region loadCustomers() {
-        if (customerController == null) {
+        if (customersController == null) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/views/CustomerGUI.fxml"));
+                loader.setLocation(getClass().getResource("/views/CustomersGUI.fxml"));
                 Region root = loader.load();
-                customerController = loader.getController();
-                customerController.init(this, model, root);
+                customersController = loader.getController();
+                customersController.init(this, model, root);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            customerController.reset();
+            customersController.reset();
         }
-        return customerController.getRoot();
+        return customersController.getRoot();
     }
 }

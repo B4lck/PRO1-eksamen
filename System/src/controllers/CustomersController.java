@@ -4,12 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import model.VIAPetsModelManager;
 
-public class CustomerController {
+public class CustomersController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
 
-    public CustomerController() {
+    public CustomersController() {
     }
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
