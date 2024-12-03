@@ -1,5 +1,8 @@
 package controllers;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import model.VIAPetsModelManager;
 
@@ -23,5 +26,12 @@ public class MainMenuController {
     
     public Region getRoot() {
         return root;
+    }
+    
+    @FXML
+    public void gotoPage(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        String page = (String) node.getUserData();
+        viewHandler.openView(page);
     }
 }

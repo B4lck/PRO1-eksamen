@@ -1,14 +1,15 @@
 package controllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import model.VIAPetsModelManager;
 
-public class DyrOversigtController {
+public class ReservationsController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
 
-    public DyrOversigtController() {
+    public ReservationsController() {
     }
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
@@ -23,5 +24,10 @@ public class DyrOversigtController {
 
     public Region getRoot() {
         return root;
+    }
+
+    @FXML public void tilbage() {
+        System.out.println("Wallah, billa!");
+        viewHandler.openView("MainMenu");
     }
 }
