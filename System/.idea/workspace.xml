@@ -59,6 +59,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "settings.sync",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733127214753</updated>
       <workItem from="1733127215767" duration="12760000" />
-      <workItem from="1733213480135" duration="2099000" />
+      <workItem from="1733213480135" duration="3113000" />
     </task>
     <servers />
   </component>
