@@ -28,7 +28,7 @@
                   <Button mnemonicParsing="false" prefWidth="100.0" text="Rediger" />
                </children>
             </VBox>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" onAction="#tilbage" />
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" onAction="#back" />
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />

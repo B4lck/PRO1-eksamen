@@ -26,8 +26,8 @@ public class ReservationsController {
         return root;
     }
 
-    @FXML public void tilbage() {
-        System.out.println("Wallah, billa!");
+    @FXML
+    public void back() {
         viewHandler.openView("MainMenu");
     }
 }
