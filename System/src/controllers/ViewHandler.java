@@ -12,8 +12,9 @@ public class ViewHandler {
 
     private VIAPetsModelManager model;
 
-    public MainMenuViewController mainMenu;
-    public DyrOversigtViewController dyrOversigt;
+    public MainMenuController mainMenu;
+    public DyrOversigtController dyrOversigt;
+    public ManageAnimalController manageAnimalController;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -22,13 +23,14 @@ public class ViewHandler {
     
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        openView("MainMenu");
+        openView("ManageAnimal");
     }
 
     public void openView(String id) {
         Region root = switch (id) {
             case "MainMenu" -> loadMainMenu();
             case "DyrOversigt" -> loadDyrOversigt();
+            case "ManageAnimal" -> loadManageAnimal();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist!");
         };
 
@@ -76,5 +78,22 @@ public class ViewHandler {
             dyrOversigt.reset();
         }
         return dyrOversigt.getRoot();
+    }
+
+    private Region loadManageAnimal() {
+        if (manageAnimalController == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/views/ManageAnimalGUI.fxml"));
+                Region root = loader.load();
+                manageAnimalController = loader.getController();
+                manageAnimalController.init(this, model, root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            manageAnimalController.reset();
+        }
+        return manageAnimalController.getRoot();
     }
 }
