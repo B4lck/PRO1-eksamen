@@ -1,5 +1,5 @@
 package controllers;
-
+import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import model.VIAPetsModelManager;
 
@@ -19,5 +19,9 @@ public class EmployeeGUI {
     }
     public Region getRoot() {
         return root;
+    }
+
+    public void back() {
+        viewHandler.openView("MainMenu");
     }
 }
