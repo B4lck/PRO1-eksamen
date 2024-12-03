@@ -31,9 +31,23 @@ public class ViewHandler {
         Region root = switch (id) {
             case "MainMenu" -> loadMainMenu();
             case "Animals" -> loadAnimals();
-            case "ManageAnimal" -> loadManageAnimal();
+            case "ManageAnimal" -> loadManageAnimal(-1);
             case "Reservations" -> loadReservations();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist!");
+        };
+
+        currentScene.setRoot(root);
+        primaryStage.setTitle("VIAPets");
+        primaryStage.setScene(currentScene);
+        primaryStage.setWidth(root.getPrefWidth());
+        primaryStage.setHeight(root.getPrefHeight());
+        primaryStage.show();
+    }
+
+    public <T> void openView(String id, T data) {
+        Region root = switch (id) {
+            case "ManageAnimal" -> loadManageAnimal((int) data);
+            default -> throw new IllegalArgumentException("View: " + id + " does not exist with data!");
         };
 
         currentScene.setRoot(root);
@@ -82,14 +96,14 @@ public class ViewHandler {
         return animalsController.getRoot();
     }
 
-    private Region loadManageAnimal() {
+    private Region loadManageAnimal(int animalId) {
         if (manageAnimalController == null) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/views/ManageAnimalGUI.fxml"));
                 Region root = loader.load();
                 manageAnimalController = loader.getController();
-                manageAnimalController.init(this, model, root);
+                manageAnimalController.init(this, model, root, animalId);
             } catch (Exception e) {
                 e.printStackTrace();
             }
