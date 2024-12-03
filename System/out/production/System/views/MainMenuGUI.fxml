@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.MainMenuViewController"
-            prefHeight="400.0" prefWidth="600.0">
-    <VBox>
-        <Button>Dyr</Button>
-        <Button>Salg</Button>
-        <Button>Reservationer</Button>
-        <Button>Kunder</Button>
-        <Button>Medarbejdere</Button>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
+    <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10.0">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VIAPets">
+            <font>
+               <Font name="System Bold" size="50.0" />
+            </font>
+         </Text>
+           <Button prefHeight="36.0" prefWidth="200.0" text="Dyr">
+            <font>
+               <Font name="System Italic" size="16.0" />
+            </font></Button>
+           <Button prefHeight="36.0" prefWidth="200.0" text="Salg">
+            <font>
+               <Font name="System Italic" size="16.0" />
+            </font></Button>
+           <Button prefHeight="36.0" prefWidth="200.0" text="Reservationer">
+            <font>
+               <Font name="System Italic" size="16.0" />
+            </font></Button>
+           <Button prefHeight="36.0" prefWidth="200.0" text="Kunder">
+            <font>
+               <Font name="System Italic" size="16.0" />
+            </font></Button>
+           <Button prefHeight="36.0" prefWidth="200.0" text="Medarbejdere">
+            <font>
+               <Font name="System Italic" size="16.0" />
+            </font></Button>
+      </children>
     </VBox>
 </AnchorPane>

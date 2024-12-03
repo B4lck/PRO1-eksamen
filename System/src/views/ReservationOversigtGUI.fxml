@@ -4,23 +4,20 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.DyrOversigtController"
-            prefHeight="400.0" prefWidth="900.0">
+<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationOversigtController">
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="400.0" prefWidth="150.0" spacing="50.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dyr">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reservationer">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Text>
             <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" />
@@ -39,16 +36,12 @@
       </VBox>
       <TableView prefHeight="400.0" prefWidth="750.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Ejer" />
-          <TableColumn prefWidth="75.0" text="Kategori" />
-            <TableColumn prefWidth="75.0" text="Navn" />
-            <TableColumn prefWidth="75.0" text="Mad" />
-            <TableColumn prefWidth="75.0" text="Til Salg" />
-            <TableColumn prefWidth="52.666748046875" text="Pris" />
-            <TableColumn prefWidth="81.33331298828125" text="Vand" />
-            <TableColumn prefWidth="55.3333740234375" text="Giftig" />
-            <TableColumn prefWidth="50.0" text="Tam" />
-            <TableColumn prefWidth="137.3333740234375" text="Kommentar" />
+          <TableColumn prefWidth="150.0" text="Kunde Navn" />
+          <TableColumn prefWidth="100.0" text="Dyr Kategori" />
+            <TableColumn prefWidth="100.0" text="Dyr Navn" />
+            <TableColumn text="Start Dato" />
+            <TableColumn text="Slut Dato" />
+            <TableColumn minWidth="9.3333740234375" prefWidth="238.66668701171875" text="Terrarie/Akvarie/Fuglebur" />
         </columns>
       </TableView>
    </children>

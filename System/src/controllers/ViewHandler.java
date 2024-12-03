@@ -15,6 +15,7 @@ public class ViewHandler {
     public MainMenuController mainMenu;
     public DyrOversigtController dyrOversigt;
     public ManageAnimalController manageAnimalController;
+    public ReservationOversigtController reservationOversigt;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -31,6 +32,7 @@ public class ViewHandler {
             case "MainMenu" -> loadMainMenu();
             case "DyrOversigt" -> loadDyrOversigt();
             case "ManageAnimal" -> loadManageAnimal();
+            case "ReservationOversigt" -> loadReservationOversigt();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist!");
         };
 
@@ -95,5 +97,22 @@ public class ViewHandler {
             manageAnimalController.reset();
         }
         return manageAnimalController.getRoot();
+    }
+
+    private Region loadReservationOversigt() {
+        if (reservationOversigt == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/views/ReservationOversigtGUI.fxml"));
+                Region root = loader.load();
+                reservationOversigt = loader.getController();
+                reservationOversigt.init(this, model, root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            reservationOversigt.reset();
+        }
+        return reservationOversigt.getRoot();
     }
 }
