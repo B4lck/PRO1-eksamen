@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.MainMenuViewController"
-            prefHeight="400.0" prefWidth="600.0">
-    <VBox>
-        <Button>Dyr</Button>
-        <Button>Salg</Button>
-        <Button>Reservationer</Button>
-        <Button>Kunder</Button>
-        <Button>Medarbejdere</Button>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuViewController">
+    <VBox prefHeight="127.0" prefWidth="91.0">
+      <children>
+         <ButtonBar prefHeight="34.0" prefWidth="52.0" />
+      </children>
     </VBox>
+     <Button layoutX="46.0" layoutY="64.0" prefHeight="13.0" prefWidth="91.0">Dyr</Button>
+     <Button layoutX="47.0" layoutY="107.0" prefHeight="25.0" prefWidth="90.0">Salg</Button>
+     <Button layoutX="46.0" layoutY="194.0" prefHeight="25.0" prefWidth="90.0">Reservationer</Button>
+     <Button layoutX="46.0" layoutY="237.0" text="Medarbejdere">Medarbejdere</Button>
+     <Button layoutX="47.0" layoutY="151.0" prefHeight="25.0" prefWidth="89.0">Kunder</Button>
+   <Button layoutX="61.0" layoutY="21.0" mnemonicParsing="false" text="Explode" />
 </AnchorPane>
