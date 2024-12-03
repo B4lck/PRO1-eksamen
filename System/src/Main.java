@@ -1,5 +1,7 @@
+import javafx.application.Application;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Balck er Grim");
+        Application.launch(VIAPetsApplication.class);
     }
 }
