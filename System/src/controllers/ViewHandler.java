@@ -13,8 +13,9 @@ public class ViewHandler {
     private VIAPetsModelManager model;
 
     public MainMenuController mainMenu;
-    public DyrOversigtController dyrOversigt;
+    public AnimalsController animalsController;
     public ManageAnimalController manageAnimalController;
+    public ReservationsController reservationsController;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -23,14 +24,15 @@ public class ViewHandler {
     
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        openView("ManageAnimal");
+        openView("MainMenu");
     }
 
     public void openView(String id) {
         Region root = switch (id) {
             case "MainMenu" -> loadMainMenu();
-            case "DyrOversigt" -> loadDyrOversigt();
+            case "Animals" -> loadAnimals();
             case "ManageAnimal" -> loadManageAnimal();
+            case "Reservations" -> loadReservations();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist!");
         };
 
@@ -63,21 +65,21 @@ public class ViewHandler {
         return mainMenu.getRoot();
     }
 
-    private Region loadDyrOversigt() {
-        if (dyrOversigt == null) {
+    private Region loadAnimals() {
+        if (animalsController == null) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/views/DyrOversigtGUI.fxml"));
+                loader.setLocation(getClass().getResource("/views/AnimalsGUI.fxml"));
                 Region root = loader.load();
-                dyrOversigt = loader.getController();
-                dyrOversigt.init(this, model, root);
+                animalsController = loader.getController();
+                animalsController.init(this, model, root);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            dyrOversigt.reset();
+            animalsController.reset();
         }
-        return dyrOversigt.getRoot();
+        return animalsController.getRoot();
     }
 
     private Region loadManageAnimal() {
@@ -95,5 +97,22 @@ public class ViewHandler {
             manageAnimalController.reset();
         }
         return manageAnimalController.getRoot();
+    }
+
+    private Region loadReservations() {
+        if (reservationsController == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/views/ReservationsGUI.fxml"));
+                Region root = loader.load();
+                reservationsController = loader.getController();
+                reservationsController.init(this, model, root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            reservationsController.reset();
+        }
+        return reservationsController.getRoot();
     }
 }

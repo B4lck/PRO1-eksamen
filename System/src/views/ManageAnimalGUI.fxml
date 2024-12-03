@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="556.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageAnimalController">
+<AnchorPane prefHeight="570.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageAnimalController">
     <children>
         <VBox layoutX="20.0" layoutY="20.0" prefHeight="526.0" prefWidth="458.0" spacing="10.0">
             <children>
@@ -77,7 +77,7 @@
                 </GridPane>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" text="Annuller" />
+                  <Button mnemonicParsing="false" text="Annuller" onAction="#back" />
                   <Button mnemonicParsing="false" text="Opret/rediger" />
                </children>
             </HBox>
