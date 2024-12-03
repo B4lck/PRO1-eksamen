@@ -24,7 +24,7 @@ public class ViewHandler {
     
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        openView("ManageAnimal");
+        openView("ReservationOversigt");
     }
 
     public void openView(String id) {
