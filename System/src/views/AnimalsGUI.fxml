@@ -37,18 +37,18 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
          </padding>
       </VBox>
-      <TableView prefHeight="400.0" prefWidth="750.0">
+      <TableView fx:id="animalsTable" prefHeight="400.0" prefWidth="750.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Ejer" />
-          <TableColumn prefWidth="75.0" text="Kategori" />
-            <TableColumn prefWidth="75.0" text="Navn" />
-            <TableColumn prefWidth="75.0" text="Mad" />
-            <TableColumn prefWidth="75.0" text="Til Salg" />
-            <TableColumn prefWidth="52.666748046875" text="Pris" />
-            <TableColumn prefWidth="81.33331298828125" text="Vand" />
-            <TableColumn prefWidth="55.3333740234375" text="Giftig" />
-            <TableColumn prefWidth="50.0" text="Tam" />
-            <TableColumn prefWidth="137.3333740234375" text="Kommentar" />
+            <TableColumn prefWidth="75.0" fx:id="ownerColumn" text="Ejer" />
+            <TableColumn prefWidth="75.0" fx:id="categoryColumn" text="Kategori" />
+            <TableColumn prefWidth="75.0" fx:id="nameColumn" text="Navn" />
+            <TableColumn prefWidth="75.0" fx:id="foodColumn" text="Mad" />
+            <TableColumn prefWidth="75.0" fx:id="forSaleColumn" text="Til Salg" />
+            <TableColumn prefWidth="53.0" fx:id="priceColumn" text="Pris" />
+            <TableColumn prefWidth="81.0" fx:id="waterColumn" text="Vand" />
+            <TableColumn prefWidth="55.0" fx:id="venomousColumn" text="Giftig" />
+            <TableColumn prefWidth="50.0" fx:id="tameColumn" text="Tam" />
+            <TableColumn prefWidth="137.0" fx:id="commentColumn" text="Kommentar" />
         </columns>
       </TableView>
    </children>

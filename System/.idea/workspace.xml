@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controllers/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/CustomerGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/EmployeeGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EmployeeGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/System/views/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/System/views/MainMenuGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VIAPetsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VIAPetsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/AnimalListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AnimalListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/AnimalModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AnimalModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/AnimalsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AnimalsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/AnimalList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AnimalList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/VIAPetsModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/VIAPetsModelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/AnimalsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AnimalsGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,19 +89,6 @@
     <configuration name="VIAPetsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="VIAPetsApplication" />
       <module name="System" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="System" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="System" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

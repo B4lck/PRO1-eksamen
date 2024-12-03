@@ -20,12 +20,14 @@ public class Customer extends Person {
      * @param name  navnet på kunden
      * @param phone kundens telefon nummer
      * @param email kundens mailadresse
+     * @param customerId ID'et på kunden
      */
 
-    public Customer(String name, long phone, String email) {
+    public Customer(String name, long phone, String email, int customerId) {
         super(name);
         setPhone(phone);
         setEmail(email);
+        this.customerId = customerId;
     }
 
     /**

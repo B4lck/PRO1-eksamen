@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class AnimalList {
-    private ArrayList<Animal> animals;
+    private ArrayList<Animal> animals = new ArrayList<>();
 
     /**
      * Opretter et helt nyt dyr, der bagefter skal lægges i listen.

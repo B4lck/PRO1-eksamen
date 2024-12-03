@@ -8,6 +8,14 @@ public class VIAPetsModelManager implements VIAPetsModel {
     private CustomerList customerList;
     private EmployeeList employeeList;
 
+    public VIAPetsModelManager() {
+        animalList = new AnimalList();
+        reservationList = new ReservationList();
+        salesList = new SalesList();
+        customerList = new CustomerList();
+        employeeList = new EmployeeList();
+    }
+
     @Override
     public AnimalList getAnimalList() {
         return animalList;

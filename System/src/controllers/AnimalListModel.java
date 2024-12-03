@@ -18,7 +18,7 @@ public class AnimalListModel {
     public void update() {
         list.clear();
         for (Animal animal : model.getAnimalList().getAllAnimals()) {
-            this.list.add(new AnimalModel(animal));
+            this.list.add(new AnimalModel(animal, model));
         }
     }
     
