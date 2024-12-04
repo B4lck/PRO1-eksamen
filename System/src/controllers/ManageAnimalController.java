@@ -11,7 +11,9 @@ import model.*;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ManageAnimalController {
     private ViewHandler viewHandler;
@@ -69,6 +71,22 @@ public class ManageAnimalController {
                 update();
             }
         });
+        
+        birthday.valueProperty().addListener(new ChangeListener<LocalDate>() {
+           @Override
+           public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+               selectedBirthday = new Date(newValue);
+               update();
+           } 
+        });
+        
+        age.setOnKeyReleased(event -> {
+            try {
+                selectedBirthday.set(selectedBirthday.getDay(), selectedBirthday.getMonth(), new Date().getYear() - Integer.parseInt(age.getText()));
+                update();
+            } catch (Exception ignored) {
+            }
+        });
 
         price.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -106,7 +124,7 @@ public class ManageAnimalController {
             food.setText("");
             comment.setText("");
             price.setText("0,00 kr.");
-            selectedBirthDay = new Date();
+            selectedBirthday = new Date();
             selectedPrice = 0;
             selectedOwnerId = -1;
         } else {
@@ -127,7 +145,7 @@ public class ManageAnimalController {
             food.setText(animal.getFood());
             comment.setText(animal.getComment());
             selectedPrice = animal.getPrice();
-            selectedBirthDay = animal.getBirthday();
+            selectedBirthday = animal.getBirthday();
             price.setText(String.format("%.2f kr.", selectedPrice));
             selectedOwnerId = -1;
         }
@@ -158,8 +176,10 @@ public class ManageAnimalController {
         createCustomer.setDisable(!notForSale.isSelected());
         selectCostumer.setDisable(!notForSale.isSelected());
         price.setDisable(notForSale.isSelected());
-        birthday.setValue(selectedBirthDay.getLocalDate());
-        age.setText(Integer.toString(selectedBirthDay.yearsBetween(new Date())));
+        birthday.setValue(selectedBirthday.getLocalDate());
+        // Hvis age værdierne er de samme, så lad vær med at kalde setText, da det flytter tekst markøren
+        String newAgeValue = Integer.toString(new Date().yearsBetween(selectedBirthday));
+        if (!Objects.equals(age.getText(), newAgeValue)) age.setText(newAgeValue);
     }
 
     @FXML
@@ -176,7 +196,7 @@ public class ManageAnimalController {
         };
     }
 
-    private Date selectedBirthDay = new Date();
+    private Date selectedBirthday = new Date();
     private double selectedPrice = 0;
     private int selectedOwnerId = -1;
 
