@@ -5,16 +5,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.*;
 
+import java.util.Collections;
+
 public class AnimalsController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
+
+    @FXML
+    private Button deleteAnimalButton;
+
+    @FXML
+    private Button editAnimalButton;
 
     @FXML
     private TableView<Animal> animalsTable;
@@ -40,7 +49,7 @@ public class AnimalsController {
     @FXML
     private TableColumn<Animal, String> commentColumn;
 
-    private ObservableList<Animal> list;
+    private ObservableList<Animal> list = FXCollections.observableArrayList();
 
     public AnimalsController() {
     }
@@ -67,11 +76,17 @@ public class AnimalsController {
         tameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue() instanceof AnimalBird ? (((AnimalBird) cellData.getValue()).isTamed() ? "Tæmmet" : "Ikke tæmmet") : "-"));
         commentColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getComment()));
 
+        animalsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            deleteAnimalButton.setDisable(newValue == null);
+            editAnimalButton.setDisable(newValue == null);
+        });
+
         reset();
     }
 
     public void reset() {
-        list = FXCollections.observableArrayList(model.getAnimalList().getList());
+        list.clear();
+        Collections.addAll(list, model.getAnimalList().getAllAnimals());
         animalsTable.setItems(list);
     }
 
@@ -91,6 +106,6 @@ public class AnimalsController {
 
     @FXML
     public void editAnimal() {
-        viewHandler.openView("ManageAnimal");
+        viewHandler.openView("ManageAnimal", animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
     }
 }

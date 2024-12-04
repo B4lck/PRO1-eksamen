@@ -36,7 +36,7 @@
                         <RowConstraints minHeight="10.0" percentHeight="0.0" prefHeight="30.0"/>
                     </rowConstraints>
                     <children>
-                        <ChoiceBox fx:id="category" prefWidth="150.0" GridPane.columnIndex="1" onAction="#update" />
+                        <ChoiceBox fx:id="category" prefWidth="150.0" GridPane.columnIndex="1" onAction="#update"/>
                         <Label text="Kategori"/>
                         <CheckBox fx:id="notForSale" mnemonicParsing="false" text="Dyr til pasning"
                                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
@@ -60,8 +60,9 @@
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1"
                               GridPane.rowIndex="11">
                             <children>
-                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="209.0" text="Vælg kunde"/>
-                                <Button mnemonicParsing="false" text="Opret ny kunde"/>
+                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="209.0" text="Vælg kunde"
+                                        fx:id="selectCostumer"/>
+                                <Button mnemonicParsing="false" text="Opret ny kunde" fx:id="createCustomer"/>
                             </children>
                         </HBox>
                         <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0"

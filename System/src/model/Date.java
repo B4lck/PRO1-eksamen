@@ -42,6 +42,20 @@ public class Date {
     }
 
     /**
+     * Konstruktør der accepter LocalDate
+     */
+    public Date(LocalDate localDate) {
+        set(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
+    }
+
+    /**
+     * Lav Date om til en LocalDate
+     */
+    public LocalDate getLocalDate() {
+        return LocalDate.of(year, month, day);
+    }
+
+    /**
      * @return Dagen på måneden
      */
     public int getDay() {

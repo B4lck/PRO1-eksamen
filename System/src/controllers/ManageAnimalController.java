@@ -9,6 +9,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import model.*;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 public class ManageAnimalController {
     private ViewHandler viewHandler;
     private Region root;
@@ -40,6 +44,10 @@ public class ManageAnimalController {
     public DatePicker birthday;
     @FXML
     public TextField age;
+    @FXML
+    public Button selectCostumer;
+    @FXML
+    public Button createCustomer;
 
     public int currentAnimalId = -1;
 
@@ -55,30 +63,73 @@ public class ManageAnimalController {
 
         this.reset(animalId);
 
+        notForSale.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                update();
+            }
+        });
+
         price.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (newValue) {
-                    price.setText("0.00");
+                    price.setText(String.format("%.2f", selectedPrice));
                 } else {
-                    price.setText("0,00 kr.");
+                    try {
+                        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+                        Number number = format.parse(price.getText());
+                        selectedPrice = number.doubleValue();
+                        price.setText(String.format("%.2f kr.", selectedPrice));
+                    } catch (ParseException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
         });
     }
 
     public void reset(int animalId) {
-        this.currentAnimalId = animalId;
+        currentAnimalId = animalId;
         String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
         category.setItems(FXCollections.observableArrayList(animalTypes));
+        error.setText("");
         if (animalId == -1) {
             title.setText("Opret nyt dyr");
-            error.setText("");
             category.setValue("(andet)");
+            category.setDisable(false);
             notForSale.setSelected(false);
             venomous.setSelected(false);
             tamed.setSelected(false);
             saltwater.setSelected(false);
+            name.setText("");
+            food.setText("");
+            comment.setText("");
+            price.setText("0,00 kr.");
+            selectedBirthDay = new Date();
+            selectedPrice = 0;
+            selectedOwnerId = -1;
+        } else {
+            Animal animal = model.getAnimalList().getAnimalById(animalId);
+            title.setText("Rediger: " + animal.getName());
+            category.setValue(switch (animal.getCategory()) {
+                case Animal.CATEGORY_FISH -> "Fisk";
+                case Animal.CATEGORY_BIRD -> "Fugl";
+                case Animal.CATEGORY_REPTILE -> "Reptil";
+                default -> "(andet)";
+            });
+            category.setDisable(true);
+            notForSale.setSelected(!animal.isForSale());
+            venomous.setSelected(animal instanceof AnimalReptile && ((AnimalReptile) animal).isVenomous());
+            tamed.setSelected(animal instanceof AnimalBird && ((AnimalBird) animal).isTamed());
+            saltwater.setSelected(animal instanceof AnimalFish && !((AnimalFish) animal).isFreshWater());
+            name.setText(animal.getName());
+            food.setText(animal.getFood());
+            comment.setText(animal.getComment());
+            selectedPrice = animal.getPrice();
+            selectedBirthDay = animal.getBirthday();
+            price.setText(String.format("%.2f kr.", selectedPrice));
+            selectedOwnerId = -1;
         }
 
         this.update();
@@ -104,6 +155,11 @@ public class ManageAnimalController {
                 saltwater.setDisable(false);
                 break;
         }
+        createCustomer.setDisable(!notForSale.isSelected());
+        selectCostumer.setDisable(!notForSale.isSelected());
+        price.setDisable(notForSale.isSelected());
+        birthday.setValue(selectedBirthDay.getLocalDate());
+        age.setText(Integer.toString(selectedBirthDay.yearsBetween(new Date())));
     }
 
     @FXML
@@ -120,10 +176,8 @@ public class ManageAnimalController {
         };
     }
 
-    private double getPrice() {
-        return 0.0;
-    }
-
+    private Date selectedBirthDay = new Date();
+    private double selectedPrice = 0;
     private int selectedOwnerId = -1;
 
     @FXML
@@ -132,21 +186,38 @@ public class ManageAnimalController {
             Animal newAnimal;
             if (notForSale.isSelected()) {
                 newAnimal = model.getAnimalList().createNewAnimal(getCategory(), name.getText(), selectedOwnerId);
+            } else {
+                newAnimal = model.getAnimalList().createNewAnimal(getCategory(), name.getText(), selectedPrice);
             }
-            else {
-                newAnimal = model.getAnimalList().createNewAnimal(getCategory(), name.getText(), getPrice());
-            }
-            
+
             newAnimal.setComment(comment.getText());
             newAnimal.setFood(food.getText());
             newAnimal.setCreationDate(new Date());
-            
+
             if (newAnimal instanceof AnimalFish) ((AnimalFish) newAnimal).setIsFreshWater(!saltwater.isSelected());
             if (newAnimal instanceof AnimalBird) ((AnimalBird) newAnimal).setTamed(tamed.isSelected());
             if (newAnimal instanceof AnimalReptile) ((AnimalReptile) newAnimal).setVenomous(venomous.isSelected());
-            
+
             model.getAnimalList().add(newAnimal);
 
+            viewHandler.openView("Animals");
+        } else {
+            Animal animal = model.getAnimalList().getAnimalById(currentAnimalId);
+            
+            if (notForSale.isSelected() == animal.isForSale()) {
+                if (notForSale.isSelected()) animal.convertToOwnedAnimal(selectedOwnerId);
+                else animal.convertToSale(selectedPrice);
+            }
+
+            animal.setName(name.getText());
+            animal.setComment(comment.getText());
+            animal.setFood(food.getText());
+            animal.setPrice(selectedPrice);
+            
+            if (animal instanceof AnimalFish) ((AnimalFish) animal).setIsFreshWater(!saltwater.isSelected());
+            if (animal instanceof AnimalBird) ((AnimalBird) animal).setTamed(tamed.isSelected());
+            if (animal instanceof AnimalReptile) ((AnimalReptile) animal).setVenomous(venomous.isSelected());
+            
             viewHandler.openView("Animals");
         }
     }
