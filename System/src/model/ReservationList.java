@@ -201,4 +201,6 @@ public class ReservationList {
         }
         return reservationList;
     }
+
+    public ArrayList<Reservation> getList() {return reservations;}
 }

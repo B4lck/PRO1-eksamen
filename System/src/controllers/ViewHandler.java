@@ -27,6 +27,7 @@ public class ViewHandler {
     public ReservationsController reservationsController;
     public EmployeesController employeesController;
     public CustomersController customersController;
+    public SalesController salesController;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -53,6 +54,7 @@ public class ViewHandler {
             case "Reservations" -> loadReservations();
             case "Customers" -> loadCustomers();
             case "Employees" -> loadEmployees();
+            case "Sales" -> loadSales();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist! Måske den mangler i openView?");
         };
 
@@ -206,5 +208,22 @@ public class ViewHandler {
             customersController.reset();
         }
         return customersController.getRoot();
+    }
+
+    private Region loadSales() {
+        if (salesController == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/views/SalesGUI.fxml"));
+                Region root = loader.load();
+                salesController = loader.getController();
+                salesController.init(this, model, root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            salesController.reset();
+        }
+        return salesController.getRoot();
     }
 }

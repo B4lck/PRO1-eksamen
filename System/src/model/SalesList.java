@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class SalesList {
-    private ArrayList<Sale> sales;
+    private ArrayList<Sale> sales = new ArrayList<>();
 
     /**
      * Tilføj et salg til listen
@@ -211,5 +211,9 @@ public class SalesList {
             total += sale.getFinalPrice();
         }
         return total;
+    }
+
+    public ArrayList<Sale> getList() {
+        return sales;
     }
 }

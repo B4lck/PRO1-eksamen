@@ -9,33 +9,33 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Customer;
-import model.Reservation;
+import model.Sale;
 import model.VIAPetsModelManager;
 
-public class ReservationsController {
+public class SalesController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
 
     @FXML
-    private TableView<Reservation> reservationsTable;
+    private TableView<Sale> salesTable;
 
     @FXML
-    private TableColumn<Reservation, String> customerNameColumn;
+    private TableColumn<Sale, String> customerNameColumn;
     @FXML
-    private TableColumn<Reservation, String> animalCategoryColumn;
+    private TableColumn<Sale, String> animalCategoryColumn;
     @FXML
-    private TableColumn<Reservation, String> animalNameColumn;
+    private TableColumn<Sale, String> animalNameColumn;
     @FXML
-    private TableColumn<Reservation, String> startDateColumn;
+    private TableColumn<Sale, String> dateColumn;
     @FXML
-    private TableColumn<Reservation, String> endDateColumn;
+    private TableColumn<Sale, String> employeeColumn;
     @FXML
-    private TableColumn<Reservation, String> positionColumn;
+    private TableColumn<Sale, String> priceColumn;
 
-    private ObservableList<Reservation> list = FXCollections.observableArrayList();
+    private ObservableList<Sale> list = FXCollections.observableArrayList();
 
-    public ReservationsController() {
+    public SalesController() {
     }
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
@@ -46,24 +46,38 @@ public class ReservationsController {
         customerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getCustomerId()).getName()));
         animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getCategory()));
         animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName()));
-        startDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getStartDate().toString()));
-        endDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getEndDate().toString()));
+        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateOfSale().toString()));
+        employeeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getEmployeeList().getById(cellData.getValue().getEmployeeId()).getName()));
+        priceColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getFinalPrice())));
 
         reset();
     }
 
     public void reset() {
         list.clear();
-        list.addAll(model.getReservationList().getList());
-        reservationsTable.setItems(list);
+        list.addAll(model.getSalesList().getList());
+
+        salesTable.setItems(list);
     }
 
     public Region getRoot() {
         return root;
     }
 
-    @FXML
     public void back() {
+        // TODO
         viewHandler.openView("MainMenu");
+    }
+
+    public void createSale() {
+        // TODO
+    }
+
+    public void editSale() {
+        // TODO
+    }
+
+    public void deleteSale() {
+        // TODO
     }
 }
