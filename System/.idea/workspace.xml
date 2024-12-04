@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controllers/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/CustomerGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/EmployeeGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EmployeeGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/System/views/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/System/views/MainMenuGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,19 +85,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="System" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="System" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -130,6 +113,7 @@
       <workItem from="1733219334584" duration="164000" />
       <workItem from="1733219505010" duration="30000" />
       <workItem from="1733219542400" duration="1261000" />
+      <workItem from="1733234312859" duration="1043000" />
     </task>
     <servers />
   </component>
