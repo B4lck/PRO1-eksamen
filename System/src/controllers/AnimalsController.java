@@ -40,7 +40,7 @@ public class AnimalsController {
     @FXML
     private TableColumn<Animal, String> commentColumn;
 
-    ObservableList<Animal> list;
+    private ObservableList<Animal> list;
 
     public AnimalsController() {
     }

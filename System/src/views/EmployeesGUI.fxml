@@ -10,22 +10,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AnimalsController">
+<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EmployeesController">
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="400.0" prefWidth="150.0" spacing="50.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kunder">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medarbejdere">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Text>
             <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" />
             <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#createAnimal" prefWidth="100.0" text="Tilføj" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Slet" />
-                  <Button mnemonicParsing="false" onAction="#editAnimal" prefWidth="100.0" text="Rediger" />
+                  <Button mnemonicParsing="false" onAction="#createEmployee" prefWidth="100.0" text="Tilføj" />
+                  <Button mnemonicParsing="false" onAction="#deleteEmployee" prefWidth="100.0" text="Slet" />
+                  <Button mnemonicParsing="false" onAction="#editEmployee" prefWidth="100.0" text="Rediger" />
                </children>
             </VBox>
             <Button mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Tilbage" />
@@ -34,11 +34,10 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
          </padding>
       </VBox>
-      <TableView fx:id="animalsTable" prefHeight="400.0" prefWidth="750.0">
+      <TableView fx:id="employeesTable" prefHeight="400.0" prefWidth="750.0">
         <columns>
-            <TableColumn fx:id="ownerColumn" prefWidth="237.3333282470703" text="Navn" />
-            <TableColumn fx:id="categoryColumn" prefWidth="335.3332824707031" text="Email" />
-            <TableColumn fx:id="nameColumn" prefWidth="176.0" text="Tlf" />
+            <TableColumn fx:id="nameColumn" prefWidth="237.3333282470703" text="Navn" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="510.0000305175781" text="Beskrivelse" />
         </columns>
       </TableView>
    </children>
