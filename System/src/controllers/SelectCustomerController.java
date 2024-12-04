@@ -95,6 +95,6 @@ public class SelectCustomerController {
     public int getSelectedCustomerId() {
         // TODO
         Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
-        return selectedCustomer.getCustomerId();
+        return selectedCustomer != null ? selectedCustomer.getCustomerId() : -1;
     }
 }
