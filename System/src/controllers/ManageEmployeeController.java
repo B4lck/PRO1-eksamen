@@ -21,16 +21,20 @@ public class ManageEmployeeController {
     @FXML
     public Button createEmployee;
 
-public ManageEmployeeController() {
+    public ManageEmployeeController() {
     }
 
-public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
     }
 
-public Region getRoot() {
+    public void reset() {
+
+    }
+
+    public Region getRoot() {
         return root;
     }
 
@@ -40,14 +44,8 @@ public Region getRoot() {
     }
 
     @FXML
-    public void createEmployee() {
+    public void confirm() {
         viewHandler.openView("ManageEmployee");
     }
-
-    @FXML
-    public void editEmployee() {
-
-    }
-
 }
 
