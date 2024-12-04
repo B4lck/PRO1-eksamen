@@ -15,7 +15,6 @@ public class AnimalFish extends Animal {
     public AnimalFish(String name, double price, int animalId) {
         // Har valgt at freshWater ikke indgår i konstruktøren, for at gøre den ens med de andre klasser, skal opdateres i klassediagram
         super(name, price, animalId);
-        this.setCategory("Fish");
     }
 
     /**
@@ -26,7 +25,11 @@ public class AnimalFish extends Animal {
      */
     public AnimalFish(String name, int ownerId, int animalId) {
         super(name, ownerId, animalId);
-        this.setCategory("Fish");
+    }
+
+    @Override
+    public String getCategory() {
+        return Animal.CATEGORY_FISH;
     }
 
     /**

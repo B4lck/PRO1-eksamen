@@ -8,21 +8,22 @@ public class Employee extends Person {
      * Medarbejderens beskrivelse
      */
     private String description;
+    
     /**
      * Url med et billede af medarbejderen
      */
     private String portraitUrl;
+    
     /**
      * Medarbejderens ID
      */
-    private int employeeId;
+    private final int employeeId;
 
     /**
      * Konstruktør til medarbejder
      *
      * @param name navnet på medarbejder
      */
-
     public Employee(String name, int employeeId) {
         super(name);
         this.employeeId = employeeId;
@@ -31,7 +32,6 @@ public class Employee extends Person {
     /**
      * @return beskrivelse på medarbejderen
      */
-
     public String getDescription() {
         return description;
     }
@@ -41,7 +41,6 @@ public class Employee extends Person {
      *
      * @param description beskrivelse om medarbejder
      */
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -49,7 +48,6 @@ public class Employee extends Person {
     /**
      * @return linket til billedet af medarbejder
      */
-
     public String getPortraitUrl() {
         return portraitUrl;
     }

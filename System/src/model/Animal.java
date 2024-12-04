@@ -12,11 +12,6 @@ public class Animal {
     private boolean forSale;
 
     /**
-     * Dyrets kategori: (andet), Bird, Fish eller Reptile
-     */
-    private String category = CATEGORY_DEFAULT;
-
-    /**
      * Navnet på dyret
      */
     private String name;
@@ -44,7 +39,7 @@ public class Animal {
     /**
      * Id
      */
-    private int animalId;
+    private final int animalId;
 
     /**
      * Ejer ID, -1 hvis ingen ejer
@@ -129,7 +124,7 @@ public class Animal {
      * Henter dyrets kategori
      */
     public String getCategory() {
-        return category;
+        return CATEGORY_DEFAULT;
     }
 
     /**
@@ -195,27 +190,18 @@ public class Animal {
     }
 
     /**
-     * Set dyrets kategori
-     *
-     * @param category
-     */
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    /**
      * Set dyrets navn
      *
-     * @param name
+     * @param name Nyt navn til dyret
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Set dyrets imageUrl
+     * Set et url til billede af dyret
      *
-     * @param imageUrl
+     * @param imageUrl Ny URL
      */
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
@@ -224,7 +210,7 @@ public class Animal {
     /**
      * Set dyrets mad
      *
-     * @param food
+     * @param food Ny mad
      */
     public void setFood(String food) {
         this.food = food;
@@ -233,7 +219,7 @@ public class Animal {
     /**
      * Set dyrets kommentar
      *
-     * @param comment
+     * @param comment Ny kommentar
      */
     public void setComment(String comment) {
         this.comment = comment;
@@ -242,7 +228,7 @@ public class Animal {
     /**
      * Set dyrets pris
      *
-     * @param price
+     * @param price Ny pris
      */
     public void setPrice(double price) {
         this.price = price;
@@ -267,11 +253,11 @@ public class Animal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return forSale == animal.forSale && Double.compare(price, animal.price) == 0 && animalId == animal.animalId && ownerId == animal.ownerId && Objects.equals(category, animal.category) && Objects.equals(name, animal.name) && Objects.equals(imageUrl, animal.imageUrl) && Objects.equals(food, animal.food) && Objects.equals(comment, animal.comment);
+        return forSale == animal.forSale && Double.compare(price, animal.price) == 0 && animalId == animal.animalId && ownerId == animal.ownerId && Objects.equals(name, animal.name) && Objects.equals(imageUrl, animal.imageUrl) && Objects.equals(food, animal.food) && Objects.equals(comment, animal.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(forSale, category, name, imageUrl, food, comment, price, animalId, ownerId);
+        return Objects.hash(forSale, name, imageUrl, food, comment, price, animalId, ownerId);
     }
 }

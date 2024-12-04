@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Customer;
 import model.VIAPetsModelManager;
@@ -18,7 +17,6 @@ public class CustomersController {
 
     @FXML
     private TableView<Customer> customersTable;
-
     @FXML
     private TableColumn<Customer, String> nameColumn;
     @FXML
@@ -26,10 +24,7 @@ public class CustomersController {
     @FXML
     private TableColumn<Customer, String> phoneColumn;
 
-    private ObservableList<Customer> list = FXCollections.observableArrayList();
-
-    public CustomersController() {
-    }
+    private final ObservableList<Customer> list = FXCollections.observableArrayList();
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
@@ -41,7 +36,6 @@ public class CustomersController {
         phoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Long.toString(cellData.getValue().getPhone())));
 
         reset();
-
     }
 
     public void reset() {
@@ -54,21 +48,25 @@ public class CustomersController {
         return root;
     }
 
+    @FXML
     public void back() {
         // TODO
         viewHandler.openView("MainMenu");
     }
 
+    @FXML
     public void createCustomer() {
         // TODO
         viewHandler.openView("MainMenu");
     }
 
+    @FXML
     public void editCustomer() {
         // TODO
         viewHandler.openView("MainMenu");
     }
 
+    @FXML
     public void deleteCustomer() {
         // TODO
     }

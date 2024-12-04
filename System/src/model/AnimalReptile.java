@@ -18,7 +18,6 @@ public class AnimalReptile extends Animal {
     public AnimalReptile(String name, double price, int animalId) {
         // Har valgt at venomous ikke indgår i konstruktøren, for at gøre den ens med de andre klasser, skal opdateres i klassediagram
         super(name, price, animalId);
-        this.setCategory("Reptile");
     }
 
     /**
@@ -29,7 +28,11 @@ public class AnimalReptile extends Animal {
      */
     public AnimalReptile(String name, int ownerId, int animalId) {
         super(name, ownerId, animalId);
-        this.setCategory("Reptile");
+    }
+
+    @Override
+    public String getCategory() {
+        return Animal.CATEGORY_REPTILE;
     }
 
     /**

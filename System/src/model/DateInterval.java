@@ -37,7 +37,7 @@ public class DateInterval {
     }
 
     /**
-     * Retunere længden af intervallet i antal dage
+     * Returnerer længden af intervallet i antal dage
      * @return Længden af intervallet i antal dage
      */
     public int getLengthInDays() {
@@ -54,8 +54,8 @@ public class DateInterval {
 
     /**
      * Sæt start dato og slut dato i Date Interval objektet
-     * @param startDate
-     * @param endDate
+     * @param startDate Nye start dato
+     * @param endDate Nye slut dato
      */
     public void set(Date startDate, Date endDate) {
         this.startDate = startDate;
@@ -64,7 +64,7 @@ public class DateInterval {
 
     /**
      * Sæt start dato
-     * @param startDate start dato
+     * @param startDate Nye start dato
      */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
@@ -72,7 +72,7 @@ public class DateInterval {
 
     /**
      * Sæt slut dato
-     * @param endDate slut dato
+     * @param endDate Nye slut dato
      */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
@@ -84,11 +84,15 @@ public class DateInterval {
      * @return Om den overlapper eller ikke overlapper
      */
     public boolean intersects(DateInterval interval) {
-        if (this.startDate == interval.endDate) return true;
-        if (this.endDate == interval.startDate) return true;
-        if (this.endDate.isBefore(interval.startDate)) return false;
-        if (interval.endDate.isBefore(this.startDate)) return false;
-        return true;
+        /*
+         * if (this.startDate == interval.endDate) return true;
+         *         if (this.endDate == interval.startDate) return true;
+         *         if (this.endDate.isBefore(interval.startDate)) return false;
+         *         if (interval.endDate.isBefore(this.startDate)) return false;
+         *         return true;
+         * Burde logisk være det samme, men har ikke testet
+         */
+        return this.startDate == interval.endDate || this.endDate == interval.startDate || !this.endDate.isBefore(interval.startDate) && !interval.endDate.isBefore(this.startDate);
     }
 
     /**
@@ -101,8 +105,8 @@ public class DateInterval {
     }
 
     /**
-     * Retunere en String med formattet dd/mm/yyyy - dd/mm/yyyy
-     * @return Formatteret String
+     * Returnerer en String med formatet dd/mm/yyyy - dd/mm/yyyy
+     * @return Formateret String
      */
     @Override
     public String toString() {
@@ -124,7 +128,7 @@ public class DateInterval {
     }
 
     /**
-     * Retunere en kopi af Date Interval objektet
+     * Returnerer en kopi af Date Interval objektet
      * @return en kopi af Date Interval
      */
     public DateInterval copy() {

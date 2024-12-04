@@ -4,63 +4,61 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="360.0" maxWidth="400.0" prefHeight="360.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AnimalsFilteringController">
-    <VBox layoutX="14.0" layoutY="12.0">
+<AnchorPane maxHeight="360.0" maxWidth="400.0" prefHeight="350.0" prefWidth="350.0"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.AnimalsFilteringController">
+    <VBox layoutX="14.0" layoutY="12.0" prefWidth="320.0">
         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg filtrering">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="16.0"/>
             </font>
         </Text>
         <GridPane>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" prefWidth="120.0" />
-                <ColumnConstraints hgrow="SOMETIMES" prefWidth="240.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="128.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints prefHeight="120.0" vgrow="SOMETIMES" />
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="110.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <children>
-                <Label text="Kategori/Art" />
-                <Label text="Salg/Pasning" GridPane.rowIndex="1" />
-                <Label text="Pris" GridPane.rowIndex="2" />
-                <ChoiceBox fx:id="categorySelector" prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1" />
-                <ChoiceBox fx:id="saleOrPensionSelector" prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="157.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <children>
-                        <Label minWidth="15.0" text="fra" />
-                        <TextField fx:id="minimumPriceSelector" prefHeight="25.0" prefWidth="64.0" text="0,00" />
-                        <Label minWidth="12.0" text="kr. til" />
-                        <TextField fx:id="maximumPriceSelector" prefHeight="25.0" prefWidth="64.0" text="99999,00" />
-                  <Label text="kr." />
-                    </children>
-                </HBox>
-                <Label text="Søg efter navn" GridPane.rowIndex="3" />
-                <Label text="Søg efter ejer navn" GridPane.rowIndex="4" />
-                <Label text="Til pasning i periode" GridPane.rowIndex="5" />
-                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                    <children>
-                        <Button mnemonicParsing="false" text="Til pasning i dag" />
-                        <Label text="Til pasning fra" />
-                        <DatePicker />
-                        <Label text="til og med" />
-                        <DatePicker />
-                    </children>
-                </VBox>
-                <TextField promptText="Fido fidus" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="animalNameSelector" />
-                <TextField promptText="Frederik Frandsen" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="ownerNameSelector" />
-            </children>
+            <Label text="Kategori/Art"/>
+            <Label text="Salg/Pasning" GridPane.rowIndex="1"/>
+            <Label text="Pris" GridPane.rowIndex="2"/>
+            <ChoiceBox fx:id="categorySelector" prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1"/>
+            <ChoiceBox fx:id="saleOrPensionSelector" prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"/>
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="157.0" spacing="10.0"
+                  GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label minWidth="15.0" text="fra"/>
+                <TextField fx:id="minimumPriceSelector" prefHeight="25.0" prefWidth="64.0" text="0,00"/>
+                <Label minWidth="12.0" text="kr. til"/>
+                <TextField fx:id="maximumPriceSelector" prefHeight="25.0" prefWidth="64.0" text="99999,00"/>
+                <Label text="kr."/>
+            </HBox>
+            <Label text="Søg efter navn" GridPane.rowIndex="3"/>
+            <Label text="Søg efter ejer navn" GridPane.rowIndex="4"/>
+            <Label text="Til pasning i periode" GridPane.rowIndex="5"/>
+            <VBox alignment="CENTER_LEFT" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <CheckBox mnemonicParsing="false" text="Slå til" fx:id="inPension" />
+                <Label text="Til pasning fra"/>
+                <DatePicker fx:id="pensionStart"/>
+                <Label text="til og med"/>
+                <DatePicker fx:id="pensionEnd"/>
+            </VBox>
+            <TextField fx:id="animalNameSelector" promptText="Fido fidus" GridPane.columnIndex="1"
+                       GridPane.rowIndex="3"/>
+            <TextField fx:id="ownerNameSelector" promptText="Frederik Frandsen" GridPane.columnIndex="1"
+                       GridPane.rowIndex="4"/>
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" prefHeight="33.0" prefWidth="360.0" spacing="10.0">
-            <children>
-                <Button minWidth="60.0" mnemonicParsing="false" text="Nulstil" />
-                <Button minWidth="60.0" mnemonicParsing="false" text="Annullere" />
-                <Button minWidth="60.0" mnemonicParsing="false" onAction="#confirm" text="OK" />
-            </children>
+            <Button minWidth="60.0" mnemonicParsing="false" text="Nulstil"/>
+            <Button minWidth="60.0" mnemonicParsing="false" text="Annullere"/>
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#confirm" text="OK"/>
         </HBox>
     </VBox>
 </AnchorPane>

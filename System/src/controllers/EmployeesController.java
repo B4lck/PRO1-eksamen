@@ -1,4 +1,5 @@
 package controllers;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,13 +17,13 @@ public class EmployeesController {
 
     @FXML
     private TableView<Employee> employeesTable;
+    @FXML
+    private TableColumn<Employee, String> nameColumn;
+    @FXML
+    private TableColumn<Employee, String> descriptionColumn;
 
-    @FXML private TableColumn<Employee, String> nameColumn;
-    @FXML private TableColumn<Employee, String> descriptionColumn;
+    private final ObservableList<Employee> list = FXCollections.observableArrayList();
 
-    private ObservableList<Employee> list = FXCollections.observableArrayList();
-
-    public EmployeesController() {}
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
@@ -33,22 +34,32 @@ public class EmployeesController {
 
         reset();
     }
-    public void reset(){
+
+    public void reset() {
         list.clear();
         list.addAll(model.getEmployeeList().getList());
         employeesTable.setItems(list);
     }
+
     public Region getRoot() {
         return root;
     }
 
+    @FXML
     public void back() {
         viewHandler.openView("MainMenu");
     }
 
+    @FXML
     public void createEmployee() {
         viewHandler.openView("ManageEmployee");
     }
-    public void editEmployee() {}
-    public void deleteEmployee() {}
+
+    @FXML
+    public void editEmployee() {
+    }
+
+    @FXML
+    public void deleteEmployee() {
+    }
 }

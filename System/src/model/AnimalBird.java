@@ -16,7 +16,6 @@ public class AnimalBird extends Animal {
     public AnimalBird(String name, double price, int animalId) {
         // Har valgt at tamed ikke indgår i konstruktøren, for at gøre den ens med de andre klasser, skal opdateres i klassediagram
         super(name, price, animalId);
-        this.setCategory("Bird");
     }
 
     /**
@@ -27,7 +26,11 @@ public class AnimalBird extends Animal {
      */
     public AnimalBird(String name, int ownerId, int animalId) {
         super(name, ownerId, animalId);
-        this.setCategory("Bird");
+    }
+
+    @Override
+    public String getCategory() {
+        return Animal.CATEGORY_BIRD;
     }
 
     /**

@@ -6,9 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import model.Customer;
 import model.Sale;
 import model.VIAPetsModelManager;
 
@@ -19,7 +17,6 @@ public class SalesController {
 
     @FXML
     private TableView<Sale> salesTable;
-
     @FXML
     private TableColumn<Sale, String> customerNameColumn;
     @FXML
@@ -33,10 +30,7 @@ public class SalesController {
     @FXML
     private TableColumn<Sale, String> priceColumn;
 
-    private ObservableList<Sale> list = FXCollections.observableArrayList();
-
-    public SalesController() {
-    }
+    private final ObservableList<Sale> list = FXCollections.observableArrayList();
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
@@ -64,19 +58,23 @@ public class SalesController {
         return root;
     }
 
+    @FXML
     public void back() {
         // TODO
         viewHandler.openView("MainMenu");
     }
 
+    @FXML
     public void createSale() {
         // TODO
     }
 
+    @FXML
     public void editSale() {
         // TODO
     }
 
+    @FXML
     public void deleteSale() {
         // TODO
     }

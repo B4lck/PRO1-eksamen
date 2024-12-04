@@ -1,6 +1,6 @@
 package controllers;
+
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,32 +13,28 @@ import javafx.stage.Stage;
 import model.Customer;
 import model.VIAPetsModelManager;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.io.IOException;
 
 public class SelectCustomerController {
-    private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
-    private Stage stage;
 
     @FXML
     private TableView<Customer> customerTable;
+    @FXML
+    private TableColumn<Customer, String> nameColumn;
+    @FXML
+    private TableColumn<Customer, String> emailColumn;
+    @FXML
+    private TableColumn<Customer, String> phoneColumn;
 
-    @FXML private TableColumn<Customer, String> nameColumn;
-    @FXML private TableColumn<Customer, String> emailColumn;
-    @FXML private TableColumn<Customer, String> phoneColumn;
-
-    private ObservableList<Customer> list = FXCollections.observableArrayList();
+    private final ObservableList<Customer> list = FXCollections.observableArrayList();
 
     private SelectedCustomerCallback selectedCustomerCallback;
 
-    public SelectCustomerController() {}
-
-    public void init(VIAPetsModelManager model, Stage stage, SelectedCustomerCallback callback) {
+    public void init(VIAPetsModelManager model, Region root, SelectedCustomerCallback callback) {
         this.model = model;
-        this.stage = stage;
+        this.root = root;
         this.selectedCustomerCallback = callback;
 
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
@@ -48,26 +44,22 @@ public class SelectCustomerController {
         reset();
     }
 
-    public void loadSelf(VIAPetsModelManager model, SelectedCustomerCallback callback) {
+    public static void load(VIAPetsModelManager model, SelectedCustomerCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/views/SelectCustomerGUI.fxml"));
+            loader.setLocation(SelectCustomerController.class.getResource("/views/SelectCustomerGUI.fxml"));
             Region root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Vælg kunde");
             stage.setScene(new Scene(root, 400, 400));
             stage.show();
-            this.model = model;
-            this.root = root;
-
-            SelectCustomerController controller = loader.getController();
-            controller.init(model, stage, callback);
+            ((SelectCustomerController) loader.getController()).init(model, root, callback);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void reset(){
+    public void reset() {
         list.clear();
         list.addAll(model.getCustomerList().getList());
         customerTable.setItems(list);
@@ -82,14 +74,15 @@ public class SelectCustomerController {
         return root;
     }
 
+    @FXML
     public void back() {
-        stage.close();
+        ((Stage) root.getScene().getWindow()).close();
     }
 
+    @FXML
     public void confirm() {
-        // TODO
         selectedCustomerCallback.callback(getSelectedCustomerId());
-        stage.close();
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     public int getSelectedCustomerId() {

@@ -10,13 +10,13 @@ import model.VIAPetsModelManager;
  * Håndter alle views i programmet
  */
 public class ViewHandler {
-    private Scene currentScene;
+    private final Scene currentScene;
     private Stage primaryStage;
 
     /**
      * Model
      */
-    private VIAPetsModelManager model;
+    private final VIAPetsModelManager model;
 
     /**
      * Controllers

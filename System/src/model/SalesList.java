@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class SalesList {
-    private ArrayList<Sale> sales = new ArrayList<>();
+    private final ArrayList<Sale> sales = new ArrayList<>();
 
     /**
      * Tilføj et salg til listen
@@ -33,7 +33,7 @@ public class SalesList {
      * Henter alle dyr i listen som et array
      */
     public Sale[] getAllSales() {
-        return sales.toArray(new Sale[sales.size()]);
+        return sales.toArray(new Sale[0]);
     }
 
     /**

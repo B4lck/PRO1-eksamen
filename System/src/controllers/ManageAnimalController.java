@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,7 +9,6 @@ import model.*;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -19,8 +16,6 @@ public class ManageAnimalController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
-
-    private SelectCustomerController selectCustomerController = new SelectCustomerController();
 
     @FXML
     private Text title;
@@ -55,11 +50,6 @@ public class ManageAnimalController {
 
     public int currentAnimalId = -1;
 
-    public ManageAnimalController() {
-
-
-    }
-
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root, int animalId) {
         this.viewHandler = viewHandler;
         this.model = model;
@@ -67,19 +57,11 @@ public class ManageAnimalController {
 
         this.reset(animalId);
 
-        notForSale.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                update();
-            }
-        });
+        notForSale.selectedProperty().addListener((observable, oldValue, newValue) -> update());
         
-        birthday.valueProperty().addListener(new ChangeListener<LocalDate>() {
-           @Override
-           public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
-               selectedBirthday = new Date(newValue);
-               update();
-           } 
+        birthday.valueProperty().addListener((observable, oldValue, newValue) -> {
+            selectedBirthday = new Date(newValue);
+            update();
         });
         
         age.setOnKeyReleased(event -> {
@@ -90,20 +72,17 @@ public class ManageAnimalController {
             }
         });
 
-        price.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (newValue) {
-                    price.setText(String.format("%.2f", selectedPrice));
-                } else {
-                    try {
-                        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
-                        Number number = format.parse(price.getText());
-                        selectedPrice = number.doubleValue();
-                        price.setText(String.format("%.2f kr.", selectedPrice));
-                    } catch (ParseException e) {
-                        System.out.println(e.getMessage());
-                    }
+        price.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                price.setText(String.format("%.2f", selectedPrice));
+            } else {
+                try {
+                    NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+                    Number number = format.parse(price.getText());
+                    selectedPrice = number.doubleValue();
+                    price.setText(String.format("%.2f kr.", selectedPrice));
+                } catch (ParseException e) {
+                    System.out.println(e.getMessage());
                 }
             }
         });
@@ -149,7 +128,7 @@ public class ManageAnimalController {
             selectedPrice = animal.getPrice();
             selectedBirthday = animal.getBirthday();
             price.setText(String.format("%.2f kr.", selectedPrice));
-            selectedOwnerId = -1;
+            selectedOwnerId = animal.getOwnerId();
         }
 
         this.update();
@@ -247,8 +226,9 @@ public class ManageAnimalController {
         }
     }
 
+    @FXML
     public void selectCustomer() {
-        selectCustomerController.loadSelf(model, (customerId) -> {
+        SelectCustomerController.load(model, (customerId) -> {
             selectedOwnerId = customerId;
             update();
         });
