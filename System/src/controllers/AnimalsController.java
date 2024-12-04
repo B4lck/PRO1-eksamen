@@ -68,12 +68,11 @@ public class AnimalsController {
         commentColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getComment()));
 
         reset();
-
-        animalsTable.setItems(list);
     }
 
     public void reset() {
         list = FXCollections.observableArrayList(model.getAnimalList().getList());
+        animalsTable.setItems(list);
     }
 
     public Region getRoot() {
