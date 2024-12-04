@@ -192,7 +192,7 @@ public class ManageAnimalController {
             case "Fisk" -> Animal.CATEGORY_FISH;
             case "Fugl" -> Animal.CATEGORY_BIRD;
             case "Reptil" -> Animal.CATEGORY_REPTILE;
-            default -> "Other";
+            default -> Animal.CATEGORY_DEFAULT;
         };
     }
 

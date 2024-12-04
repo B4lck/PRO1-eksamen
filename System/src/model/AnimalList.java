@@ -153,9 +153,10 @@ public class AnimalList {
      * @return En ny AnimalList
      */
     public AnimalList getAnimalsByName(String name) {
+        name = name.toLowerCase();
         AnimalList list = new AnimalList();
         for (Animal animal : animals) {
-            if (animal.getName().contains(name)) {
+            if (animal.getName().toLowerCase().contains(name)) {
                 list.add(animal);
             }
         }
@@ -172,7 +173,7 @@ public class AnimalList {
     public AnimalList getAnimalsByPrice(double min, double max) {
         AnimalList list = new AnimalList();
         for (Animal animal : animals) {
-            if (animal.isForSale() && animal.getPrice() >= min && animal.getPrice() <= max) {
+            if (!animal.isForSale() || animal.getPrice() >= min && animal.getPrice() <= max) {
                 list.add(animal);
             }
         }
@@ -235,6 +236,20 @@ public class AnimalList {
         AnimalList list = new AnimalList();
         for (Animal animal : animals) {
             if (animal.getOwnerId() == ownerId) {
+                list.add(animal);
+            }
+        }
+        return list;
+    }
+
+    /**
+     */
+    public AnimalList getAnimalsByOwnerName(String name, CustomerList customerList) {
+        name = name.toLowerCase();
+        AnimalList list = new AnimalList();
+        for (Animal animal : animals) {
+            Customer owner = customerList.getById(animal.getOwnerId());
+            if (owner != null && owner.getName().toLowerCase().contains(name)) {
                 list.add(animal);
             }
         }

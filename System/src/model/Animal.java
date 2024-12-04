@@ -14,7 +14,7 @@ public class Animal {
     /**
      * Dyrets kategori: (andet), Bird, Fish eller Reptile
      */
-    private String category = "Other";
+    private String category = CATEGORY_DEFAULT;
 
     /**
      * Navnet på dyret
@@ -64,6 +64,7 @@ public class Animal {
     /**
      * Static
      */
+    public static final String CATEGORY_DEFAULT = "Default";
     public static final String CATEGORY_BIRD = "Bird";
     public static final String CATEGORY_FISH = "Fish";
     public static final String CATEGORY_REPTILE = "Reptile";
