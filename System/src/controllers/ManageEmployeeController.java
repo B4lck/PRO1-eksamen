@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import model.Employee;
 import model.VIAPetsModelManager;
 
 public class ManageEmployeeController {
@@ -33,13 +34,19 @@ public Region getRoot() {
         return root;
     }
 
-
-public void back() {
-        viewHandler.openView("Employee");
+    @FXML
+    public void back() {
+        viewHandler.openView("MainMenu");
     }
 
-public void createEdit() {
-        viewHandler.openView("Employee");
+    @FXML
+    public void createEmployee() {
+        viewHandler.openView("ManageEmployee");
+    }
+
+    @FXML
+    public void editEmployee() {
+
     }
 
 }
