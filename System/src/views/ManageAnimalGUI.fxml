@@ -61,7 +61,7 @@
                               GridPane.rowIndex="11">
                             <children>
                                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="209.0" text="Vælg kunde"
-                                        fx:id="selectCostumer"/>
+                                        fx:id="selectCostumer" onAction="#selectCustomer"/>
                                 <Button mnemonicParsing="false" text="Opret ny kunde" fx:id="createCustomer"/>
                             </children>
                         </HBox>

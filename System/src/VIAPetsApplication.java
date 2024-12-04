@@ -21,6 +21,7 @@ public class VIAPetsApplication extends Application {
 
         // Kunder
         model.getCustomerList().add(new Customer("Nikolai Balck", 12345678, "12345@gmail.com", 1));
+        model.getCustomerList().add(new Customer("Malthe Laursen", 87654321, "67890@gmail.com", 2));
 
         // Medarbejdere
         Employee employee = new Employee("Bob", 1);

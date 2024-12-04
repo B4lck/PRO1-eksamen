@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controllers/SelectCustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SelectCustomerGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/System/views/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/System/views/MainMenuGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VIAPetsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VIAPetsApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/CustomersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/CustomersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/EmployeesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EmployeesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ReservationsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ReservationsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/EmployeeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/EmployeeList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ReservationList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ReservationList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SalesList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SalesList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/EmployeesGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/EmployeesGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainMenuGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ManageAnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageAnimalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ManageAnimalGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ManageAnimalGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

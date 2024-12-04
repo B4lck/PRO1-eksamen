@@ -20,6 +20,8 @@ public class ManageAnimalController {
     private Region root;
     private VIAPetsModelManager model;
 
+    private SelectCustomerController selectCustomerController = new SelectCustomerController();
+
     @FXML
     private Text title;
     @FXML
@@ -240,5 +242,11 @@ public class ManageAnimalController {
             
             viewHandler.openView("Animals");
         }
+    }
+
+    public void selectCustomer() {
+        selectCustomerController.loadSelf(model, (customerId) -> {
+            selectedOwnerId = customerId;
+        });
     }
 }
