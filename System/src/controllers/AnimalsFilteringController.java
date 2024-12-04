@@ -154,6 +154,23 @@ public class AnimalsFilteringController {
     }
 
     /**
+     * Nulstil
+     */
+    @FXML
+    public void clear() {
+        this.callback.callback(null);
+        ((Stage) root.getScene().getWindow()).close();
+    }
+
+    /**
+     * Luk
+     */
+    @FXML
+    public void close() {
+        ((Stage) root.getScene().getWindow()).close();
+    }
+
+    /**
      * Action der opretter filteret og returnere det via callback
      */
     @FXML
@@ -192,7 +209,10 @@ public class AnimalsFilteringController {
 
             // Filtrer efter periode
             if (inPension.isSelected())
-                animalList = animalList.getAnimalsWithReservation(new DateInterval(new Date(pensionStart.getValue()), new Date(pensionEnd.getValue())), model.getReservationList());
+                animalList = animalList.getAnimalsWithReservation(
+                        new DateInterval(new Date(pensionStart.getValue()), new Date(pensionEnd.getValue())),
+                        model.getReservationList()
+                );
 
             return animalList;
         });

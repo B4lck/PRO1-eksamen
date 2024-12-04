@@ -27,11 +27,11 @@
                 <RowConstraints prefHeight="110.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <Label text="Kategori/Art"/>
-            <Label text="Salg/Pasning" GridPane.rowIndex="1"/>
-            <Label text="Pris" GridPane.rowIndex="2"/>
             <ChoiceBox fx:id="categorySelector" prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1"/>
+            <Label text="Salg/Pasning" GridPane.rowIndex="1"/>
             <ChoiceBox fx:id="saleOrPensionSelector" prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1"
                        GridPane.rowIndex="1"/>
+            <Label text="Pris" GridPane.rowIndex="2"/>
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="157.0" spacing="10.0"
                   GridPane.columnIndex="1" GridPane.rowIndex="2">
                 <Label minWidth="15.0" text="fra"/>
@@ -41,7 +41,11 @@
                 <Label text="kr."/>
             </HBox>
             <Label text="Søg efter navn" GridPane.rowIndex="3"/>
+            <TextField fx:id="animalNameSelector" promptText="Fido fidus" GridPane.columnIndex="1"
+                       GridPane.rowIndex="3"/>
             <Label text="Søg efter ejer navn" GridPane.rowIndex="4"/>
+            <TextField fx:id="ownerNameSelector" promptText="Frederik Frandsen" GridPane.columnIndex="1"
+                       GridPane.rowIndex="4"/>
             <Label text="Til pasning i periode" GridPane.rowIndex="5"/>
             <VBox alignment="CENTER_LEFT" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                 <CheckBox mnemonicParsing="false" text="Slå til" fx:id="inPension" />
@@ -50,14 +54,10 @@
                 <Label text="til og med"/>
                 <DatePicker fx:id="pensionEnd"/>
             </VBox>
-            <TextField fx:id="animalNameSelector" promptText="Fido fidus" GridPane.columnIndex="1"
-                       GridPane.rowIndex="3"/>
-            <TextField fx:id="ownerNameSelector" promptText="Frederik Frandsen" GridPane.columnIndex="1"
-                       GridPane.rowIndex="4"/>
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" prefHeight="33.0" prefWidth="360.0" spacing="10.0">
-            <Button minWidth="60.0" mnemonicParsing="false" text="Nulstil"/>
-            <Button minWidth="60.0" mnemonicParsing="false" text="Annullere"/>
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#clear" text="Nulstil"/>
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#close" text="Annullere"/>
             <Button minWidth="60.0" mnemonicParsing="false" onAction="#confirm" text="OK"/>
         </HBox>
     </VBox>

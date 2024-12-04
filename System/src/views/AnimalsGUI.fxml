@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AnimalsController">
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AnimalsController">
     <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
           prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
         <VBox prefHeight="400.0" prefWidth="150.0" spacing="50.0">
@@ -17,13 +18,20 @@
                     <Font name="System Bold" size="24.0"/>
                 </font>
             </Text>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" onAction="#filterAnimals"/>
+            <VBox prefHeight="50.0" prefWidth="100.0">
+                <Button mnemonicParsing="false" onAction="#filterAnimals" prefWidth="100.0" text="Søg og Filtrer"/>
+                <Label textFill="#d79627" fx:id="filteringEnabledLabel">
+                    <font>
+                        <Font name="System Italic" size="14.0"/>
+                    </font>
+                </Label>
+            </VBox>
             <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
                 <Button mnemonicParsing="false" onAction="#createAnimal" prefWidth="100.0" text="Tilføj"/>
-                <Button mnemonicParsing="false" fx:id="deleteAnimalButton" prefWidth="100.0" text="Slet"
-                        disable="true"/>
-                <Button mnemonicParsing="false" fx:id="editAnimalButton" onAction="#editAnimal"
-                        prefWidth="100.0" text="Rediger" disable="true"/>
+                <Button fx:id="deleteAnimalButton" disable="true" mnemonicParsing="false" onAction="#deleteAnimal"
+                        prefWidth="100.0" text="Slet"/>
+                <Button fx:id="editAnimalButton" disable="true" mnemonicParsing="false" onAction="#editAnimal"
+                        prefWidth="100.0" text="Rediger"/>
             </VBox>
             <Button mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Tilbage"/>
         </VBox>

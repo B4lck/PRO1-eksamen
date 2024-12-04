@@ -175,8 +175,8 @@ public class Animal {
      * @param ownerId Ejerens Id
      */
     public void convertToOwnedAnimal(int ownerId) {
-        this.ownerId = ownerId;
-        this.forSale = false;
+        forSale = false;
+        setOwnerId(ownerId);
     }
 
     /**
@@ -185,8 +185,8 @@ public class Animal {
      * @param price Pris på dyret
      */
     public void convertToSale(double price) {
-        this.price = price;
-        this.forSale = true;
+        forSale = true;
+        setPrice(price);
     }
 
     /**
@@ -236,6 +236,8 @@ public class Animal {
 
     /**
      * Set dyrets oprettelsesdato
+     * 
+     * @param creationDate Oprettelsesdatoen
      */
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
@@ -243,9 +245,20 @@ public class Animal {
 
     /**
      * Set dyrets fødselsdagsdato
+     * 
+     * @param birthday Fødselsdagsdatoen
      */
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    /**
+     * Set dyrets ejer
+     *
+     * @param ownerId ID på dyrets ejer
+     */
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     @Override

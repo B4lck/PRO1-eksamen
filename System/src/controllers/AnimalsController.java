@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
@@ -25,6 +26,8 @@ public class AnimalsController {
     private Button deleteAnimalButton;
     @FXML
     private Button editAnimalButton;
+    @FXML
+    private Label filteringEnabledLabel;
     // Tabel
     @FXML
     private TableView<Animal> animalsTable;
@@ -133,6 +136,15 @@ public class AnimalsController {
     }
 
     /**
+     * Action til at slette dyr
+     */
+    @FXML
+    public void deleteAnimal() {
+        model.getAnimalList().removeById(animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
+        reset();
+    }
+
+    /**
      * Action til at redigere valgt dyr
      */
     @FXML
@@ -147,6 +159,7 @@ public class AnimalsController {
     public void filterAnimals() {
         AnimalsFilteringController.load(model, (filter) -> {
             currentFilter = filter;
+            filteringEnabledLabel.setText(currentFilter == null ? "" : "Aktivt filter");
             reset();
         });
     }

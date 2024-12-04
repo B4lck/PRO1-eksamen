@@ -58,18 +58,16 @@ public class ManageAnimalController {
         this.reset(animalId);
 
         notForSale.selectedProperty().addListener((observable, oldValue, newValue) -> update());
-        
+
         birthday.valueProperty().addListener((observable, oldValue, newValue) -> {
             selectedBirthday = new Date(newValue);
             update();
         });
-        
+
         age.setOnKeyReleased(event -> {
-            try {
-                selectedBirthday.set(selectedBirthday.getDay(), selectedBirthday.getMonth(), new Date().getYear() - Integer.parseInt(age.getText()));
-                update();
-            } catch (Exception ignored) {
-            }
+            if (selectedBirthday == null) selectedBirthday = new Date();
+            selectedBirthday.set(selectedBirthday.getDay(), selectedBirthday.getMonth(), new Date().getYear() - Integer.parseInt(age.getText()));
+            update();
         });
 
         price.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -131,7 +129,7 @@ public class ManageAnimalController {
             selectedOwnerId = animal.getOwnerId();
         }
 
-        this.update();
+        update();
     }
 
     public Region getRoot() {
@@ -143,20 +141,27 @@ public class ManageAnimalController {
         venomous.setDisable(true);
         tamed.setDisable(true);
         saltwater.setDisable(true);
-        switch (category.getValue()) {
-            case "Reptil":
-                venomous.setDisable(false);
-                break;
-            case "Fugl":
-                tamed.setDisable(false);
-                break;
-            case "Fisk":
-                saltwater.setDisable(false);
-                break;
+        // Ik sikker på hvorfor, men kategorien kan godt være null men sættes med det samme til standard værdien
+        // Programmet er dog ikke så vild med det
+        if (category.getValue() != null) {
+            switch (category.getValue()) {
+                case "Reptil":
+                    venomous.setDisable(false);
+                    break;
+                case "Fugl":
+                    tamed.setDisable(false);
+                    break;
+                case "Fisk":
+                    saltwater.setDisable(false);
+                    break;
+            }
         }
         createCustomer.setDisable(!notForSale.isSelected());
         selectCustomer.setDisable(!notForSale.isSelected());
         price.setDisable(notForSale.isSelected());
+        
+        // Hvis selectedBirthday er null, så nulstil den
+        if (selectedBirthday == null) selectedBirthday = new Date();
         birthday.setValue(selectedBirthday.getLocalDate());
         // Hvis age værdierne er de samme, så lad vær med at kalde setText, da det flytter tekst markøren
         String newAgeValue = Integer.toString(new Date().yearsBetween(selectedBirthday));
@@ -207,7 +212,7 @@ public class ManageAnimalController {
             viewHandler.openView("Animals");
         } else {
             Animal animal = model.getAnimalList().getAnimalById(currentAnimalId);
-            
+
             if (notForSale.isSelected() == animal.isForSale()) {
                 if (notForSale.isSelected()) animal.convertToOwnedAnimal(selectedOwnerId);
                 else animal.convertToSale(selectedPrice);
@@ -217,11 +222,12 @@ public class ManageAnimalController {
             animal.setComment(comment.getText());
             animal.setFood(food.getText());
             animal.setPrice(selectedPrice);
-            
+            animal.setOwnerId(selectedOwnerId);
+
             if (animal instanceof AnimalFish) ((AnimalFish) animal).setIsFreshWater(!saltwater.isSelected());
             if (animal instanceof AnimalBird) ((AnimalBird) animal).setTamed(tamed.isSelected());
             if (animal instanceof AnimalReptile) ((AnimalReptile) animal).setVenomous(venomous.isSelected());
-            
+
             viewHandler.openView("Animals");
         }
     }
