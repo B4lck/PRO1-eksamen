@@ -148,7 +148,7 @@ public class ViewHandler {
                 e.printStackTrace();
             }
         } else {
-            manageAnimalController.reset();
+            manageAnimalController.reset(animalId);
         }
         return manageAnimalController.getRoot();
     }
