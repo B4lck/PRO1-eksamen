@@ -46,7 +46,9 @@ public class EmployeesController {
         viewHandler.openView("MainMenu");
     }
 
-    public void createEmployee() {}
+    public void createEmployee() {
+        viewHandler.openView("ManageEmployee");
+    }
     public void editEmployee() {}
     public void deleteEmployee() {}
 }

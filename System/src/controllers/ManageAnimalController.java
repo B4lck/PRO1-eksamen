@@ -20,6 +20,8 @@ public class ManageAnimalController {
     private Region root;
     private VIAPetsModelManager model;
 
+    private SelectCustomerController selectCustomerController = new SelectCustomerController();
+
     @FXML
     private Text title;
     @FXML
@@ -47,7 +49,7 @@ public class ManageAnimalController {
     @FXML
     public TextField age;
     @FXML
-    public Button selectCostumer;
+    public Button selectCustomer;
     @FXML
     public Button createCustomer;
 
@@ -174,12 +176,15 @@ public class ManageAnimalController {
                 break;
         }
         createCustomer.setDisable(!notForSale.isSelected());
-        selectCostumer.setDisable(!notForSale.isSelected());
+        selectCustomer.setDisable(!notForSale.isSelected());
         price.setDisable(notForSale.isSelected());
         birthday.setValue(selectedBirthday.getLocalDate());
         // Hvis age værdierne er de samme, så lad vær med at kalde setText, da det flytter tekst markøren
         String newAgeValue = Integer.toString(new Date().yearsBetween(selectedBirthday));
         if (!Objects.equals(age.getText(), newAgeValue)) age.setText(newAgeValue);
+
+        // Sæt teksten ved vælg customer knappen til den valgt customer's navn
+        selectCustomer.setText(selectedOwnerId != -1 ? model.getCustomerList().getById(selectedOwnerId).getName() + "..." : "Vælg kunde");
     }
 
     @FXML
@@ -240,5 +245,12 @@ public class ManageAnimalController {
             
             viewHandler.openView("Animals");
         }
+    }
+
+    public void selectCustomer() {
+        selectCustomerController.loadSelf(model, (customerId) -> {
+            selectedOwnerId = customerId;
+            update();
+        });
     }
 }

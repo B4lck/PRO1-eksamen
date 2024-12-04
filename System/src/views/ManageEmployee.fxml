@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageEmployeeController">
+    <children>
+        <VBox layoutX="20.0" layoutY="20.0" prefHeight="231.0" prefWidth="458.0" spacing="10.0">
+            <children>
+                <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Tilføj/rediger medarbejder">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+                <Label fx:id="error" text="Fejl..." textFill="RED" />
+                <GridPane hgap="4.0" vgap="4.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="125.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="327.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="7.0" percentHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="2.0" percentHeight="0.0" prefHeight="30.0" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Navn" />
+                        <Label text="Billede" GridPane.rowIndex="1" />
+                        <Label text="Om" GridPane.rowIndex="2" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <children>
+                                <Button fx:id="selectEmployee" mnemonicParsing="false" prefHeight="25.0" prefWidth="183.0" text="Vælg medarbejder" />
+                                <Button fx:id="createEmployee" mnemonicParsing="false" text="Opret ny medarbejder" />
+                            </children>
+                        </HBox>
+                        <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="name" GridPane.columnIndex="1" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                                <Button mnemonicParsing="false" text="Slet billede" />
+                                <Button mnemonicParsing="false" text="Upload billede" />
+                     </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+                <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#back" text="Annuller" />
+                        <Button mnemonicParsing="false" onAction="#confirm" text="Opret/rediger" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
