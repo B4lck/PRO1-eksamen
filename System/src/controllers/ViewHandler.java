@@ -28,6 +28,7 @@ public class ViewHandler {
     public EmployeesController employeesController;
     public CustomersController customersController;
     public SalesController salesController;
+    public ManageEmployeeController manageEmployeeController;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -55,6 +56,7 @@ public class ViewHandler {
             case "Customers" -> loadCustomers();
             case "Employees" -> loadEmployees();
             case "Sales" -> loadSales();
+            case "ManageEmployee" -> loadManageEmployee();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist! Måske den mangler i openView?");
         };
 
@@ -225,5 +227,23 @@ public class ViewHandler {
             salesController.reset();
         }
         return salesController.getRoot();
+    }
+
+    public Region loadManageEmployee() {
+        if (manageEmployeeController == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/views/ManageEmployee.fxml"));
+                Region root = loader.load();
+                manageEmployeeController = loader.getController();
+                manageEmployeeController.init(this, model, root);
+                System.out.println(manageEmployeeController);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            manageEmployeeController.reset();
+        }
+        return manageEmployeeController.getRoot();
     }
 }

@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controllers/SelectCustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/SelectCustomerGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VIAPetsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VIAPetsApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageAnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageAnimalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ManageAnimalGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ManageAnimalGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/EmployeesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EmployeesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/ManageEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ManageEmployee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ManageEmployee.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +33,12 @@
     &quot;assignee&quot;: &quot;B4lck&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/B4lck/PRO1-eksamen.git",
-    "accountId": "95a969b6-f7e3-422d-8ce7-69f471b5e127"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/B4lck/PRO1-eksamen.git&quot;,
+    &quot;accountId&quot;: &quot;95a969b6-f7e3-422d-8ce7-69f471b5e127&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
