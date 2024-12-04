@@ -117,4 +117,7 @@ public class EmployeeList {
             Collections.reverse(employees);
         }
     }
+
+
+    public ArrayList<Employee> getList() {return employees;}
 }

@@ -26,7 +26,7 @@ public class CustomersController {
     @FXML
     private TableColumn<Customer, String> phoneColumn;
 
-    private ObservableList<Customer> list;
+    private ObservableList<Customer> list = FXCollections.observableArrayList();
 
     public CustomersController() {
     }
@@ -42,11 +42,12 @@ public class CustomersController {
 
         reset();
 
-        customersTable.setItems(list);
     }
 
     public void reset() {
-        list = FXCollections.observableArrayList(model.getCustomerList().getList());
+        list.clear();
+        list.addAll(model.getCustomerList().getList());
+        customersTable.setItems(list);
     }
 
     public Region getRoot() {
