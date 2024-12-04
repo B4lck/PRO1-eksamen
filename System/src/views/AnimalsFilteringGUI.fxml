@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="360.0" maxWidth="400.0" prefHeight="360.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.AnimalsFilteringController">
+    <VBox layoutX="14.0" layoutY="12.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg filtrering">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Text>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="120.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="240.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="120.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label text="Kategori/Art"/>
+                <Label text="Salg/Pasning" GridPane.rowIndex="1"/>
+                <Label text="Pris" GridPane.rowIndex="2"/>
+                <ChoiceBox prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1"/>
+                <ChoiceBox prefHeight="25.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="157.0" spacing="10.0"
+                      GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Label minWidth="15.0" text="fra"/>
+                        <Spinner prefHeight="25.0" prefWidth="100.0"/>
+                        <Label minWidth="12.0" text="til"/>
+                        <Spinner prefHeight="25.0" prefWidth="100.0"/>
+                    </children>
+                </HBox>
+                <Label text="Søg efter navn" GridPane.rowIndex="3"/>
+                <Label text="Søg efter ejer navn" GridPane.rowIndex="4"/>
+                <Label text="Til pasning i periode" GridPane.rowIndex="5"/>
+                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1"
+                      GridPane.rowIndex="5">
+                    <children>
+                        <Button mnemonicParsing="false" text="Til pasning i dag"/>
+                        <Label text="Til pasning fra"/>
+                        <DatePicker/>
+                        <Label text="til og med"/>
+                        <DatePicker/>
+                    </children>
+                </VBox>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </children>
+        </GridPane>
+        <HBox alignment="BOTTOM_RIGHT" prefHeight="33.0" prefWidth="360.0" spacing="10.0">
+            <children>
+                <Button minWidth="60.0" mnemonicParsing="false" text="Nulstil"/>
+                <Button minWidth="60.0" mnemonicParsing="false" text="Annullere"/>
+                <Button minWidth="60.0" mnemonicParsing="false" text="OK"/>
+            </children>
+        </HBox>
+    </VBox>
+</AnchorPane>

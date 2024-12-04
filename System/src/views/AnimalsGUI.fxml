@@ -15,7 +15,7 @@
                             <Font name="System Bold" size="24.0" />
                         </font>
                     </Text>
-                    <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" />
+                    <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" onAction="#filterAnimals" />
                     <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
                         <children>
                             <Button mnemonicParsing="false" onAction="#createAnimal" prefWidth="100.0" text="Tilføj" />

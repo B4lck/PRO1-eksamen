@@ -18,6 +18,8 @@ public class AnimalsController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
+    
+    private AnimalsFilteringController filteringController = new AnimalsFilteringController();
 
     @FXML
     private Button deleteAnimalButton;
@@ -107,5 +109,10 @@ public class AnimalsController {
     @FXML
     public void editAnimal() {
         viewHandler.openView("ManageAnimal", animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
+    }
+
+    @FXML
+    public void filterAnimals() {
+        filteringController.loadSelf(model);
     }
 }
