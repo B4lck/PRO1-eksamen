@@ -34,14 +34,14 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
          </padding>
       </VBox>
-      <TableView prefHeight="400.0" prefWidth="750.0">
+      <TableView fx:id="reservationsTable" prefHeight="400.0" prefWidth="750.0">
         <columns>
-          <TableColumn prefWidth="150.0" text="Kunde Navn" />
-          <TableColumn prefWidth="100.0" text="Dyr Kategori" />
-            <TableColumn prefWidth="100.0" text="Dyr Navn" />
-            <TableColumn text="Start Dato" />
-            <TableColumn text="Slut Dato" />
-            <TableColumn minWidth="9.3333740234375" prefWidth="238.66668701171875" text="Terrarie/Akvarie/Fuglebur" />
+          <TableColumn fx:id="customerNameColumn" prefWidth="150.0" text="Kunde Navn" />
+          <TableColumn fx:id="animalCategoryColumn" prefWidth="100.0" text="Dyr Kategori" />
+          <TableColumn fx:id="animalNameColumn" prefWidth="100.0" text="Dyr Navn" />
+          <TableColumn fx:id="startDateColumn" text="Start Dato" />
+          <TableColumn fx:id="endDateColumn" text="Slut Dato" />
+          <TableColumn fx:id="positionColumn" minWidth="9.0" prefWidth="238.0" text="Terrarie/Akvarie/Fuglebur" />
         </columns>
       </TableView>
    </children>

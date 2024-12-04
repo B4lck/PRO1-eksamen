@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class AnimalList {
-    private ArrayList<Animal> animals;
+    private ArrayList<Animal> animals = new ArrayList<>();
 
     /**
      * Opretter et helt nyt dyr, der bagefter skal lægges i listen.
@@ -42,6 +42,17 @@ public class AnimalList {
             case Animal.CATEGORY_REPTILE -> new AnimalReptile(name, ownerId, getUniqueId());
             default -> new Animal(name, ownerId, getUniqueId());
         };
+    }
+
+    /**
+     * Hent et nyt id
+     */
+    public int getUniqueId() {
+        int highestId = 0;
+        for (Animal animal : animals) {
+            if (animal.getAnimalId() > highestId) highestId = animal.getAnimalId();
+        }
+        return highestId + 1;
     }
 
     /**
@@ -287,15 +298,8 @@ public class AnimalList {
         }
         return list;
     }
-
-    /**
-     * Hent et nyt id
-     */
-    public int getUniqueId() {
-        int highestId = 0;
-        for (Animal animal : animals) {
-            if (animal.getAnimalId() > highestId) highestId = animal.getAnimalId();
-        }
-        return highestId + 1;
+    
+    public ArrayList<Animal> getList() {
+        return animals;
     }
 }

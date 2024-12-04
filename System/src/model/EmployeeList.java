@@ -9,6 +9,27 @@ public class EmployeeList {
      */
     private ArrayList<Employee> employees = new ArrayList<>();
 
+
+    /**
+     * Opretter en ny medarbejder, der bagefter kan lægges i medarbejder listen
+     * @param name Navn på medarbejder
+     * @return Et nyt medarbejder objekt
+     */
+    public Employee createNewEmployee(String name) {
+        return new Employee(name, getUniqueId());
+    }
+
+    /**
+     * Hent et nyt id
+     */
+    public int getUniqueId() {
+        int highestId = 0;
+        for (Employee employee : employees) {
+            if (employee.getEmployeeId() > highestId) highestId = employee.getEmployeeId();
+        }
+        return highestId + 1;
+    }
+
     /**
      * Tilføjer en ny employee til listen
      * @param employee Employee
@@ -96,4 +117,7 @@ public class EmployeeList {
             Collections.reverse(employees);
         }
     }
+
+
+    public ArrayList<Employee> getList() {return employees;}
 }

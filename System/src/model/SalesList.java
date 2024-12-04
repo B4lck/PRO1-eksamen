@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class SalesList {
-    private ArrayList<Sale> sales;
+    private ArrayList<Sale> sales = new ArrayList<>();
 
     /**
      * Tilføj et salg til listen
@@ -81,7 +81,7 @@ public class SalesList {
             case "customer-reverse":
                 reverse = true;
             case "customer":
-                sales.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getName()));
+                sales.sort((a,b) -> customerList.getById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getName()));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort method: Valid ones are price, price-reverse, date, date-reverse; customer-reverse and customer with a customer list; and animal-type-reverse, animal-type, animal-name-reverse, animal-name with animal list");
@@ -211,5 +211,9 @@ public class SalesList {
             total += sale.getFinalPrice();
         }
         return total;
+    }
+
+    public ArrayList<Sale> getList() {
+        return sales;
     }
 }

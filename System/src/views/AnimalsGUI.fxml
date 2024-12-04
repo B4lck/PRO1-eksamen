@@ -1,56 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.AnimalsController"
-            prefHeight="400.0" prefWidth="900.0">
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="400.0" prefWidth="150.0" spacing="50.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dyr">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" />
-            <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
-               <children>
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Tilføj" onAction="#createAnimal" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Slet" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Rediger" onAction="#editAnimal" />
-               </children>
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AnimalsController">
+    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+        <children>
+            <VBox prefHeight="400.0" prefWidth="150.0" spacing="50.0">
+                <children>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dyr">
+                        <font>
+                            <Font name="System Bold" size="24.0" />
+                        </font>
+                    </Text>
+                    <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" />
+                    <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
+                        <children>
+                            <Button mnemonicParsing="false" onAction="#createAnimal" prefWidth="100.0" text="Tilføj" />
+                            <Button mnemonicParsing="false" fx:id="deleteAnimalButton" prefWidth="100.0" text="Slet" disable="true" />
+                            <Button mnemonicParsing="false" fx:id="editAnimalButton" onAction="#editAnimal" prefWidth="100.0" text="Rediger" disable="true" />
+                        </children>
+                    </VBox>
+                    <Button mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Tilbage" />
+                </children>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+                </padding>
             </VBox>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" onAction="#back"/>
-         </children>
-         <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
-         </padding>
-      </VBox>
-      <TableView prefHeight="400.0" prefWidth="750.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Ejer" />
-          <TableColumn prefWidth="75.0" text="Kategori" />
-            <TableColumn prefWidth="75.0" text="Navn" />
-            <TableColumn prefWidth="75.0" text="Mad" />
-            <TableColumn prefWidth="75.0" text="Til Salg" />
-            <TableColumn prefWidth="52.666748046875" text="Pris" />
-            <TableColumn prefWidth="81.33331298828125" text="Vand" />
-            <TableColumn prefWidth="55.3333740234375" text="Giftig" />
-            <TableColumn prefWidth="50.0" text="Tam" />
-            <TableColumn prefWidth="137.3333740234375" text="Kommentar" />
-        </columns>
-      </TableView>
-   </children>
-</HBox>
+            <TableView fx:id="animalsTable" prefHeight="500.0" prefWidth="800.0">
+                <columns>
+                    <TableColumn fx:id="ownerColumn" prefWidth="125.0" text="Ejer" />
+                    <TableColumn fx:id="categoryColumn" prefWidth="50.0" text="Kategori" />
+                    <TableColumn fx:id="nameColumn" prefWidth="125.0" text="Navn" />
+                    <TableColumn fx:id="foodColumn" prefWidth="50.0" text="Mad" />
+                    <TableColumn fx:id="forSaleColumn" prefWidth="50.0" text="Til Salg" />
+                    <TableColumn fx:id="priceColumn" prefWidth="50.0" text="Pris" />
+                    <TableColumn fx:id="waterColumn" prefWidth="50.0" text="Vand" />
+                    <TableColumn fx:id="venomousColumn" prefWidth="50.0" text="Giftig" />
+                    <TableColumn fx:id="tameColumn" prefWidth="50.0" text="Tam" />
+                    <TableColumn fx:id="commentColumn" prefWidth="200.0" text="Kommentar" />
+                </columns>
+            </TableView>
+        </children>
+    </HBox>
 </AnchorPane>

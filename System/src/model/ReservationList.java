@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class ReservationList {
     private ArrayList<Reservation> reservations = new ArrayList<>();
@@ -112,12 +111,12 @@ public class ReservationList {
             case "customer-name-reverse":
                 reverse = true;
             case "customer-name":
-                reservations.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getName()));
+                reservations.sort((a,b) -> customerList.getById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getName()));
                 break;
             case "customer-email-reverse":
                 reverse = true;
             case "customer-email":
-                reservations.sort((a,b) -> customerList.getCustomerById(a.getCustomerId()).getEmail().compareToIgnoreCase(customerList.getCustomerById(b.getCustomerId()).getEmail()));
+                reservations.sort((a,b) -> customerList.getById(a.getCustomerId()).getEmail().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getEmail()));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort by. Valid ones are customer-name-reverse, customer-name, customer-email-reverse, customer-email");
@@ -202,4 +201,6 @@ public class ReservationList {
         }
         return reservationList;
     }
+
+    public ArrayList<Reservation> getList() {return reservations;}
 }

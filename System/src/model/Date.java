@@ -42,6 +42,20 @@ public class Date {
     }
 
     /**
+     * Konstruktør der accepter LocalDate
+     */
+    public Date(LocalDate localDate) {
+        set(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
+    }
+
+    /**
+     * Lav Date om til en LocalDate
+     */
+    public LocalDate getLocalDate() {
+        return LocalDate.of(year, month, day);
+    }
+
+    /**
      * @return Dagen på måneden
      */
     public int getDay() {
@@ -63,6 +77,10 @@ public class Date {
     }
 
 
+    /**
+     * (til sammenligning af dato) En funktion der laver T om til et date objekt
+     * @param <T>
+     */
     @FunctionalInterface
     public interface DateFunction<T> {
         Date getDate(T a);
