@@ -57,6 +57,7 @@ public class ViewHandler {
             case "Employees" -> loadEmployees();
             case "Sales" -> loadSales();
             case "ManageEmployee" -> loadManageEmployee();
+            case "ManageCustomer" -> loadManageCustomer();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist! Måske den mangler i openView?");
         };
 
