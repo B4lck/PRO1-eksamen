@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageCustomerController">
     <VBox layoutX="20.0" layoutY="20.0" prefHeight="231.0" prefWidth="458.0" spacing="10.0">
-        <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Tilføj/rediger medarbejder">
+        <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Tilføj/rediger kunder">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
@@ -26,10 +26,7 @@
             <Label text="Navn" />
             <Label text="Telefon nummer" GridPane.rowIndex="1" />
             <Label text="Email" GridPane.rowIndex="2" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <Button fx:id="selectEmployee" mnemonicParsing="false" prefHeight="25.0" prefWidth="183.0" text="Vælg kunde" />
-                <Button fx:id="createEmployee" mnemonicParsing="false" text="Opret en kunde" />
-            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="name" promptText="Nikolaj hansen" GridPane.columnIndex="1" />
             <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="193.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <children>

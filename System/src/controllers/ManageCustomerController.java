@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import model.AnimalList;
 import model.CustomerList;
 import model.VIAPetsModelManager;
 
@@ -20,7 +19,7 @@ public class ManageCustomerController {
     @FXML
     public Button createEmployee;
 
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void load(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.root = root;
         this.model = model;
@@ -42,8 +41,6 @@ public class ManageCustomerController {
 
     @FXML
     public void confirm() {
-        ManageAnimalController.load(model, -1);
-        reset();
         viewHandler.openView("ManageCustomer");
     }
 }
