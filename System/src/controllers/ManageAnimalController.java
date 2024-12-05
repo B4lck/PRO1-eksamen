@@ -2,21 +2,29 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.*;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * Controller til ManageAnimalGUI - Viewet der opretter og redigere dyr
+ */
 public class ManageAnimalController {
-    private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
 
+    // Elementer
     @FXML
     private Text title;
     @FXML
@@ -47,18 +55,61 @@ public class ManageAnimalController {
     public Button selectCustomer;
     @FXML
     public Button createCustomer;
+    String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
 
+    /**
+     * Hjælpe methode til at få kategori id'er ud fra vist string
+     */
+    private String getCategory() {
+        return switch (category.getValue()) {
+            case "Fisk" -> Animal.CATEGORY_FISH;
+            case "Fugl" -> Animal.CATEGORY_BIRD;
+            case "Reptil" -> Animal.CATEGORY_REPTILE;
+            default -> Animal.CATEGORY_DEFAULT;
+        };
+    }
+
+    // Andre instans variabler
     public int currentAnimalId = -1;
 
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root, int animalId) {
-        this.viewHandler = viewHandler;
+    private Date selectedBirthday = new Date();
+    private double selectedPrice = 0;
+    private int selectedOwnerId = -1;
+
+    /**
+     * Indlæser og åbner ManageAnimalGUI
+     *
+     * @param model    Modellen
+     * @param animalId ID på det dyr der skal redigeres, eller -1 for at oprette et nyt dyr
+     */
+    public static void load(VIAPetsModelManager model, int animalId) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ManageAnimalController.class.getResource("/views/ManageAnimalGUI.fxml"));
+            Region root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Opret/rediger dyr");
+            stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
+            ((ManageAnimalController) loader.getController()).init(root, model, animalId);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Init
+     *
+     * @param animalId Skal have et animalId der peger på et dyr eller -1 for at oprette nyt dyr
+     */
+    public void init(Region root, VIAPetsModelManager model, int animalId) {
         this.model = model;
         this.root = root;
 
         this.reset(animalId);
 
-        notForSale.selectedProperty().addListener((observable, oldValue, newValue) -> update());
-
+        // Event listeners
         birthday.valueProperty().addListener((observable, oldValue, newValue) -> {
             selectedBirthday = new Date(newValue);
             update();
@@ -92,9 +143,13 @@ public class ManageAnimalController {
         });
     }
 
+    /**
+     * Reset
+     */
     public void reset(int animalId) {
         currentAnimalId = animalId;
-        String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
+        
+        // Reset alle ting og sager
         category.setItems(FXCollections.observableArrayList(animalTypes));
         error.setText("");
         if (animalId == -1) {
@@ -138,10 +193,9 @@ public class ManageAnimalController {
         update();
     }
 
-    public Region getRoot() {
-        return root;
-    }
-
+    /**
+     * Opdater viewet
+     */
     @FXML
     public void update() {
         venomous.setDisable(true);
@@ -177,24 +231,17 @@ public class ManageAnimalController {
         selectCustomer.setText(selectedOwnerId != -1 ? model.getCustomerList().getById(selectedOwnerId).getName() + "..." : "Vælg kunde");
     }
 
+    /**
+     * Action til at lukke vinduet
+     */
     @FXML
-    public void back() {
-        viewHandler.openView("Animals");
+    public void close() {
+        ((Stage) root.getScene().getWindow()).close();
     }
 
-    private String getCategory() {
-        return switch (category.getValue()) {
-            case "Fisk" -> Animal.CATEGORY_FISH;
-            case "Fugl" -> Animal.CATEGORY_BIRD;
-            case "Reptil" -> Animal.CATEGORY_REPTILE;
-            default -> Animal.CATEGORY_DEFAULT;
-        };
-    }
-
-    private Date selectedBirthday = new Date();
-    private double selectedPrice = 0;
-    private int selectedOwnerId = -1;
-
+    /**
+     * Action til at oprette/redigere dyr
+     */
     @FXML
     public void createEdit() {
         if (currentAnimalId == -1) {
@@ -214,8 +261,6 @@ public class ManageAnimalController {
             if (newAnimal instanceof AnimalReptile) ((AnimalReptile) newAnimal).setVenomous(venomous.isSelected());
 
             model.getAnimalList().add(newAnimal);
-
-            viewHandler.openView("Animals");
         } else {
             Animal animal = model.getAnimalList().getAnimalById(currentAnimalId);
 
@@ -233,11 +278,14 @@ public class ManageAnimalController {
             if (animal instanceof AnimalFish) ((AnimalFish) animal).setIsFreshWater(!saltwater.isSelected());
             if (animal instanceof AnimalBird) ((AnimalBird) animal).setTamed(tamed.isSelected());
             if (animal instanceof AnimalReptile) ((AnimalReptile) animal).setVenomous(venomous.isSelected());
-
-            viewHandler.openView("Animals");
         }
+
+        close();
     }
 
+    /**
+     * Action der åbner vælg customer vinduet
+     */
     @FXML
     public void selectCustomer() {
         SelectCustomerController.load(model, (customerId) -> {

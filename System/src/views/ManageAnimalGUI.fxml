@@ -37,7 +37,7 @@
             <ChoiceBox fx:id="category" prefWidth="150.0" GridPane.columnIndex="1" onAction="#update"/>
             <Label text="Salg eller pasning" GridPane.rowIndex="1"/>
             <CheckBox fx:id="notForSale" mnemonicParsing="false" text="Dyr til pasning"
-                      GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                      GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#update"/>
             <Label text="Giftig" GridPane.rowIndex="4"/>
             <CheckBox fx:id="venomous" mnemonicParsing="false" text="Er giftig?" GridPane.columnIndex="1"
                       GridPane.rowIndex="4"/>
@@ -80,7 +80,7 @@
             </HBox>
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">
-            <Button mnemonicParsing="false" onAction="#back" text="Annuller"/>
+            <Button mnemonicParsing="false" onAction="#close" text="Annuller"/>
             <Button mnemonicParsing="false" onAction="#createEdit" text="Opret/rediger"/>
         </HBox>
     </VBox>

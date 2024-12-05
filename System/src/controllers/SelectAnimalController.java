@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Animal;
 import model.VIAPetsModelManager;
@@ -57,10 +58,11 @@ public class SelectAnimalController {
             loader.setLocation(SelectAnimalController.class.getResource("/views/SelectAnimalGUI.fxml"));
             Region root = loader.load();
             Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Vælg dyr");
-            stage.setScene(new Scene(root, 500, 400));
-            stage.show();
+            stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
             ((SelectAnimalController) loader.getController()).init(model, root, callback);
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

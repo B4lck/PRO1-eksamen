@@ -9,6 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
 
@@ -109,10 +110,11 @@ public class AnimalsFilteringController {
             loader.setLocation(AnimalsFilteringController.class.getResource("/views/AnimalsFilteringGUI.fxml"));
             Region root = loader.load();
             Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Vælg filtering og sortering");
-            stage.setScene(new Scene(root, 400, 350));
-            stage.show();
+            stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
             ((AnimalsFilteringController) loader.getController()).init(root, model, callback);
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

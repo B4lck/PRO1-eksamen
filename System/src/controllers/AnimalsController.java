@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import model.*;
 
 import java.util.Collections;
@@ -129,7 +130,8 @@ public class AnimalsController {
      */
     @FXML
     public void createAnimal() {
-        viewHandler.openView("ManageAnimal");
+        ManageAnimalController.load(model, -1);
+        reset();
     }
 
     /**
@@ -179,7 +181,8 @@ public class AnimalsController {
      */
     @FXML
     public void editAnimal() {
-        viewHandler.openView("ManageAnimal", animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
+        ManageAnimalController.load(model, animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
+        reset();
     }
 
     /**
