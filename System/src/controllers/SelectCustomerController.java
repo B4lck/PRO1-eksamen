@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Customer;
 import model.VIAPetsModelManager;
@@ -50,10 +51,11 @@ public class SelectCustomerController {
             loader.setLocation(SelectCustomerController.class.getResource("/views/SelectCustomerGUI.fxml"));
             Region root = loader.load();
             Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Vælg kunde");
-            stage.setScene(new Scene(root, 400, 400));
-            stage.show();
+            stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
             ((SelectCustomerController) loader.getController()).init(model, root, callback);
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
