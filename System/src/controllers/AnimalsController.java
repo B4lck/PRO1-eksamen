@@ -130,8 +130,10 @@ public class AnimalsController {
      */
     @FXML
     public void createAnimal() {
-        ManageAnimalController.load(model, -1);
-        reset();
+        ManageAnimalController.load(model, -1, animalId -> {
+            reset();
+            animalsTable.getSelectionModel().select(model.getAnimalList().getAnimalById(animalId));
+        });
     }
 
     /**
@@ -181,8 +183,10 @@ public class AnimalsController {
      */
     @FXML
     public void editAnimal() {
-        ManageAnimalController.load(model, animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
-        reset();
+        ManageAnimalController.load(model, animalsTable.getSelectionModel().getSelectedItem().getAnimalId(), animalId -> {
+            reset();
+            animalsTable.getSelectionModel().select(model.getAnimalList().getAnimalById(animalId));
+        });
     }
 
     /**
