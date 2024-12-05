@@ -270,7 +270,7 @@ public class VIAPetsFiles {
                 Date endDate = new Date(unescape(data[3]));
                 int position = Integer.parseInt(unescape(data[4]));
 
-                Reservation reservation = new Reservation(animalId, customerId, new DateInterval(startDate, endDate));
+                Reservation reservation = new Reservation(customerId, animalId, new DateInterval(startDate, endDate));
                 
                 reservation.setPositionId(position);
 
