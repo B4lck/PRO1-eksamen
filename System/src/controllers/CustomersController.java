@@ -4,10 +4,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
+import model.Animal;
 import model.Customer;
+import model.Reservation;
 import model.VIAPetsModelManager;
 
 public class CustomersController {
@@ -57,6 +61,7 @@ public class CustomersController {
     @FXML
     public void createCustomer() {
         ManageCustomerController.load(model,-1);
+        reset();
     }
 
     @FXML
@@ -67,6 +72,26 @@ public class CustomersController {
 
     @FXML
     public void deleteCustomer() {
-        // TODO
+            Customer selection = customersTable.getSelectionModel().getSelectedItem();
+            // Vis confirmation alert
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på at du vil slette " + selection.getName() + "?", ButtonType.YES, ButtonType.NO);
+            confirmationAlert.setGraphic(null);
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setTitle("Slet Kunden");
+            confirmationAlert.showAndWait();
+
+            // Stop hvis bruger har valgt nej
+            if (confirmationAlert.getResult() == ButtonType.NO) return;
+            model.getCustomerList().removeById(selection.getCustomerId());
+
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION, selection.getName() + " er slettet", ButtonType.OK);
+            successAlert.setGraphic(null);
+            successAlert.setHeaderText(null);
+            successAlert.setTitle("Slet kunden");
+            successAlert.show();
+
+            model.save();
+
+            reset();
+        }
     }
-}
