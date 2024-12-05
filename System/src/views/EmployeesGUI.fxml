@@ -22,7 +22,6 @@
                     <Font name="System Bold" size="18.0"/>
                 </font>
             </Text>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer"/>
             <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
                 <Button mnemonicParsing="false" onAction="#createEmployee" prefWidth="100.0" text="Tilføj"/>
                 <Button mnemonicParsing="false" onAction="#deleteEmployee" prefWidth="100.0" text="Slet"/>

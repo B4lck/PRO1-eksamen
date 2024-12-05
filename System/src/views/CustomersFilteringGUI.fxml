@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="180.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomersFilteringController">
+    <VBox layoutX="14.0" layoutY="12.0" prefWidth="320.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Søg i kunder">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="128.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Label text="Søg efter navn" />
+            <TextField fx:id="nameField" promptText="Joakim Jakobsen" GridPane.columnIndex="1" />
+            <Label text="Søg efter telefon nr" GridPane.rowIndex="1" />
+            <TextField fx:id="phoneField" promptText="12 34 56 78" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Søg efter email" GridPane.rowIndex="2" />
+            <TextField fx:id="emailField" promptText="joakimjakobsen@via.dk" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        </GridPane>
+        <HBox alignment="BOTTOM_RIGHT" prefHeight="33.0" prefWidth="360.0" spacing="10.0">
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#clear" text="Nulstil" />
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#close" text="Annullere" />
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#confirm" text="OK" />
+        </HBox>
+    </VBox>
+</AnchorPane>

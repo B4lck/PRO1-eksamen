@@ -4,14 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
-import model.Animal;
 import model.Customer;
-import model.Reservation;
+import model.CustomerList;
 import model.VIAPetsModelManager;
 
 public class CustomersController {
@@ -27,8 +23,15 @@ public class CustomersController {
     private TableColumn<Customer, String> emailColumn;
     @FXML
     private TableColumn<Customer, String> phoneColumn;
+    @FXML
+    public Label filteringEnabledLabel;
 
     private final ObservableList<Customer> list = FXCollections.observableArrayList();
+
+    /**
+     * Det nuværende filter
+     */
+    private CustomersFilteringController.CustomerFilter filter;
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
@@ -44,7 +47,9 @@ public class CustomersController {
 
     public void reset() {
         list.clear();
-        list.addAll(model.getCustomerList().getList());
+        CustomerList customerList = model.getCustomerList();
+        if (filter != null) customerList = filter.filterList(customerList);
+        list.addAll(customerList.getAllCustomers());
         customersTable.setItems(list);
     }
 
@@ -60,7 +65,7 @@ public class CustomersController {
 
     @FXML
     public void createCustomer() {
-        ManageCustomerController.load(model,-1, customerId -> {
+        ManageCustomerController.load(model, -1, customerId -> {
             reset();
             customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
         });
@@ -75,26 +80,38 @@ public class CustomersController {
 
     @FXML
     public void deleteCustomer() {
-            Customer selection = customersTable.getSelectionModel().getSelectedItem();
-            // Vis confirmation alert
-            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på at du vil slette " + selection.getName() + "?", ButtonType.YES, ButtonType.NO);
-            confirmationAlert.setGraphic(null);
-            confirmationAlert.setHeaderText(null);
-            confirmationAlert.setTitle("Slet Kunden");
-            confirmationAlert.showAndWait();
+        Customer selection = customersTable.getSelectionModel().getSelectedItem();
+        // Vis confirmation alert
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på at du vil slette " + selection.getName() + "?", ButtonType.YES, ButtonType.NO);
+        confirmationAlert.setGraphic(null);
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setTitle("Slet Kunden");
+        confirmationAlert.showAndWait();
 
-            // Stop hvis bruger har valgt nej
-            if (confirmationAlert.getResult() == ButtonType.NO) return;
-            model.getCustomerList().removeById(selection.getCustomerId());
+        // Stop hvis bruger har valgt nej
+        if (confirmationAlert.getResult() == ButtonType.NO) return;
+        model.getCustomerList().removeById(selection.getCustomerId());
 
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION, selection.getName() + " er slettet", ButtonType.OK);
-            successAlert.setGraphic(null);
-            successAlert.setHeaderText(null);
-            successAlert.setTitle("Slet kunden");
-            successAlert.show();
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION, selection.getName() + " er slettet", ButtonType.OK);
+        successAlert.setGraphic(null);
+        successAlert.setHeaderText(null);
+        successAlert.setTitle("Slet kunden");
+        successAlert.show();
 
-            model.save();
+        model.save();
 
-            reset();
-        }
+        reset();
     }
+
+    /**
+     * Action til at åbne filter vælgeren
+     */
+    @FXML
+    public void filterCustomers() {
+        CustomersFilteringController.load(model, (filter) -> {
+            this.filter = filter;
+            filteringEnabledLabel.setText(filter == null ? "" : "Aktivt filter");
+            reset();
+        });
+    }
+}

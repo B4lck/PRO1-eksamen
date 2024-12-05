@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Customer;
+import model.CustomerList;
 import model.VIAPetsModel;
 
 import java.io.IOException;
@@ -30,6 +31,8 @@ public class SelectCustomerController {
     private TableColumn<Customer, String> phoneColumn;
 
     private final ObservableList<Customer> list = FXCollections.observableArrayList();
+    
+    private CustomersFilteringController.CustomerFilter filter;
 
     private SelectedCustomerCallback selectedCustomerCallback;
 
@@ -63,7 +66,9 @@ public class SelectCustomerController {
 
     public void reset() {
         list.clear();
-        list.addAll(model.getCustomerList().getList());
+        CustomerList customers = model.getCustomerList();
+        if (filter != null) customers = filter.filterList(customers);
+        list.addAll(customers.getAllCustomers());
         customerTable.setItems(list);
     }
 
@@ -85,6 +90,14 @@ public class SelectCustomerController {
     public void confirm() {
         selectedCustomerCallback.callback(getSelectedCustomerId());
         ((Stage) root.getScene().getWindow()).close();
+    }
+
+    @FXML
+    public void filterCustomers() {
+        CustomersFilteringController.load(model, filter -> {
+            this.filter = filter;
+            reset();
+        });
     }
 
     public int getSelectedCustomerId() {

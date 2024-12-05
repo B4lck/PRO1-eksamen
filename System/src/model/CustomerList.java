@@ -92,10 +92,11 @@ public class CustomerList {
      * @param phone Tlf nummer
      * @return CustomerList
      */
-    public CustomerList getCustomerByPhone(long phone) {
+    public CustomerList getCustomersByPhone(long phone) {
+        String phoneStr = Long.toString(phone);
         CustomerList list = new CustomerList();
         for (Customer c : this.customers) {
-            if (c.getPhone() == phone) {
+            if (Long.toString(c.getPhone()).contains(phoneStr)) {
                 list.add(c);
             }
         }
@@ -103,14 +104,15 @@ public class CustomerList {
     }
 
     /**
-     * Henter alle kunder ud fra navn
+     * Søger og returnere alle kunder hvor `name` indgår i deres navn
      * @param name Kunde navn
      * @return CustomerList
      */
-    public CustomerList getCustomerByName(String name) {
+    public CustomerList getCustomersByName(String name) {
+        name = name.toLowerCase();
         CustomerList list = new CustomerList();
         for (Customer c : this.customers) {
-            if (c.getName().equals(name)) {
+            if (c.getName().toLowerCase().contains(name)) {
                 list.add(c);
             }
         }
@@ -118,14 +120,15 @@ public class CustomerList {
     }
 
     /**
-     * Henter alle kunder ud fra deres email
+     * Søger og returnere alle kunder hvor `email` indgår i deres email
      * @param email Kunde email
      * @return CustomerList
      */
-    public CustomerList getCustomerByEmail(String email) {
+    public CustomerList getCustomersByEmail(String email) {
+        email = email.toLowerCase();
         CustomerList list = new CustomerList();
         for (Customer c : this.customers) {
-            if (c.getEmail().equals(email)) {
+            if (c.getEmail().toLowerCase().contains(email)) {
                 list.add(c);
             }
         }

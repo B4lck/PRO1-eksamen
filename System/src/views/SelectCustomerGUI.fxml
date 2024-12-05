@@ -21,7 +21,7 @@
                 <Font size="18.0"/>
             </font>
         </Text>
-        <Button mnemonicParsing="false" text="Søg og filtrer"/>
+        <Button mnemonicParsing="false" text="Søg og filtrer" onAction="#filterCustomers"/>
     </HBox>
     <TableView fx:id="customerTable" layoutY="50.0" prefHeight="300.0" prefWidth="400.0">
       <columns>
