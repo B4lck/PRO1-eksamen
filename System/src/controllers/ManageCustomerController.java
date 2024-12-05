@@ -4,11 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import model.AnimalList;
+import model.CustomerList;
 import model.VIAPetsModelManager;
 
 public class ManageCustomerController {
     private ViewHandler viewHandler;
     private Region root;
+    private VIAPetsModelManager model;
 
     @FXML
     public Label error;
@@ -20,9 +23,13 @@ public class ManageCustomerController {
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.root = root;
+        this.model = model;
     }
 
-    public void reset() {}
+    public void reset() {
+        // Hent kunder liste i model
+        CustomerList Customer = model.getCustomerList();
+    }
 
     public Region getRoot() {
         return root;
@@ -35,6 +42,8 @@ public class ManageCustomerController {
 
     @FXML
     public void confirm() {
+        ManageAnimalController.load(model, -1);
+        reset();
         viewHandler.openView("ManageCustomer");
     }
 }

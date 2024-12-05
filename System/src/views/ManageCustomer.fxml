@@ -36,12 +36,11 @@
                <TextField prefHeight="25.0" prefWidth="329.0" promptText="+45" />
             </children>
             </HBox>
-            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <TextField promptText="Example@mail.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">
             <Button mnemonicParsing="false" onAction="#back" text="Annuller" />
-            <Button mnemonicParsing="false" onAction="#confirm" text="Confirm" />
+            <Button mnemonicParsing="false" onAction="#confirm" text="Bekræft" />
         </HBox>
     </VBox>
 
