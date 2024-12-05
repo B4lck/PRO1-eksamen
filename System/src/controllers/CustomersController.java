@@ -60,7 +60,10 @@ public class CustomersController {
 
     @FXML
     public void createCustomer() {
-        ManageCustomerController.load(model,-1);
+        ManageCustomerController.load(model,-1, customerId -> {
+            reset();
+            customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
+        });
         reset();
     }
 
