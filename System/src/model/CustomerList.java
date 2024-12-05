@@ -6,7 +6,7 @@ public class CustomerList {
     /**
      * Liste over alle kunder
      */
-    private ArrayList<Customer> customers = new ArrayList<>();
+    private final ArrayList<Customer> customers = new ArrayList<>();
 
 
     /**
@@ -78,7 +78,7 @@ public class CustomerList {
      * @return Customer[]
      */
     public Customer[] getAllCustomers() {
-        return this.customers.toArray(new Customer[this.customers.size()]);
+        return this.customers.toArray(new Customer[0]);
     }
     //sortBY skal laves
 
@@ -105,7 +105,7 @@ public class CustomerList {
     public CustomerList getCustomerByName(String name) {
         CustomerList list = new CustomerList();
         for (Customer c : this.customers) {
-            if (c.getName() == name) {
+            if (c.getName().equals(name)) {
                 list.add(c);
             }
         }
@@ -120,7 +120,7 @@ public class CustomerList {
     public CustomerList getCustomerByEmail(String email) {
         CustomerList list = new CustomerList();
         for (Customer c : this.customers) {
-            if (c.getEmail() == email) {
+            if (c.getEmail().equals(email)) {
                 list.add(c);
             }
         }

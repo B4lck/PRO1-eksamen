@@ -11,39 +11,34 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationsController">
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="400.0" prefWidth="150.0" spacing="50.0">
-         <children>
+    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+          prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+        <VBox prefHeight="400.0" prefWidth="150.0" spacing="50.0">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="10.0"/>
+            </padding>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reservationer">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
+                <font>
+                    <Font name="System Bold" size="18.0"/>
+                </font>
             </Text>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" />
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer"/>
             <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
-               <children>
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Tilføj" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Slet" />
-                  <Button mnemonicParsing="false" prefWidth="100.0" text="Rediger" />
-               </children>
+                <Button mnemonicParsing="false" prefWidth="100.0" text="Tilføj"/>
+                <Button mnemonicParsing="false" prefWidth="100.0" text="Slet"/>
+                <Button mnemonicParsing="false" prefWidth="100.0" text="Rediger"/>
             </VBox>
-            <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" onAction="#back" />
-         </children>
-         <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
-         </padding>
-      </VBox>
-      <TableView fx:id="reservationsTable" prefHeight="400.0" prefWidth="750.0">
-        <columns>
-          <TableColumn fx:id="customerNameColumn" prefWidth="150.0" text="Kunde Navn" />
-          <TableColumn fx:id="animalCategoryColumn" prefWidth="100.0" text="Dyr Kategori" />
-          <TableColumn fx:id="animalNameColumn" prefWidth="100.0" text="Dyr Navn" />
-          <TableColumn fx:id="startDateColumn" text="Start Dato" />
-          <TableColumn fx:id="endDateColumn" text="Slut Dato" />
-          <TableColumn fx:id="positionColumn" minWidth="9.0" prefWidth="238.0" text="Terrarie/Akvarie/Fuglebur" />
-        </columns>
-      </TableView>
-   </children>
-</HBox>
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" onAction="#back"/>
+        </VBox>
+        <TableView fx:id="reservationsTable" prefHeight="400.0" prefWidth="750.0">
+            <columns>
+                <TableColumn fx:id="customerNameColumn" prefWidth="150.0" text="Kunde Navn"/>
+                <TableColumn fx:id="animalCategoryColumn" prefWidth="100.0" text="Dyr Kategori"/>
+                <TableColumn fx:id="animalNameColumn" prefWidth="100.0" text="Dyr Navn"/>
+                <TableColumn fx:id="startDateColumn" text="Start Dato"/>
+                <TableColumn fx:id="endDateColumn" text="Slut Dato"/>
+                <TableColumn fx:id="positionColumn" minWidth="9.0" prefWidth="238.0" text="Terrarie/Akvarie/Fuglebur"/>
+            </columns>
+        </TableView>
+    </HBox>
 </AnchorPane>

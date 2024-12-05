@@ -6,9 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import model.Customer;
 import model.Reservation;
 import model.VIAPetsModelManager;
 
@@ -19,7 +17,6 @@ public class ReservationsController {
 
     @FXML
     private TableView<Reservation> reservationsTable;
-
     @FXML
     private TableColumn<Reservation, String> customerNameColumn;
     @FXML
@@ -33,10 +30,7 @@ public class ReservationsController {
     @FXML
     private TableColumn<Reservation, String> positionColumn;
 
-    private ObservableList<Reservation> list = FXCollections.observableArrayList();
-
-    public ReservationsController() {
-    }
+    private final ObservableList<Reservation> list = FXCollections.observableArrayList();
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;

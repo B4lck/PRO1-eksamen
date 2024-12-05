@@ -5,7 +5,7 @@ import model.*;
 
 public class VIAPetsApplication extends Application {
     
-    public static VIAPetsModelManager model = new VIAPetsModelManager();
+    public static final VIAPetsModelManager model = new VIAPetsModelManager();
 
     public static void main(String[] args) {
         launch(args);

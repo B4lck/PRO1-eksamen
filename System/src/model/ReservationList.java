@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ReservationList {
-    private ArrayList<Reservation> reservations = new ArrayList<>();
+    private final ArrayList<Reservation> reservations = new ArrayList<>();
 
     /**
      * Tilføjer en reservation til reservations listen
@@ -40,7 +40,7 @@ public class ReservationList {
      * @return Reservation[]
      */
     public Reservation[] getAllReservations() {
-        return reservations.toArray(new Reservation[reservations.size()]);
+        return reservations.toArray(new Reservation[0]);
     }
 
     /**
@@ -97,6 +97,7 @@ public class ReservationList {
             default:
                 throw new IllegalArgumentException("Invalid sort by. Valid ones are animal-name-reverse, animal-name, animal-category-reverse, animal-food-reverse, animal-food");
         }
+        if (reverse) Collections.reverse(reservations);
     }
 
     /**

@@ -1,10 +1,9 @@
 package model;
 
 public interface VIAPetsModel {
-    public AnimalList getAnimalList();
-    public ReservationList getReservationList();
-    public SalesList getSalesList();
-    public CustomerList getCustomerList();
-    public EmployeeList getEmployeeList();
-
+    AnimalList getAnimalList();
+    ReservationList getReservationList();
+    SalesList getSalesList();
+    CustomerList getCustomerList();
+    EmployeeList getEmployeeList();
 }

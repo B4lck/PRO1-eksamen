@@ -140,11 +140,7 @@ public class Date {
             return true;
         } else if (year == other.year && month < other.month) {
             return true;
-        } else if (year == other.year && month == other.month && day < other.day) {
-            return true;
-        }
-
-        return false;
+        } else return year == other.year && month == other.month && day < other.day;
     }
 
     /**
@@ -192,9 +188,9 @@ public class Date {
     }
 
     /**
-     * Konvertere datoen til en String i formattet dd/mm/yyyy
+     * Konvertere datoen til en String i formatet dd/mm/yyyy
      *
-     * @return String i formattet dd/mm/yyyy
+     * @return String i formatet dd/mm/yyyy
      */
     @Override
     public String toString() {
@@ -202,7 +198,7 @@ public class Date {
     }
 
     /**
-     * Retunere en kopi af objektet
+     * Returnerer en kopi af objektet
      *
      * @return En kopi af objektet
      */

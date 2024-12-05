@@ -12,7 +12,7 @@ public class Customer extends Person {
     /**
      * Kundens ID
      */
-    private int customerId;
+    private final int customerId;
 
     /**
      * Konstruktør til kunden

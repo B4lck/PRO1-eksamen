@@ -2,11 +2,11 @@ package model;
 
 public class VIAPetsModelManager implements VIAPetsModel {
 
-    private AnimalList animalList;
-    private ReservationList reservationList;
-    private SalesList salesList;
-    private CustomerList customerList;
-    private EmployeeList employeeList;
+    private final AnimalList animalList;
+    private final ReservationList reservationList;
+    private final SalesList salesList;
+    private final CustomerList customerList;
+    private final EmployeeList employeeList;
 
     public VIAPetsModelManager() {
         animalList = new AnimalList();

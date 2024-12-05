@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
@@ -12,20 +13,24 @@ import model.*;
 
 import java.util.Collections;
 
+/**
+ * Controller til AnimalsGUI - Oversigten over dyr
+ */
 public class AnimalsController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
-    
+
+    // Knapper
     @FXML
     private Button deleteAnimalButton;
-
     @FXML
     private Button editAnimalButton;
-
+    @FXML
+    private Label filteringEnabledLabel;
+    // Tabel
     @FXML
     private TableView<Animal> animalsTable;
-
     @FXML
     private TableColumn<Animal, String> ownerColumn;
     @FXML
@@ -47,14 +52,25 @@ public class AnimalsController {
     @FXML
     private TableColumn<Animal, String> commentColumn;
 
-    private ObservableList<Animal> list = FXCollections.observableArrayList();
+    /**
+     * ObservableList som tabellen kan læse
+     */
+    private final ObservableList<Animal> list = FXCollections.observableArrayList();
+
+    /**
+     * Det nuværende filter
+     */
     private AnimalsFilteringController.AnimalFilter currentFilter;
 
+    /**
+     * Init
+     */
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
 
+        // Data til tekst til cellerne
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         ownerColumn.setCellValueFactory(cellData -> {
             Animal animal = cellData.getValue();
@@ -72,45 +88,78 @@ public class AnimalsController {
         tameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue() instanceof AnimalBird ? (((AnimalBird) cellData.getValue()).isTamed() ? "✓" : "✕") : "-"));
         commentColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getComment()));
 
+        // Aktiver delete og edit knapper når en række vælges
         animalsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             deleteAnimalButton.setDisable(newValue == null);
             editAnimalButton.setDisable(newValue == null);
         });
 
+        // Opdater tabel
         reset();
     }
 
+    /**
+     * Resetter view (opdater tabellen)
+     */
     public void reset() {
-        list.clear();
+        // Hent animals liste i model
         AnimalList animals = model.getAnimalList();
+        // Filtre listen hvis der er et filter valgt
         if (currentFilter != null) animals = currentFilter.filterList(animals);
+        // Opdater liste
+        list.clear();
         Collections.addAll(list, animals.getAllAnimals());
         animalsTable.setItems(list);
     }
 
+    /**
+     * Henter roden
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Action til at gå tilbage til hovedmenuen
+     */
     @FXML
     public void back() {
         viewHandler.openView("MainMenu");
     }
 
+    /**
+     * Action til at oprette dyr
+     */
     @FXML
     public void createAnimal() {
         viewHandler.openView("ManageAnimal");
     }
 
+    /**
+     * Action til at slette dyr
+     */
+    @FXML
+    public void deleteAnimal() {
+        model.getAnimalList().removeById(animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
+        reset();
+    }
+
+    /**
+     * Action til at redigere valgt dyr
+     */
     @FXML
     public void editAnimal() {
         viewHandler.openView("ManageAnimal", animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
     }
 
+    /**
+     * Action til at åbne filter vælgeren
+     */
     @FXML
     public void filterAnimals() {
         AnimalsFilteringController.load(model, (filter) -> {
             currentFilter = filter;
+            filteringEnabledLabel.setText(currentFilter == null ? "" : "Aktivt filter");
             reset();
         });
     }

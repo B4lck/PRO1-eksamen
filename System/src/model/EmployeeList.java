@@ -7,7 +7,7 @@ public class EmployeeList {
     /**
      * Liste over alle employees
      */
-    private ArrayList<Employee> employees = new ArrayList<>();
+    private final ArrayList<Employee> employees = new ArrayList<>();
 
 
     /**
@@ -79,7 +79,7 @@ public class EmployeeList {
      * @return Employee[]
      */
     public Employee[] getAllEmployees() {
-        return employees.toArray(new Employee[employees.size()]);
+        return employees.toArray(new Employee[0]);
     }
 
     /**

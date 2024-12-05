@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class AnimalList {
-    private ArrayList<Animal> animals = new ArrayList<>();
+    private final ArrayList<Animal> animals = new ArrayList<>();
 
     /**
      * Opretter et helt nyt dyr, der bagefter skal lægges i listen.
@@ -17,11 +17,12 @@ public class AnimalList {
      * @return Animal objekt eller objekt der nedarver animal efter kategori.
      */
     public Animal createNewAnimal(String category, String name, double price) {
+        int id = getUniqueId();
         return switch (category) {
-            case Animal.CATEGORY_BIRD -> new AnimalBird(name, price, getUniqueId());
-            case Animal.CATEGORY_FISH -> new AnimalFish(name, price, getUniqueId());
-            case Animal.CATEGORY_REPTILE -> new AnimalReptile(name, price, getUniqueId());
-            default -> new Animal(name, price, getUniqueId());
+            case Animal.CATEGORY_BIRD -> new AnimalBird(name, price, id);
+            case Animal.CATEGORY_FISH -> new AnimalFish(name, price, id);
+            case Animal.CATEGORY_REPTILE -> new AnimalReptile(name, price, id);
+            default -> new Animal(name, price, id);
         };
     }
 
@@ -36,11 +37,12 @@ public class AnimalList {
      * @return Animal objekt eller objekt der nedarver animal efter kategori.
      */
     public Animal createNewAnimal(String category, String name, int ownerId) {
+        int id = getUniqueId();
         return switch (category) {
-            case Animal.CATEGORY_BIRD -> new AnimalBird(name, ownerId, getUniqueId());
-            case Animal.CATEGORY_FISH -> new AnimalFish(name, ownerId, getUniqueId());
-            case Animal.CATEGORY_REPTILE -> new AnimalReptile(name, ownerId, getUniqueId());
-            default -> new Animal(name, ownerId, getUniqueId());
+            case Animal.CATEGORY_BIRD -> new AnimalBird(name, ownerId, id);
+            case Animal.CATEGORY_FISH -> new AnimalFish(name, ownerId, id);
+            case Animal.CATEGORY_REPTILE -> new AnimalReptile(name, ownerId, id);
+            default -> new Animal(name, ownerId, id);
         };
     }
 
@@ -101,7 +103,7 @@ public class AnimalList {
      * Henter alle dyr i listen som et array
      */
     public Animal[] getAllAnimals() {
-        return animals.toArray(new Animal[animals.size()]);
+        return animals.toArray(new Animal[0]);
     }
 
     /**
@@ -313,8 +315,19 @@ public class AnimalList {
         }
         return list;
     }
-    
-    public ArrayList<Animal> getList() {
-        return animals;
+
+    public AnimalList getAnimalsWithReservation(DateInterval interval, ReservationList reservations) {
+        AnimalList list = new AnimalList();
+        
+        for (Animal animal : animals) {
+            for (Reservation reservation : reservations.getReservationsForAnimal(animal.getAnimalId()).getAllReservations()) {
+                if (interval.intersects(reservation.getPeriod())) {
+                    list.add(animal);
+                    break;
+                }
+            }
+        }
+        
+        return list;
     }
 }
