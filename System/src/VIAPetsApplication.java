@@ -15,13 +15,14 @@ public class VIAPetsApplication extends Application {
     public void start(Stage primaryStage) {
         // Dummy data
         // Dyr
-        model.getAnimalList().add(model.getAnimalList().createNewAnimal("other", "Mazen", 69.0));
-        model.getAnimalList().add(model.getAnimalList().createNewAnimal(Animal.CATEGORY_REPTILE, "Mazen Sharaf", 69.0));
-        model.getAnimalList().add(model.getAnimalList().createNewAnimal(Animal.CATEGORY_BIRD, "Mazen Sharaf", 1));
+        model.getAnimalList().add(model.getAnimalList().createNewAnimal("other", "Ninus", 300.0));
+        model.getAnimalList().add(model.getAnimalList().createNewAnimal(Animal.CATEGORY_REPTILE, "Ekans", 150.0));
+        model.getAnimalList().add(model.getAnimalList().createNewAnimal(Animal.CATEGORY_BIRD, "Pip", 1));
 
         // Kunder
         model.getCustomerList().add(new Customer("Nikolai Balck", 12345678, "12345@gmail.com", 1));
         model.getCustomerList().add(new Customer("Malthe Laursen", 87654321, "67890@gmail.com", 2));
+        model.getCustomerList().add(new Customer("Mazen Sharaf", 24681012, "findeikke@gmail.com", 3));
 
         // Medarbejdere
         Employee employee = new Employee("Bob", 1);

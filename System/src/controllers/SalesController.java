@@ -60,18 +60,20 @@ public class SalesController {
 
     @FXML
     public void back() {
-        // TODO
         viewHandler.openView("MainMenu");
     }
 
     @FXML
     public void createSale() {
-        // TODO
+        ManageSaleController.load(model, null);
+        reset();
     }
 
     @FXML
     public void editSale() {
-        // TODO
+        Sale selectedSale = salesTable.getSelectionModel().getSelectedItem();
+        ManageSaleController.load(model, selectedSale);
+        reset();
     }
 
     @FXML
