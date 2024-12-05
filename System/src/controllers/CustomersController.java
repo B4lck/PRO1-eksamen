@@ -56,8 +56,7 @@ public class CustomersController {
 
     @FXML
     public void createCustomer() {
-        // TODO
-        viewHandler.openView("MainMenu");
+        viewHandler.openView("ManageCustomer");
     }
 
     @FXML
