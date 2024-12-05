@@ -3,11 +3,13 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Customer;
 import model.VIAPetsModel;
 
 import java.io.IOException;
@@ -64,12 +66,15 @@ public class ManageCustomerController {
 
     @FXML
     public void back() {
-        viewHandler.openView("Customers");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
     public void confirm() {
-        reset();
-        viewHandler.openView("ManageCustomer");
+        Customer c = model.getCustomerList().createNewCustomer(this.name.getText(),Long.parseLong(this.phone.getText()),this.mail.getText());
+        model.getCustomerList().add(c);
+        model.save();
+        ((Stage) root.getScene().getWindow()).close();
+
     }
 }

@@ -59,6 +59,7 @@ public class CustomerList {
         for (Customer c : this.customers) {
             if (c.getCustomerId() == customer) {
                 this.customers.remove(c);
+                break;
             }
         }
     }
