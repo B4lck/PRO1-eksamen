@@ -117,6 +117,9 @@ public class ManageSaleController {
         } else {
             selectedSale.set(selectedFinalPrice, selectedAnimalId, selectedCustomerId, selectedEmployeeId, selectedSale.getDateOfSale());
         }
+
+        model.getAnimalList().getAnimalById(selectedAnimalId).setOwnerId(selectedCustomerId);
+        model.save();
         close();
     }
 
@@ -145,6 +148,7 @@ public class ManageSaleController {
     public void createAnimal() {
         ManageAnimalController.load(model, -1, animalId -> {
             this.selectedAnimalId = animalId;
+            model.save();
             update();
         }, true);
     }
