@@ -38,13 +38,13 @@
             <Label text="Positions ID" GridPane.rowIndex="1" />
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1">
             <children>
-               <Button mnemonicParsing="false" prefWidth="100.0" text="Vælg dyr" onAction="#selectAnimal" />
+               <Button mnemonicParsing="false" prefWidth="100.0" text="Vælg dyr" onAction="#selectAnimal" fx:id="selectAnimalButton" />
                <Button mnemonicParsing="false" prefWidth="100.0" text="Opret dyr" onAction="#createAnimal" />
             </children>
          </HBox>
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-               <Button mnemonicParsing="false" prefWidth="100.0" text="Vælg kunde" onAction="#selectCustomer" />
+               <Button mnemonicParsing="false" prefWidth="100.0" text="Vælg kunde" onAction="#selectCustomer" fx:id="selectCustomerButton" />
                <Button mnemonicParsing="false" prefWidth="100.0" text="Opret kunde" onAction="#createCustomer" />
             </children>
          </HBox>

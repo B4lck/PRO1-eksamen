@@ -60,4 +60,15 @@ public class ReservationsController {
     public void back() {
         viewHandler.openView("MainMenu");
     }
+
+    @FXML
+    public void createReservation() {
+        ManageReservationController.load(model, null);
+        reset();
+    }
+
+    @FXML
+    public void editReservation() {
+
+    }
 }

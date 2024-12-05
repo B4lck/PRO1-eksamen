@@ -23,7 +23,7 @@ import java.util.Objects;
  */
 public class ManageAnimalController {
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     // Elementer
     @FXML
@@ -96,7 +96,7 @@ public class ManageAnimalController {
      * @param model    Modellen
      * @param animalId ID på det dyr der skal redigeres, eller -1 for at oprette et nyt dyr
      */
-    public static void load(VIAPetsModelManager model, int animalId, ManageAnimalCallback callback) {
+    public static void load(VIAPetsModel model, int animalId, ManageAnimalCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ManageAnimalController.class.getResource("/views/ManageAnimalGUI.fxml"));
@@ -117,7 +117,7 @@ public class ManageAnimalController {
      *
      * @param animalId Skal have et animalId der peger på et dyr eller -1 for at oprette nyt dyr
      */
-    public void init(Region root, VIAPetsModelManager model, int animalId, ManageAnimalCallback callback) {
+    public void init(Region root, VIAPetsModel model, int animalId, ManageAnimalCallback callback) {
         this.model = model;
         this.root = root;
         this.callback = callback;

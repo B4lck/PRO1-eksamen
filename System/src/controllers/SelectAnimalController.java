@@ -12,13 +12,14 @@ import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Animal;
-import model.VIAPetsModelManager;
+import model.Customer;
+import model.VIAPetsModel;
 
 import java.io.IOException;
 
 public class SelectAnimalController {
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     @FXML
     private TableView<Animal> animalsTable;
@@ -37,12 +38,18 @@ public class SelectAnimalController {
 
     private SelectedAnimalCallback selectedAnimalCallback;
 
-    public void init(VIAPetsModelManager model, Region root, SelectedAnimalCallback callback) {
+    public void init(VIAPetsModel model, Region root, SelectedAnimalCallback callback) {
         this.model = model;
         this.root = root;
         this.selectedAnimalCallback = callback;
 
-        ownerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getOwnerId()).getName()));
+        ownerNameColumn.setCellValueFactory(cellData -> {
+            Animal animal = cellData.getValue();
+            if (animal.isForSale()) return new SimpleStringProperty("-");
+            Customer customer = model.getCustomerList().getById(animal.getOwnerId());
+            if (customer == null) return new SimpleStringProperty("Kunde findes ikke");
+            return new SimpleStringProperty(customer.getName());
+        });
         animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategory()));
         animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
         forSaleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isForSale()? "Til salg" : "Til pasning"));
@@ -52,7 +59,7 @@ public class SelectAnimalController {
         reset();
     }
 
-    public static void load(VIAPetsModelManager model, SelectedAnimalCallback callback) {
+    public static void load(VIAPetsModel model, SelectedAnimalCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SelectAnimalController.class.getResource("/views/SelectAnimalGUI.fxml"));

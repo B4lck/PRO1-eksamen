@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class ManageReservationController {
     private Region root;
@@ -62,6 +63,8 @@ public class ManageReservationController {
 
         this.reset(reservation);
 
+        this.error.setVisible(false);
+
         // Event listeners
         dateStart.valueProperty().addListener((observable, oldValue, newValue) -> {
             selectedStartDate = new Date(newValue);
@@ -76,6 +79,7 @@ public class ManageReservationController {
         positionSelector.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 selectedPosition = Integer.parseInt(newValue);
+                error.setVisible(false);
             } catch (NumberFormatException e) {
                 selectedPosition = 0;
                 error.setVisible(true);
@@ -87,7 +91,6 @@ public class ManageReservationController {
     public void update() {
         this.selectedStartDate = new Date(dateStart.getValue());
         this.selectedEndDate = new Date(dateEnd.getValue());
-        this.selectedPosition = Integer.parseInt(positionSelector.getText());
 
         if (selectedStartDate == null) {selectedStartDate = new Date();}
         if (selectedEndDate == null) {selectedEndDate = new Date();}
@@ -108,6 +111,9 @@ public class ManageReservationController {
             this.positionSelector.setText(Integer.toString(reservation.getPositionId()));
             this.dateStart.setValue(reservation.getPeriod().getStartDate().getLocalDate());
             this.dateEnd.setValue(reservation.getPeriod().getEndDate().getLocalDate());
+        } else {
+            this.dateStart.setValue(LocalDate.now());
+            this.dateEnd.setValue(LocalDate.now());
         }
         update();
     }
@@ -133,21 +139,30 @@ public class ManageReservationController {
 
     @FXML
     public void selectAnimal() {
-
+        SelectAnimalController.load(model, animalId -> {
+           this.selectedAnimalId = animalId;
+           update();
+        });
     }
 
     @FXML
     public void createAnimal() {
-
+        ManageAnimalController.load(model, -1, animalId -> {
+            this.selectedAnimalId = animalId;
+            update();
+        });
     }
 
     @FXML
     public void selectCustomer() {
-
+        SelectCustomerController.load(model, selectedCustomerId -> {
+            this.selectedCustomerId = selectedCustomerId;
+            update();
+        });
     }
 
     @FXML
     public void createCustomer() {
-
+        // TODO
     }
 }

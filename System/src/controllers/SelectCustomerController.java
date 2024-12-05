@@ -12,13 +12,13 @@ import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Customer;
-import model.VIAPetsModelManager;
+import model.VIAPetsModel;
 
 import java.io.IOException;
 
 public class SelectCustomerController {
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     @FXML
     private TableView<Customer> customerTable;
@@ -33,7 +33,7 @@ public class SelectCustomerController {
 
     private SelectedCustomerCallback selectedCustomerCallback;
 
-    public void init(VIAPetsModelManager model, Region root, SelectedCustomerCallback callback) {
+    public void init(VIAPetsModel model, Region root, SelectedCustomerCallback callback) {
         this.model = model;
         this.root = root;
         this.selectedCustomerCallback = callback;
@@ -45,7 +45,7 @@ public class SelectCustomerController {
         reset();
     }
 
-    public static void load(VIAPetsModelManager model, SelectedCustomerCallback callback) {
+    public static void load(VIAPetsModel model, SelectedCustomerCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SelectCustomerController.class.getResource("/views/SelectCustomerGUI.fxml"));
