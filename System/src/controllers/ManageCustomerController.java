@@ -42,7 +42,6 @@ public class ManageCustomerController {
 
     @FXML
     public void confirm() {
-        ManageAnimalController.load(model, -1);
         reset();
         viewHandler.openView("ManageCustomer");
     }

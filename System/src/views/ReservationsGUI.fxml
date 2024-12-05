@@ -25,8 +25,8 @@
             <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer"/>
             <VBox prefHeight="104.0" prefWidth="103.0" spacing="10.0">
                 <Button onAction="#createReservation" mnemonicParsing="false" prefWidth="100.0" text="Tilføj"/>
-                <Button mnemonicParsing="false" prefWidth="100.0" text="Slet"/>
-                <Button mnemonicParsing="false" prefWidth="100.0" text="Rediger"/>
+                <Button onAction="#deleteReservation" mnemonicParsing="false" prefWidth="100.0" text="Slet"/>
+                <Button onAction="#editReservation" mnemonicParsing="false" prefWidth="100.0" text="Rediger"/>
             </VBox>
             <Button mnemonicParsing="false" prefWidth="100.0" text="Tilbage" onAction="#back"/>
         </VBox>
