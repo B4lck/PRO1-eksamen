@@ -7,6 +7,10 @@ public class CustomerList {
      * Liste over alle kunder
      */
     private final ArrayList<Customer> customers = new ArrayList<>();
+    
+    public void clear() {
+        customers.clear();
+    }
 
 
     /**

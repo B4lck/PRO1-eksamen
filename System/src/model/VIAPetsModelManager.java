@@ -1,6 +1,8 @@
 package model;
 
 public class VIAPetsModelManager implements VIAPetsModel {
+    
+    public final VIAPetsFiles fileManager = new VIAPetsFiles(this);
 
     private final AnimalList animalList;
     private final ReservationList reservationList;
@@ -14,6 +16,8 @@ public class VIAPetsModelManager implements VIAPetsModel {
         salesList = new SalesList();
         customerList = new CustomerList();
         employeeList = new EmployeeList();
+
+        this.fileManager.loadAll();
     }
 
     @Override
@@ -39,5 +43,10 @@ public class VIAPetsModelManager implements VIAPetsModel {
     @Override
     public EmployeeList getEmployeeList() {
         return employeeList;
+    }
+    
+    @Override
+    public void save() {
+        fileManager.saveAll();
     }
 }

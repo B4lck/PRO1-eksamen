@@ -7,12 +7,12 @@ public class Employee extends Person {
     /**
      * Medarbejderens beskrivelse
      */
-    private String description;
+    private String description = "";
     
     /**
      * Url med et billede af medarbejderen
      */
-    private String portraitUrl;
+    private String portraitUrl = "";
     
     /**
      * Medarbejderens ID

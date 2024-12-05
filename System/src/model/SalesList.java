@@ -6,6 +6,10 @@ import java.util.Comparator;
 
 public class SalesList {
     private final ArrayList<Sale> sales = new ArrayList<>();
+    
+    public void clear() {
+        sales.clear();
+    }
 
     /**
      * Tilføj et salg til listen
@@ -17,8 +21,7 @@ public class SalesList {
     }
 
     /**
-     * Fjerner et salg via reference
-     *
+     * Fjerner et salg via referencel
      * @param sale En reference til det salg der skal fjernes
      */
     public void remove(Sale sale) {

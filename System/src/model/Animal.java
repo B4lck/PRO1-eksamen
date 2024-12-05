@@ -19,17 +19,17 @@ public class Animal {
     /**
      * URL til billede af dyret
      */
-    private String imageUrl;
+    private String imageUrl = "";
 
     /**
      * Den mad dyret skal have
      */
-    private String food;
+    private String food = "";
 
     /**
      * Kommentar om dyret
      */
-    private String comment;
+    private String comment = "";
 
     /**
      * Dyrets pris, hvis det er til salg
@@ -49,12 +49,12 @@ public class Animal {
     /**
      * Tilføjelsesdato
      */
-    private Date creationDate;
+    private Date creationDate = new Date();
 
     /**
      * Fødselsdagsdato
      */
-    private Date birthday;
+    private Date birthday = new Date();
 
     /**
      * Static

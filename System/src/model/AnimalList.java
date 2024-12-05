@@ -58,6 +58,13 @@ public class AnimalList {
     }
 
     /**
+     * Tøm animal list
+     */
+    public void clear() {
+        animals.clear();
+    }
+
+    /**
      * Tilføj et dyr til animal listen
      *
      * @param animal Dyret der skal tilføjes til listen

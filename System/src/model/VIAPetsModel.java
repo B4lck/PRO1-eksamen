@@ -6,4 +6,5 @@ public interface VIAPetsModel {
     SalesList getSalesList();
     CustomerList getCustomerList();
     EmployeeList getEmployeeList();
+    void save();
 }

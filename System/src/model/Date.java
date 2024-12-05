@@ -49,6 +49,14 @@ public class Date {
     }
 
     /**
+     * Konstruktør der accepter strings fra toString
+     */
+    public Date(String stringDate) {
+        String[] arr = stringDate.split("/");
+        set(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
+    }
+
+    /**
      * Lav Date om til en LocalDate
      */
     public LocalDate getLocalDate() {
