@@ -7,37 +7,35 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
     <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10.0">
-        <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VIAPets">
-                <font>
-                    <Font name="System Bold" size="50.0"/>
-                </font>
-            </Text>
-            <Button prefHeight="36.0" prefWidth="200.0" text="Dyr" onAction="#gotoPage" userData="Animals">
-                <font>
-                    <Font name="System Italic" size="16.0"/>
-                </font>
-            </Button>
-            <Button prefHeight="36.0" prefWidth="200.0" text="Salg" onAction="#gotoPage" userData="Sales">
-                <font>
-                    <Font name="System Italic" size="16.0"/>
-                </font>
-            </Button>
-            <Button prefHeight="36.0" prefWidth="200.0" text="Reservationer" onAction="#gotoPage" userData="Reservations">
-                <font>
-                    <Font name="System Italic" size="16.0"/>
-                </font>
-            </Button>
-            <Button prefHeight="36.0" prefWidth="200.0" text="Kunder" onAction="#gotoPage" userData="Customers">
-                <font>
-                    <Font name="System Italic" size="16.0"/>
-                </font>
-            </Button>
-            <Button prefHeight="36.0" prefWidth="200.0" text="Medarbejdere" onAction="#gotoPage" userData="Employees">
-                <font>
-                    <Font name="System Italic" size="16.0"/>
-                </font>
-            </Button>
-        </children>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VIAPets">
+            <font>
+                <Font name="System Bold" size="50.0"/>
+            </font>
+        </Text>
+        <Button prefHeight="36.0" prefWidth="200.0" text="Dyr" onAction="#gotoPage" userData="Animals">
+            <font>
+                <Font name="System Italic" size="16.0"/>
+            </font>
+        </Button>
+        <Button prefHeight="36.0" prefWidth="200.0" text="Salg" onAction="#gotoPage" userData="Sales">
+            <font>
+                <Font name="System Italic" size="16.0"/>
+            </font>
+        </Button>
+        <Button prefHeight="36.0" prefWidth="200.0" text="Reservationer" onAction="#gotoPage" userData="Reservations">
+            <font>
+                <Font name="System Italic" size="16.0"/>
+            </font>
+        </Button>
+        <Button prefHeight="36.0" prefWidth="200.0" text="Kunder" onAction="#gotoPage" userData="Customers">
+            <font>
+                <Font name="System Italic" size="16.0"/>
+            </font>
+        </Button>
+        <Button prefHeight="36.0" prefWidth="200.0" text="Medarbejdere" onAction="#gotoPage" userData="Employees">
+            <font>
+                <Font name="System Italic" size="16.0"/>
+            </font>
+        </Button>
     </VBox>
 </AnchorPane>
