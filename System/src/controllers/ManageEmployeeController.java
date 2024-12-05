@@ -30,7 +30,7 @@ public class ManageEmployeeController {
 
     @FXML
     public void back() {
-        viewHandler.openView("MainMenu");
+        viewHandler.openView("Employees");
     }
 
     @FXML
