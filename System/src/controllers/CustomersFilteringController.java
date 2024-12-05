@@ -49,8 +49,6 @@ public class CustomersFilteringController {
     public TextField emailField;
 
     /**
-     * Indlæser og åbner AnimalsFilteringGUI
-     *
      * @param model    Modellen
      * @param callback Filteret returneres via et callback når brugeren har valgt muligheder og trykket OK
      */

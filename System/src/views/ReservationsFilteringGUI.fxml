@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="280.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationsFilteringController">
+    <VBox layoutX="14.0" layoutY="12.0" prefWidth="320.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrer i reservationer">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Text>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="128.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="110.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label text="Filtrer efter periode"/>
+            <GridPane GridPane.columnIndex="1">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0"
+                                       prefWidth="96.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <CheckBox mnemonicParsing="false" text="Efter periode?" onAction="#toggleDateFilter" fx:id="dateToggle">
+                    <padding>
+                        <Insets bottom="5.0"/>
+                    </padding>
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </CheckBox>
+                <Label text="Vis alle imellem" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets right="10.0"/>
+                    </GridPane.margin>
+                </Label>
+                <DatePicker fx:id="startDate" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="og" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets right="10.0"/>
+                    </GridPane.margin>
+                </Label>
+                <DatePicker fx:id="endDate" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <GridPane.margin>
+                    <Insets bottom="10.0" top="10.0"/>
+                </GridPane.margin>
+            </GridPane>
+            <Label text="Filtrer efter  ejer" GridPane.rowIndex="1"/>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Button fx:id="ownerSelector" mnemonicParsing="false" onAction="#selectOwner" prefWidth="170.0"
+                        text="Vælg ejer"/>
+                <Button mnemonicParsing="false" onAction="#clearOwner" prefWidth="70.0" text="Ryd"/>
+            </HBox>
+            <Label text="Filtrer efter dyr" GridPane.rowIndex="2"/>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Button fx:id="animalSelector" mnemonicParsing="false" onAction="#selectAnimal" prefWidth="170.0"
+                        text="Vælg dyr"/>
+                <Button mnemonicParsing="false" onAction="#clearAnimal" prefWidth="70.0" text="Ryd"/>
+            </HBox>
+            <Label text="Filtrer efter position" GridPane.rowIndex="3"/>
+            <TextField fx:id="positionField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+        <HBox alignment="BOTTOM_RIGHT" prefHeight="33.0" prefWidth="360.0" spacing="10.0">
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#clear" text="Nulstil"/>
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#close" text="Annullere"/>
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#confirm" text="OK"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
