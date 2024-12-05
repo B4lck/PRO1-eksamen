@@ -8,6 +8,7 @@ public class ReservationList {
 
     /**
      * Tilføjer en reservation til reservations listen
+     *
      * @param reservation Reservation der skal tilføjes
      */
     public void add(Reservation reservation) {
@@ -16,6 +17,7 @@ public class ReservationList {
 
     /**
      * Fjerner en reservation fra listen
+     *
      * @param reservation Reservation der skal fjernes
      */
     public void remove(Reservation reservation) {
@@ -24,6 +26,7 @@ public class ReservationList {
 
     /**
      * Henter reservation ud fra index
+     *
      * @param index Index
      * @return Reservation
      */
@@ -37,6 +40,7 @@ public class ReservationList {
 
     /**
      * Henter alle reservationer som en array
+     *
      * @return Reservation[]
      */
     public Reservation[] getAllReservations() {
@@ -46,6 +50,7 @@ public class ReservationList {
     /**
      * Sortere efter ud fra datoer<br><br>
      * Gyldig sortering er "start-date-reverse", "start-date", "end-date-reverse", "end-date"
+     *
      * @param sortBy Sorterings type
      */
     public void sortBy(String sortBy) {
@@ -73,7 +78,8 @@ public class ReservationList {
     /**
      * Sortere ud fra dyrene i reservationerne<br><br>
      * Gyldige sorteringer er "animal-name-reverse", "animal-name", "animal-category-reverse", "animal-category", "animal-food-reverse", "animal-food"
-     * @param sortBy Sorterings type
+     *
+     * @param sortBy     Sorterings type
      * @param animalList Listen over dyr, hvor informationerne kommer fra
      */
     public void sortBy(String sortBy, AnimalList animalList) {
@@ -82,17 +88,17 @@ public class ReservationList {
             case "animal-name-reverse":
                 reverse = true;
             case "animal-name":
-                reservations.sort((a,b) -> animalList.getAnimalById(a.getAnimalId()).getName().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getName()));
+                reservations.sort((a, b) -> animalList.getAnimalById(a.getAnimalId()).getName().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getName()));
                 break;
             case "animal-category-reverse":
                 reverse = true;
             case "animal-category":
-                reservations.sort((a,b) -> animalList.getAnimalById(a.getAnimalId()).getCategory().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getCategory()));
+                reservations.sort((a, b) -> animalList.getAnimalById(a.getAnimalId()).getCategory().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getCategory()));
                 break;
             case "animal-food-reverse":
                 reverse = true;
             case "animal-food":
-                reservations.sort((a,b) -> animalList.getAnimalById(a.getAnimalId()).getFood().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getFood()));
+                reservations.sort((a, b) -> animalList.getAnimalById(a.getAnimalId()).getFood().compareToIgnoreCase(animalList.getAnimalById(b.getAnimalId()).getFood()));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort by. Valid ones are animal-name-reverse, animal-name, animal-category-reverse, animal-food-reverse, animal-food");
@@ -103,7 +109,8 @@ public class ReservationList {
     /**
      * Sortere ud fra kunderne i reservationerne<br><br>
      * Gyldige sorteringer er "customer-name-reverse", "customer-name", "customer-email-reverse", "customer-email"
-     * @param sortBy Sorterings type
+     *
+     * @param sortBy       Sorterings type
      * @param customerList Listen over kunder, hvor informationerne kommer fra
      */
     public void sortBy(String sortBy, CustomerList customerList) {
@@ -112,12 +119,12 @@ public class ReservationList {
             case "customer-name-reverse":
                 reverse = true;
             case "customer-name":
-                reservations.sort((a,b) -> customerList.getById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getName()));
+                reservations.sort((a, b) -> customerList.getById(a.getCustomerId()).getName().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getName()));
                 break;
             case "customer-email-reverse":
                 reverse = true;
             case "customer-email":
-                reservations.sort((a,b) -> customerList.getById(a.getCustomerId()).getEmail().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getEmail()));
+                reservations.sort((a, b) -> customerList.getById(a.getCustomerId()).getEmail().compareToIgnoreCase(customerList.getById(b.getCustomerId()).getEmail()));
                 break;
             default:
                 throw new IllegalArgumentException("Invalid sort by. Valid ones are customer-name-reverse, customer-name, customer-email-reverse, customer-email");
@@ -130,6 +137,7 @@ public class ReservationList {
 
     /**
      * Henter alle reservationer med bestemt dyr, ud fra et dyrets ID
+     *
      * @param animalId Dyret's ID
      * @return ReservationList
      */
@@ -145,6 +153,7 @@ public class ReservationList {
 
     /**
      * Henter alle reservationer med bestemt kunde, ud fra kundens ID
+     *
      * @param customerId Kunden's ID
      * @return ReservationList
      */
@@ -160,6 +169,7 @@ public class ReservationList {
 
     /**
      * Henter alle reservationer, indenfor en given periode
+     *
      * @param period DateInterval over periode
      * @return ReservationList
      */
@@ -175,6 +185,7 @@ public class ReservationList {
 
     /**
      * Henter alle reservationer som indeholder en bestemt dato
+     *
      * @param date Dato
      * @return ReservationList
      */
@@ -190,6 +201,7 @@ public class ReservationList {
 
     /**
      * Henter alle reservationer på bestemt position, ud fra et positions ID
+     *
      * @param positionId Positions ID
      * @return ReservationList
      */
@@ -203,5 +215,18 @@ public class ReservationList {
         return reservationList;
     }
 
-    public ArrayList<Reservation> getList() {return reservations;}
+    public ReservationList getReservationsInFuture() {
+        Date today = new Date();
+        ReservationList reservationList = new ReservationList();
+        for (Reservation reservation : reservations) {
+            if (!reservation.getPeriod().getEndDate().isBefore(today)) {
+                reservationList.add(reservation);
+            }
+        }
+        return reservationList;
+    }
+
+    public ArrayList<Reservation> getList() {
+        return reservations;
+    }
 }

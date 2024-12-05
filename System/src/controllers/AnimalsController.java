@@ -4,10 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.*;
 
@@ -140,7 +137,40 @@ public class AnimalsController {
      */
     @FXML
     public void deleteAnimal() {
-        model.getAnimalList().removeById(animalsTable.getSelectionModel().getSelectedItem().getAnimalId());
+        Animal selection = animalsTable.getSelectionModel().getSelectedItem();
+        // Vis confirmation alert
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på at du vil slette " + selection.getName() + "?", ButtonType.YES, ButtonType.NO);
+        confirmationAlert.setGraphic(null);
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setTitle("Slet dyr");
+        confirmationAlert.showAndWait();
+
+        // Stop hvis bruger har valgt nej
+        if (confirmationAlert.getResult() == ButtonType.NO) return;
+
+        // Stop hvis dyret har en fremtidig reservation
+        Reservation[] futureReservations = model.getReservationList().getReservationsForAnimal(selection.getAnimalId()).getReservationsInFuture().getAllReservations();
+        if (futureReservations.length > 0) {
+
+            Alert successAlert = new Alert(Alert.AlertType.ERROR,
+                    selection.getName() + " kunne ikke slettes, da dyret har en reservation fra " + futureReservations[0].getPeriod().getStartDate().toString() + " til " + futureReservations[0].getPeriod().getEndDate().toString() + ".", ButtonType.OK);
+            successAlert.setGraphic(null);
+            successAlert.setHeaderText(null);
+            successAlert.setTitle("Slet dyr");
+            successAlert.show();
+
+            return;
+        }
+
+        // Slet dyr
+        model.getAnimalList().removeById(selection.getAnimalId());
+
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION, selection.getName() + " er slettet", ButtonType.OK);
+        successAlert.setGraphic(null);
+        successAlert.setHeaderText(null);
+        successAlert.setTitle("Slet dyr");
+        successAlert.show();
+
         reset();
     }
 

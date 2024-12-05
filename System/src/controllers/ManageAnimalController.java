@@ -66,8 +66,13 @@ public class ManageAnimalController {
 
         age.setOnKeyReleased(event -> {
             if (selectedBirthday == null) selectedBirthday = new Date();
-            selectedBirthday.set(selectedBirthday.getDay(), selectedBirthday.getMonth(), new Date().getYear() - Integer.parseInt(age.getText()));
-            update();
+            try {
+                selectedBirthday.set(selectedBirthday.getDay(), selectedBirthday.getMonth(), new Date().getYear() - Integer.parseInt(age.getText()));
+                error.setText("");
+                update();
+            } catch (NumberFormatException e) {
+                error.setText("Alder er ugyldig indtastet");
+            }
         });
 
         price.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -79,8 +84,9 @@ public class ManageAnimalController {
                     Number number = format.parse(price.getText());
                     selectedPrice = number.doubleValue();
                     price.setText(String.format("%.2f kr.", selectedPrice));
+                    error.setText("");
                 } catch (ParseException e) {
-                    System.out.println(e.getMessage());
+                    error.setText("Pris er ugyldig indtastet");
                 }
             }
         });
@@ -159,7 +165,7 @@ public class ManageAnimalController {
         createCustomer.setDisable(!notForSale.isSelected());
         selectCustomer.setDisable(!notForSale.isSelected());
         price.setDisable(notForSale.isSelected());
-        
+
         // Hvis selectedBirthday er null, så nulstil den
         if (selectedBirthday == null) selectedBirthday = new Date();
         birthday.setValue(selectedBirthday.getLocalDate());
