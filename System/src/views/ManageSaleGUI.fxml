@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="263.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageCustomerController">
+<AnchorPane prefHeight="263.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageSaleController">
     <VBox layoutX="20.0" layoutY="20.0" prefHeight="231.0" prefWidth="458.0" spacing="10.0">
         <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Tilføj/rediger salg">
             <font>
@@ -36,27 +36,27 @@
             <Label text="Vælg kunde" GridPane.rowIndex="1" />
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1">
             <children>
-               <Button mnemonicParsing="false" prefWidth="100.0" text="Vælg dyr" />
-               <Button mnemonicParsing="false" prefWidth="100.0" text="Opret dyr" />
+               <Button fx:id="selectAnimalButton" onAction="#selectAnimal" mnemonicParsing="false" prefWidth="100.0" text="Vælg dyr" />
+               <Button onAction="#createAnimal" mnemonicParsing="false" prefWidth="100.0" text="Opret dyr" />
             </children>
          </HBox>
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <children>
-               <Button mnemonicParsing="false" prefWidth="100.0" text="Vælg kunde" />
-               <Button mnemonicParsing="false" prefWidth="100.0" text="Opret kunde" />
+               <Button fx:id="selectCustomerButton" onAction="#selectCustomer" mnemonicParsing="false" prefWidth="100.0" text="Vælg kunde" />
+               <Button onAction="#createCustomer" mnemonicParsing="false" prefWidth="100.0" text="Opret kunde" />
             </children>
          </HBox>
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pris" GridPane.rowIndex="2" />
-         <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <TextField fx:id="priceTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Betjent af" GridPane.rowIndex="3" />
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <children>
-               <Button mnemonicParsing="false" text="Vælg medarbejder" />
+               <Button fx:id="selectEmployeeButton" onAction="#selectEmployee" mnemonicParsing="false" text="Vælg medarbejder" />
             </children>
          </HBox>
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">
-            <Button mnemonicParsing="false" onAction="#back" text="Annuller" />
+            <Button mnemonicParsing="false" onAction="#close" text="Annuller" />
             <Button mnemonicParsing="false" onAction="#confirm" text="Opret/rediger" />
          <VBox.margin>
             <Insets />

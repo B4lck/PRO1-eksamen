@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Animal;
+import model.AnimalList;
 import model.Customer;
 import model.VIAPetsModel;
 
@@ -37,11 +38,16 @@ public class SelectAnimalController {
     private final ObservableList<Animal> list = FXCollections.observableArrayList();
 
     private SelectedAnimalCallback selectedAnimalCallback;
+    private AnimalsFilteringController.AnimalFilter filter;
+    private Boolean forceSaleOrPension;
 
-    public void init(VIAPetsModel model, Region root, SelectedAnimalCallback callback) {
+    public void init(VIAPetsModel model, Region root, SelectedAnimalCallback callback, Boolean forceSaleOrPension) {
         this.model = model;
         this.root = root;
         this.selectedAnimalCallback = callback;
+        this.forceSaleOrPension = forceSaleOrPension;
+        
+        if (forceSaleOrPension != null) filter = animalList -> forceSaleOrPension ? animalList.getAnimalsForSale() : animalList.getAnimalsForPension();
 
         ownerNameColumn.setCellValueFactory(cellData -> {
             Animal animal = cellData.getValue();
@@ -59,7 +65,7 @@ public class SelectAnimalController {
         reset();
     }
 
-    public static void load(VIAPetsModel model, SelectedAnimalCallback callback) {
+    public static void load(VIAPetsModel model, SelectedAnimalCallback callback, Boolean forceSaleOrPension) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SelectAnimalController.class.getResource("/views/SelectAnimalGUI.fxml"));
@@ -68,7 +74,7 @@ public class SelectAnimalController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Vælg dyr");
             stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
-            ((SelectAnimalController) loader.getController()).init(model, root, callback);
+            ((SelectAnimalController) loader.getController()).init(model, root, callback, forceSaleOrPension);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,7 +83,9 @@ public class SelectAnimalController {
 
     public void reset() {
         list.clear();
-        list.addAll(model.getAnimalList().getAllAnimals());
+        AnimalList animals = model.getAnimalList();
+        if (filter != null) animals = filter.filterList(animals);
+        list.addAll(animals.getAllAnimals());
         animalsTable.setItems(list);
     }
 
@@ -99,6 +107,13 @@ public class SelectAnimalController {
     public void confirm() {
         selectedAnimalCallback.callback(getSelectedAnimalId());
         ((Stage) root.getScene().getWindow()).close();
+    }
+    
+    @FXML void pickFilters() {
+        AnimalsFilteringController.load(model, (filter) -> {
+            this.filter = filter;
+            reset();
+        }, forceSaleOrPension);
     }
 
     public int getSelectedAnimalId() {

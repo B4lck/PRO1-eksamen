@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 import model.*;
 
 import java.util.Collections;
@@ -17,7 +16,7 @@ import java.util.Collections;
 public class AnimalsController {
     private ViewHandler viewHandler;
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     // Knapper
     @FXML
@@ -63,7 +62,7 @@ public class AnimalsController {
     /**
      * Init
      */
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModel model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
@@ -133,7 +132,7 @@ public class AnimalsController {
         ManageAnimalController.load(model, -1, animalId -> {
             reset();
             animalsTable.getSelectionModel().select(model.getAnimalList().getAnimalById(animalId));
-        });
+        }, null);
     }
 
     /**
@@ -188,7 +187,7 @@ public class AnimalsController {
         ManageAnimalController.load(model, animalsTable.getSelectionModel().getSelectedItem().getAnimalId(), animalId -> {
             reset();
             animalsTable.getSelectionModel().select(model.getAnimalList().getAnimalById(animalId));
-        });
+        }, null);
     }
 
     /**
@@ -200,6 +199,6 @@ public class AnimalsController {
             currentFilter = filter;
             filteringEnabledLabel.setText(currentFilter == null ? "" : "Aktivt filter");
             reset();
-        });
+        }, null);
     }
 }

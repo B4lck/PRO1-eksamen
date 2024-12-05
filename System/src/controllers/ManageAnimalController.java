@@ -58,14 +58,15 @@ public class ManageAnimalController {
     public Button createCustomer;
 
     /**
-     * 
+     *
      */
     @FunctionalInterface
     public interface ManageAnimalCallback {
         void callback(int animalId);
     }
+
     private ManageAnimalCallback callback;
-    
+
     /**
      * Kategorier af dyr
      */
@@ -96,7 +97,7 @@ public class ManageAnimalController {
      * @param model    Modellen
      * @param animalId ID på det dyr der skal redigeres, eller -1 for at oprette et nyt dyr
      */
-    public static void load(VIAPetsModel model, int animalId, ManageAnimalCallback callback) {
+    public static void load(VIAPetsModel model, int animalId, ManageAnimalCallback callback, Boolean forceSaleOrPension) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ManageAnimalController.class.getResource("/views/ManageAnimalGUI.fxml"));
@@ -105,7 +106,7 @@ public class ManageAnimalController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Opret/rediger dyr");
             stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
-            ((ManageAnimalController) loader.getController()).init(root, model, animalId, callback);
+            ((ManageAnimalController) loader.getController()).init(root, model, animalId, callback, forceSaleOrPension);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -117,12 +118,17 @@ public class ManageAnimalController {
      *
      * @param animalId Skal have et animalId der peger på et dyr eller -1 for at oprette nyt dyr
      */
-    public void init(Region root, VIAPetsModel model, int animalId, ManageAnimalCallback callback) {
+    public void init(Region root, VIAPetsModel model, int animalId, ManageAnimalCallback callback, Boolean forceSaleOrPension) {
         this.model = model;
         this.root = root;
         this.callback = callback;
 
         this.reset(animalId);
+        
+        if (forceSaleOrPension != null) {
+            notForSale.setDisable(true);
+            notForSale.setSelected(!forceSaleOrPension);
+        }
 
         // Event listeners
         birthday.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -163,7 +169,7 @@ public class ManageAnimalController {
      */
     public void reset(int animalId) {
         currentAnimalId = animalId;
-        
+
         // Reset alle ting og sager
         category.setItems(FXCollections.observableArrayList(animalTypes));
         error.setText("");
@@ -298,9 +304,9 @@ public class ManageAnimalController {
         }
 
         close();
-        
+
         model.save();
-        
+
         if (callback != null) callback.callback(currentAnimalId);
     }
 

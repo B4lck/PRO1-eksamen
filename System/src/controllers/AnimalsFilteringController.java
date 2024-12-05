@@ -26,10 +26,10 @@ import java.util.Objects;
  */
 public class AnimalsFilteringController {
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     // Nuværende callback
-    private FilteringOptionsCallback callback;
+    private FilteringCallback callback;
 
     // 2 maps, der hjælper med at oversætte fra engelske termer til dansk display tekst
     private static final String[] categoryIds = {"Any", Animal.CATEGORY_DEFAULT, Animal.CATEGORY_BIRD, Animal.CATEGORY_FISH, Animal.CATEGORY_REPTILE};
@@ -72,7 +72,7 @@ public class AnimalsFilteringController {
      * Dette filter er resultatet af brugerens valg
      */
     @FunctionalInterface
-    public interface FilteringOptionsCallback {
+    public interface FilteringCallback {
         void callback(AnimalFilter filter);
     }
 
@@ -104,7 +104,7 @@ public class AnimalsFilteringController {
      * @param model    Modellen
      * @param callback Filteret returneres via et callback når brugeren har valgt muligheder og trykket OK
      */
-    public static void load(VIAPetsModelManager model, FilteringOptionsCallback callback) {
+    public static void load(VIAPetsModel model, FilteringCallback callback, Boolean forceSaleOrPension) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(AnimalsFilteringController.class.getResource("/views/AnimalsFilteringGUI.fxml"));
@@ -113,7 +113,7 @@ public class AnimalsFilteringController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Vælg filtering og sortering");
             stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
-            ((AnimalsFilteringController) loader.getController()).init(root, model, callback);
+            ((AnimalsFilteringController) loader.getController()).init(root, model, callback, forceSaleOrPension);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,16 +127,22 @@ public class AnimalsFilteringController {
      * @param model    Model
      * @param callback Tilbagekald med filter
      */
-    public void init(Region root, VIAPetsModelManager model, FilteringOptionsCallback callback) {
+    public void init(Region root, VIAPetsModel model, FilteringCallback callback, Boolean forceSaleOrPension) {
         this.root = root;
         this.model = model;
         this.callback = callback;
+
         // Initialiser kategori/art selector
         categorySelector.setItems(FXCollections.observableArrayList(AnimalsFilteringController.categoryIdsToDisplay.values()));
         categorySelector.setValue(categoryIdsToDisplay.get("Any"));
         // Til salg eller pension
         saleOrPensionSelector.setItems(FXCollections.observableArrayList(AnimalsFilteringController.saleOrPensionIdsToDisplay.values()));
         saleOrPensionSelector.setValue(saleOrPensionIdsToDisplay.get("Any"));
+
+        if (forceSaleOrPension != null) {
+            saleOrPensionSelector.setValue(saleOrPensionIdsToDisplay.get(forceSaleOrPension ? "Sale" : "Pension"));
+            saleOrPensionSelector.setDisable(true);
+        }
         // Pris
         minimumPriceSelector.setText("0,00");
         maximumPriceSelector.setText("99999,00");
