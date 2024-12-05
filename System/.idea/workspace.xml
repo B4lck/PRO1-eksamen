@@ -6,15 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/controllers/ManageCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageCustomerController.java" afterDir="false" />
-=======
-<<<<<<< Updated upstream
-      <change beforePath="$PROJECT_DIR$/src/controllers/CustomersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/CustomersController.java" afterDir="false" />
->>>>>>> 6e97bf164290de6245e2a2485ee8850ab3a8489f
-      <change beforePath="$PROJECT_DIR$/src/views/ManageCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ManageCustomer.fxml" afterDir="false" />
-=======
->>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/src/controllers/ManageReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ReservationsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ReservationsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ReservationsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ReservationsGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

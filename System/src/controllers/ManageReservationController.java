@@ -9,6 +9,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
@@ -28,6 +29,8 @@ public class ManageReservationController {
     private Date selectedEndDate;
     private int selectedPosition;
 
+    @FXML
+    private Text title;
     @FXML
     private Button selectCustomerButton;
     @FXML
@@ -111,9 +114,11 @@ public class ManageReservationController {
             this.positionSelector.setText(Integer.toString(reservation.getPositionId()));
             this.dateStart.setValue(reservation.getPeriod().getStartDate().getLocalDate());
             this.dateEnd.setValue(reservation.getPeriod().getEndDate().getLocalDate());
+            title.setText("Redigering af reservation");
         } else {
             this.dateStart.setValue(LocalDate.now());
             this.dateEnd.setValue(LocalDate.now());
+            title.setText("Oprettelse af reservation");
         }
         update();
     }
@@ -128,6 +133,7 @@ public class ManageReservationController {
     public void confirm() {
         if (selectedReservation == null) {
             Reservation newReservation = new Reservation(selectedCustomerId, selectedAnimalId, new DateInterval(selectedStartDate, selectedEndDate));
+            newReservation.setPositionId(selectedPosition);
             model.getReservationList().add(newReservation);
         } else {
             selectedReservation.set(selectedCustomerId, selectedAnimalId);

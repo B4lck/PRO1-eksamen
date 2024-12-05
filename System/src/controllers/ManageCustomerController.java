@@ -41,6 +41,7 @@ public class ManageCustomerController {
 
     @FXML
     public void confirm() {
+        reset();
         viewHandler.openView("ManageCustomer");
     }
 }

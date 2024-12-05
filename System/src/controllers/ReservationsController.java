@@ -4,9 +4,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
+import model.Date;
 import model.Reservation;
 import model.VIAPetsModelManager;
 
@@ -69,6 +72,45 @@ public class ReservationsController {
 
     @FXML
     public void editReservation() {
+        Reservation selectedReservation = reservationsTable.getSelectionModel().getSelectedItem();
+        ManageReservationController.load(model, selectedReservation);
+        reset();
+    }
 
+    @FXML
+    public void deleteReservation() {
+        Reservation selectedReservation = reservationsTable.getSelectionModel().getSelectedItem();
+
+        // Vis confirmation alert
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på at du vil slette reservationen?", ButtonType.YES, ButtonType.NO);
+        confirmationAlert.setGraphic(null);
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setTitle("Slet reservation");
+        confirmationAlert.showAndWait();
+
+        // Stop hvis bruger har valgt nej
+        if (confirmationAlert.getResult() == ButtonType.NO) return;
+
+        // Stop hvis reservationen stadig ikke er over
+        if (new Date().isBefore(selectedReservation.getPeriod().getEndDate())) {
+            Alert secondConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Reservationen er ikke overstået endnu, er du sikker på du vil fjerne den?", ButtonType.YES, ButtonType.NO);
+            secondConfirmationAlert.setGraphic(null);
+            secondConfirmationAlert.setHeaderText(null);
+            secondConfirmationAlert.setTitle("Slet reservation");
+            secondConfirmationAlert.showAndWait();
+
+            // Stop hvis bruger har valgt nej
+            if (secondConfirmationAlert.getResult() == ButtonType.NO) return;
+        }
+
+        model.getReservationList().remove(selectedReservation);
+
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Reservationen blev slettet", ButtonType.OK);
+        successAlert.setGraphic(null);
+        successAlert.setHeaderText(null);
+        successAlert.setTitle("Slet dyr");
+        successAlert.show();
+
+        reset();
     }
 }
