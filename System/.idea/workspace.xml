@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-    <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="" />
-=======
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/ManageCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageCustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ManageCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ManageCustomer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
     </list>
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +118,7 @@
       <workItem from="1733236342318" duration="145000" />
       <workItem from="1733299996167" duration="6545000" />
       <workItem from="1733314117316" duration="5585000" />
-      <workItem from="1733386199595" duration="2312000" />
+      <workItem from="1733386199595" duration="2921000" />
     </task>
     <servers />
   </component>
