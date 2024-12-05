@@ -56,7 +56,7 @@ public class CustomersController {
 
     @FXML
     public void createCustomer() {
-        viewHandler.openView("ManageCustomer");
+        ManageCustomerController.load(model,-1);
     }
 
     @FXML

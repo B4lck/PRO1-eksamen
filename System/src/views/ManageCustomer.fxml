@@ -30,10 +30,10 @@
             <TextField fx:id="name" promptText="Nikolaj hansen" GridPane.columnIndex="1" />
             <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="193.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <children>
-               <TextField prefHeight="25.0" prefWidth="329.0" promptText="+45" />
+               <TextField fx:id="phone" prefHeight="25.0" prefWidth="329.0" promptText="+45" />
             </children>
             </HBox>
-         <TextField promptText="Example@mail.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <TextField fx:id="mail" promptText="Example@mail.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">
             <Button mnemonicParsing="false" onAction="#back" text="Annuller" />

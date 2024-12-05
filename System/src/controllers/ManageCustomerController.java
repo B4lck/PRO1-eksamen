@@ -1,33 +1,62 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import model.CustomerList;
-import model.VIAPetsModelManager;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import model.VIAPetsModel;
+
+import java.io.IOException;
 
 public class ManageCustomerController {
     private ViewHandler viewHandler;
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
+    private int customerId;
 
     @FXML
     public Label error;
     @FXML
-    public Button selectEmployee;
+    private TextField name;
     @FXML
-    public Button createEmployee;
+    private TextField phone;
+    @FXML
+    private TextField mail;
 
-    public void load(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
-        this.viewHandler = viewHandler;
+    public void init(Region root, VIAPetsModel model, int customerId) {
         this.root = root;
-        this.model = model;
+        this.model=model;
+        this.customerId = customerId;
+
+    }
+
+    public static void load(VIAPetsModel model, int customerId) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ManageCustomerController.class.getResource("/views/ManageCustomer.fxml"));
+            Region root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Opret/Rediger reservation");
+            stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
+            ((ManageCustomerController) loader.getController()).init(root, model, customerId);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void reset() {
-        // Hent kunder liste i model
-        CustomerList Customer = model.getCustomerList();
+        if (customerId != -1) {
+            this.name.setText(model.getCustomerList().getById(customerId).getName());
+            this.phone.setText(Long.toString(model.getCustomerList().getById(customerId).getPhone()));
+            this.mail.setText(model.getCustomerList().getById(customerId).getEmail());
+        }
     }
 
     public Region getRoot() {

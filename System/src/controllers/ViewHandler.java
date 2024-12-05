@@ -57,7 +57,6 @@ public class ViewHandler {
             case "Employees" -> loadEmployees();
             case "Sales" -> loadSales();
             case "ManageEmployee" -> loadManageEmployee();
-            case "ManageCustomer" -> loadManageCustomer();
             default -> throw new IllegalArgumentException("View: " + id + " does not exist! Måske den mangler i openView?");
         };
 
@@ -228,21 +227,5 @@ public class ViewHandler {
         }
         return manageEmployeeController.getRoot();
     }
-    public Region loadManageCustomer() {
-        if (manageCustomerController == null) {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/views/ManageCustomer.fxml"));
-                Region root = loader.load();
-                manageCustomerController = loader.getController();
-                manageCustomerController.init(this, model, root);
-                System.out.println(manageCustomerController);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            manageCustomerController.reset();
-        }
-        return manageCustomerController.getRoot();
-    }
+
 }
