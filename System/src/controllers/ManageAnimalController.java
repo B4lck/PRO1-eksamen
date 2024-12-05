@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
 
+import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -55,6 +56,19 @@ public class ManageAnimalController {
     public Button selectCustomer;
     @FXML
     public Button createCustomer;
+
+    /**
+     * 
+     */
+    @FunctionalInterface
+    public interface ManageAnimalCallback {
+        void callback(int animalId);
+    }
+    private ManageAnimalCallback callback;
+    
+    /**
+     * Kategorier af dyr
+     */
     String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
 
     /**
@@ -82,7 +96,7 @@ public class ManageAnimalController {
      * @param model    Modellen
      * @param animalId ID på det dyr der skal redigeres, eller -1 for at oprette et nyt dyr
      */
-    public static void load(VIAPetsModelManager model, int animalId) {
+    public static void load(VIAPetsModelManager model, int animalId, ManageAnimalCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ManageAnimalController.class.getResource("/views/ManageAnimalGUI.fxml"));
@@ -91,7 +105,7 @@ public class ManageAnimalController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Opret/rediger dyr");
             stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
-            ((ManageAnimalController) loader.getController()).init(root, model, animalId);
+            ((ManageAnimalController) loader.getController()).init(root, model, animalId, callback);
             stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,9 +117,10 @@ public class ManageAnimalController {
      *
      * @param animalId Skal have et animalId der peger på et dyr eller -1 for at oprette nyt dyr
      */
-    public void init(Region root, VIAPetsModelManager model, int animalId) {
+    public void init(Region root, VIAPetsModelManager model, int animalId, ManageAnimalCallback callback) {
         this.model = model;
         this.root = root;
+        this.callback = callback;
 
         this.reset(animalId);
 
@@ -252,6 +267,8 @@ public class ManageAnimalController {
                 newAnimal = model.getAnimalList().createNewAnimal(getCategory(), name.getText(), selectedPrice);
             }
 
+            currentAnimalId = newAnimal.getAnimalId();
+
             newAnimal.setComment(comment.getText());
             newAnimal.setFood(food.getText());
             newAnimal.setCreationDate(new Date());
@@ -281,6 +298,8 @@ public class ManageAnimalController {
         }
 
         close();
+        
+        if (callback != null) callback.callback(currentAnimalId);
     }
 
     /**
