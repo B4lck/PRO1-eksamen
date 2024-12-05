@@ -138,7 +138,7 @@ public class ManageSaleController {
             }
 
             update();
-        });
+        }, true);
     }
 
     @FXML
@@ -146,7 +146,7 @@ public class ManageSaleController {
         ManageAnimalController.load(model, -1, animalId -> {
             this.selectedAnimalId = animalId;
             update();
-        });
+        }, true);
     }
 
     @FXML

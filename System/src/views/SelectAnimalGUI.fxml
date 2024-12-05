@@ -18,7 +18,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" text="Søg og filtrer" />
+            <Button mnemonicParsing="false" text="Søg og filtrer" onAction="#pickFilters" />
          </children>
          <padding>
             <Insets left="20.0" />

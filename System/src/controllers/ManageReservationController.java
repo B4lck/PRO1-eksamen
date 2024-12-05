@@ -158,7 +158,7 @@ public class ManageReservationController {
            }
 
            update();
-        });
+        }, false);
     }
 
     @FXML
@@ -166,7 +166,7 @@ public class ManageReservationController {
         ManageAnimalController.load(model, -1, animalId -> {
             this.selectedAnimalId = animalId;
             update();
-        });
+        }, false);
     }
 
     @FXML
