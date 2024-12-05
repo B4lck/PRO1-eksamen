@@ -29,6 +29,7 @@ public class ViewHandler {
     public CustomersController customersController;
     public SalesController salesController;
     public ManageEmployeeController manageEmployeeController;
+    public ManageCustomerController manageCustomerController;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -246,5 +247,22 @@ public class ViewHandler {
             manageEmployeeController.reset();
         }
         return manageEmployeeController.getRoot();
+    }
+    public Region loadManageCustomer() {
+        if (manageCustomerController == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/views/ManageCustomer.fxml"));
+                Region root = loader.load();
+                manageCustomerController = loader.getController();
+                manageCustomerController.init(this, model, root);
+                System.out.println(manageCustomerController);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            manageCustomerController.reset();
+        }
+        return manageCustomerController.getRoot();
     }
 }
