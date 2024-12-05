@@ -82,7 +82,7 @@ public class ManageCustomerController {
         Customer c = model.getCustomerList().createNewCustomer(this.name.getText(), Long.parseLong(this.phone.getText()), this.mail.getText());
         model.getCustomerList().add(c);
         model.save();
-        callback.callback(customerId);
+        callback.callback(c.getCustomerId());
         ((Stage) root.getScene().getWindow()).close();
     }
 }
