@@ -27,7 +27,7 @@ public class ManageReservationController {
     private int selectedCustomerId = -1;
     private Date selectedStartDate;
     private Date selectedEndDate;
-    private int selectedPosition;
+    private int selectedPosition = -1;
 
     @FXML
     private Text title;
@@ -131,6 +131,11 @@ public class ManageReservationController {
 
     @FXML
     public void confirm() {
+        // Tjek for tomme input
+        if (selectedAnimalId == -1) {error.setVisible(true); error.setText("Vælg et dyr"); return;}
+        if (selectedCustomerId == -1) {error.setVisible(true); error.setText("Vælg en kunde"); return;}
+        if (selectedPosition == 0) {error.setVisible(true); error.setText("Vælg en position"); return;}
+
         if (selectedReservation == null) {
             Reservation newReservation = new Reservation(selectedCustomerId, selectedAnimalId, new DateInterval(selectedStartDate, selectedEndDate));
             newReservation.setPositionId(selectedPosition);
@@ -140,6 +145,7 @@ public class ManageReservationController {
             selectedReservation.setPeriod(new DateInterval(selectedStartDate, selectedEndDate));
             selectedReservation.setPositionId(selectedPosition);
         }
+        model.save();
         close();
     }
 
@@ -165,6 +171,7 @@ public class ManageReservationController {
     public void createAnimal() {
         ManageAnimalController.load(model, -1, animalId -> {
             this.selectedAnimalId = animalId;
+            model.save();
             update();
         }, false);
     }

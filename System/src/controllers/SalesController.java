@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
@@ -78,6 +80,17 @@ public class SalesController {
 
     @FXML
     public void deleteSale() {
-        // TODO
+        Sale selectedSale = salesTable.getSelectionModel().getSelectedItem();
+
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på du vil slette dette salg?", ButtonType.YES, ButtonType.NO);
+        confirmation.setGraphic(null);
+        confirmation.setHeaderText(null);
+        confirmation.setTitle("Slet salg");
+        confirmation.showAndWait();
+        if (confirmation.getResult() == ButtonType.NO) return;
+
+        model.getSalesList().remove(selectedSale);
+        model.save();
+        reset();
     }
 }
