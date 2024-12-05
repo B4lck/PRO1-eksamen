@@ -8,7 +8,10 @@ public class EmployeeList {
      * Liste over alle employees
      */
     private final ArrayList<Employee> employees = new ArrayList<>();
-
+    
+    public void clear() {
+        employees.clear();
+    }
 
     /**
      * Opretter en ny medarbejder, der bagefter kan lægges i medarbejder listen

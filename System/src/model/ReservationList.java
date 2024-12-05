@@ -5,6 +5,10 @@ import java.util.Collections;
 
 public class ReservationList {
     private final ArrayList<Reservation> reservations = new ArrayList<>();
+    
+    public void clear() {
+        reservations.clear();
+    }
 
     /**
      * Tilføjer en reservation til reservations listen

@@ -175,6 +175,8 @@ public class AnimalsController {
         successAlert.setTitle("Slet dyr");
         successAlert.show();
 
+        model.save();
+
         reset();
     }
 

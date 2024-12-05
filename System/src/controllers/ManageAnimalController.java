@@ -299,6 +299,8 @@ public class ManageAnimalController {
 
         close();
         
+        model.save();
+        
         if (callback != null) callback.callback(currentAnimalId);
     }
 

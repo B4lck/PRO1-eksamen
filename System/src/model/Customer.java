@@ -8,7 +8,7 @@ public class Customer extends Person {
     /**
      * Kundens mail adresse
      */
-    private String email;
+    private String email = "";
     /**
      * Kundens ID
      */
