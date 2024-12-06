@@ -91,10 +91,9 @@ public class CustomersController {
         confirmationAlert.setHeaderText(null);
         confirmationAlert.setTitle("Slet Kunden");
         confirmationAlert.showAndWait();
-
+        
         // Stop hvis bruger har valgt nej
         if (confirmationAlert.getResult() == ButtonType.NO) return;
-        model.getCustomerList().removeById(selection.getCustomerId());
 
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION, selection.getName() + " er slettet", ButtonType.OK);
         successAlert.setGraphic(null);
@@ -110,7 +109,9 @@ public class CustomersController {
             warning.setHeaderText(null);
             warning.setTitle("Kunne ikke slettes");
             warning.show();
+            return;
         }
+        model.getCustomerList().removeById(selection.getCustomerId());
 
         model.save();
 

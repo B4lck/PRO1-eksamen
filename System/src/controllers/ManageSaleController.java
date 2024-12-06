@@ -118,6 +118,9 @@ public class ManageSaleController {
             selectedSale.set(selectedFinalPrice, selectedAnimalId, selectedCustomerId, selectedEmployeeId, selectedSale.getDateOfSale());
         }
 
+        Animal animal = model.getAnimalList().getAnimalById(selectedAnimalId);
+        animal.convertToOwnedAnimal(selectedCustomerId);
+
         model.getAnimalList().getAnimalById(selectedAnimalId).setOwnerId(selectedCustomerId);
         model.save();
         close();
