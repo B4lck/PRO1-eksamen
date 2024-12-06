@@ -18,7 +18,6 @@ import java.io.IOException;
  */
 public class CustomersFilteringController {
     private Region root;
-    private VIAPetsModel model;
 
     // Nuværende callback
     private FilteringCallback callback;
@@ -83,7 +82,6 @@ public class CustomersFilteringController {
      */
     private void init(Region root, VIAPetsModel model, FilteringCallback callback) {
         this.root = root;
-        this.model = model;
         this.callback = callback;
     }
 

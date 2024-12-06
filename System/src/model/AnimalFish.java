@@ -41,7 +41,7 @@ public class AnimalFish extends Animal {
 
     /**
      * Set om fisken en ferskvands fisk eller ej
-     * @param freshWater
+     * @param freshWater Ferskvandsfisk?
      */
     public void setIsFreshWater(boolean freshWater) {
         this.freshWater = freshWater;
