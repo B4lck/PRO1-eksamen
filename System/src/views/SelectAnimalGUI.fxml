@@ -35,7 +35,7 @@
       </TableView>
       <HBox alignment="CENTER" layoutY="350.0" prefHeight="50.0" prefWidth="500.0" spacing="130.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" prefWidth="70.0" text="Tilbage" />
+            <Button mnemonicParsing="false" onAction="#close" prefWidth="70.0" text="Tilbage" />
             <Button mnemonicParsing="false" onAction="#confirm" prefWidth="70.0" text="Vælg" />
          </children>
          <padding>

@@ -52,7 +52,7 @@ public class ManageEmployeeController {
     public static void load(VIAPetsModel model, int employeeId, ManageEmployeeController.ManageEmployeeCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ManageEmployeeController.class.getResource("/views/ManageEmployee.fxml"));
+            loader.setLocation(ManageEmployeeController.class.getResource("/views/ManageEmployeeGUI.fxml"));
             Region root = loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

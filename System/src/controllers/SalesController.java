@@ -10,6 +10,9 @@ import model.Sale;
 import model.SalesList;
 import model.VIAPetsModelManager;
 
+/**
+ * Controller til oversigt af salg
+ */
 public class SalesController {
     private ViewHandler viewHandler;
     private Region root;
@@ -33,8 +36,10 @@ public class SalesController {
     @FXML
     private TableColumn<Sale, String> priceColumn;
 
+    // Liste til tabel
     private final ObservableList<Sale> list = FXCollections.observableArrayList();
     
+    // Nuværende filter
     private SalesFilteringController.SalesFilter filter;
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
@@ -52,6 +57,9 @@ public class SalesController {
         reset();
     }
 
+    /**
+     * Opdater tabel
+     */
     public void reset() {
         list.clear();
 
@@ -63,21 +71,33 @@ public class SalesController {
         salesTable.setItems(list);
     }
 
+    /**
+     * Returnere roden
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Action til at gå tilbage til hovedmenuen
+     */
     @FXML
     public void back() {
         viewHandler.openView("MainMenu");
     }
 
+    /**
+     * Action til at oprette salg
+     */
     @FXML
     public void createSale() {
         ManageSaleController.load(model, null);
         reset();
     }
 
+    /**
+     * Action til at redigere valgte salg
+     */
     @FXML
     public void editSale() {
         Sale selectedSale = salesTable.getSelectionModel().getSelectedItem();
@@ -85,6 +105,9 @@ public class SalesController {
         reset();
     }
 
+    /**
+     * Action til at slette salg
+     */
     @FXML
     public void deleteSale() {
         Sale selectedSale = salesTable.getSelectionModel().getSelectedItem();

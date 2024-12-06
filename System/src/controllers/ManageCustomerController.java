@@ -52,7 +52,7 @@ public class ManageCustomerController {
     public static void load(VIAPetsModel model, int customerId, ManageCustomerCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ManageCustomerController.class.getResource("/views/ManageCustomer.fxml"));
+            loader.setLocation(ManageCustomerController.class.getResource("/views/ManageCustomerGUI.fxml"));
             Region root = loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

@@ -69,6 +69,7 @@ public class SalesFilteringController {
     
 
     /**
+     * Åbner view til valg af filtre for salg
      * @param model    Modellen
      * @param callback Filteret returneres via et callback når brugeren har valgt muligheder og trykket OK
      */
@@ -89,13 +90,9 @@ public class SalesFilteringController {
     }
 
     /**
-     * Init viewet, reset behøves ikke, da der åbnes et nyt view hver gang
-     *
-     * @param root     FXML roden
-     * @param model    Model
-     * @param callback Tilbagekald med filter
+     * Init viewet
      */
-    public void init(Region root, VIAPetsModel model, FilteringCallback callback) {
+    private void init(Region root, VIAPetsModel model, FilteringCallback callback) {
         this.root = root;
         this.model = model;
         this.callback = callback;
@@ -109,6 +106,9 @@ public class SalesFilteringController {
         categorySelector.setValue(AnimalsFilteringController.categoryIdsToDisplay.get("Any"));
     }
 
+    /**
+     * Action til at toggle periode vælgeren
+     */
     @FXML
     public void toggleDateFilter() {
         startDate.setDisable(!dateToggle.isSelected());
@@ -116,7 +116,7 @@ public class SalesFilteringController {
     }
     
     /**
-     * Vælg ejer
+     * Action til at vælge ejer
      */
     @FXML
     public void selectOwner() {
@@ -127,7 +127,7 @@ public class SalesFilteringController {
     }
 
     /**
-     * Ryd ejer
+     * Action til at rydde valgt ejer
      */
     @FXML
     public void clearOwner() {
@@ -136,7 +136,7 @@ public class SalesFilteringController {
     }
 
     /**
-     * Vælg dyr
+     * Action til at vælge medarbejder
      */
     @FXML
     public void selectEmployee() {
@@ -147,7 +147,7 @@ public class SalesFilteringController {
     }
 
     /**
-     * Ryd dyr
+     * Action til at rydde valgt medarbejder
      */
     @FXML
     public void clearEmployee() {
@@ -156,7 +156,7 @@ public class SalesFilteringController {
     }
 
     /**
-     * Nulstil
+     * Action til at nulstille filteret
      */
     @FXML
     public void clear() {
@@ -165,7 +165,7 @@ public class SalesFilteringController {
     }
 
     /**
-     * Luk
+     * Action til at lukke/annullere viewet
      */
     @FXML
     public void close() {

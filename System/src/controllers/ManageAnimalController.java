@@ -116,8 +116,6 @@ public class ManageAnimalController {
 
     /**
      * Init
-     *
-     * @param animalId Skal have et animalId der peger på et dyr eller -1 for at oprette nyt dyr
      */
     private void init(Region root, VIAPetsModel model, int animalId, ManageAnimalCallback callback, Boolean forceSaleOrPension) {
         this.model = model;

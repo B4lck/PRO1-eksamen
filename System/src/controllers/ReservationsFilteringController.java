@@ -61,6 +61,7 @@ public class ReservationsFilteringController {
     public TextField positionField;
 
     /**
+     * Åbner view til valg af filtre for reservationer
      * @param model    Modellen
      * @param callback Filteret returneres via et callback når brugeren har valgt muligheder og trykket OK
      */
@@ -82,9 +83,6 @@ public class ReservationsFilteringController {
 
     /**
      * Init viewet
-     * @param root     FXML roden
-     * @param model    Model
-     * @param callback Tilbagekald med filter
      */
     private void init(Region root, VIAPetsModel model, FilteringCallback callback) {
         this.root = root;

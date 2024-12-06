@@ -17,10 +17,14 @@ import model.VIAPetsModel;
 
 import java.io.IOException;
 
+/**
+ * Controller til at vælge kunder
+ */
 public class SelectCustomerController {
     private Region root;
     private VIAPetsModel model;
 
+    // Elementer
     @FXML
     private TableView<Customer> customerTable;
     @FXML
@@ -30,24 +34,18 @@ public class SelectCustomerController {
     @FXML
     private TableColumn<Customer, String> phoneColumn;
 
+    // Liste til tabellen
     private final ObservableList<Customer> list = FXCollections.observableArrayList();
     
     private CustomersFilteringController.CustomerFilter filter;
-
     private SelectedCustomerCallback selectedCustomerCallback;
 
-    public void init(VIAPetsModel model, Region root, SelectedCustomerCallback callback) {
-        this.model = model;
-        this.root = root;
-        this.selectedCustomerCallback = callback;
-
-        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        emailColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
-        phoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Long.toString(cellData.getValue().getPhone())));
-
-        reset();
-    }
-
+    /**
+     * Indlæser og åbner customer vælgeren
+     *
+     * @param model              Modellen
+     * @param callback           Et callback, der returnere det valgte customerId
+     */
     public static void load(VIAPetsModel model, SelectedCustomerCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -64,7 +62,25 @@ public class SelectCustomerController {
         }
     }
 
-    public void reset() {
+    /**
+     * Init
+     */
+    private void init(VIAPetsModel model, Region root, SelectedCustomerCallback callback) {
+        this.model = model;
+        this.root = root;
+        this.selectedCustomerCallback = callback;
+
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        emailColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
+        phoneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Long.toString(cellData.getValue().getPhone())));
+
+        reset();
+    }
+
+    /**
+     * Opdatere tabellen
+     */
+    private void reset() {
         list.clear();
         CustomerList customers = model.getCustomerList();
         if (filter != null) customers = filter.filterList(customers);
@@ -72,26 +88,34 @@ public class SelectCustomerController {
         customerTable.setItems(list);
     }
 
+    /**
+     * Callback der returnere det valgte kunde id
+     */
     @FunctionalInterface
     public interface SelectedCustomerCallback {
         void callback(int customerId);
     }
 
-    public Region getRoot() {
-        return root;
-    }
-
+    /**
+     * Action til at lukke viewet
+     */
     @FXML
-    public void back() {
+    public void close() {
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Action til at bekræfte valgte kunde
+     */
     @FXML
     public void confirm() {
         selectedCustomerCallback.callback(getSelectedCustomerId());
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Action til at filtre i kunder
+     */
     @FXML
     public void filterCustomers() {
         CustomersFilteringController.load(model, filter -> {
@@ -100,8 +124,10 @@ public class SelectCustomerController {
         });
     }
 
+    /**
+     * Hjælpemetode der giver id'et af det nuværende valg
+     */
     public int getSelectedCustomerId() {
-        // TODO
         Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
         return selectedCustomer != null ? selectedCustomer.getCustomerId() : -1;
     }
