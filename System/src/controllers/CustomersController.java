@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.Customer;
 import model.CustomerList;
+import model.Reservation;
 import model.VIAPetsModelManager;
 
 public class CustomersController {
@@ -100,6 +101,16 @@ public class CustomersController {
         successAlert.setHeaderText(null);
         successAlert.setTitle("Slet kunden");
         successAlert.show();
+
+        Reservation[] futureReservations = model.getReservationList().getReservationsForOwner(selection.getCustomerId()).getReservationsInFuture().getAllReservations();
+        if (futureReservations.length > 0) {
+            Alert warning = new Alert(Alert.AlertType.INFORMATION,
+                    selection.getName() + " kunne ikke slettes, da de har en reservation i fremtiden", ButtonType.OK);
+            warning.setGraphic(null);
+            warning.setHeaderText(null);
+            warning.setTitle("Kunne ikke slettes");
+            warning.show();
+        }
 
         model.save();
 

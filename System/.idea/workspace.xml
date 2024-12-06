@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/EmployeesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EmployeesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ManageEmployee.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ManageEmployee.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/CustomersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/CustomersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ReservationsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ReservationsController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +122,7 @@
       <workItem from="1733386199595" duration="5274000" />
       <workItem from="1733447669604" duration="836000" />
       <workItem from="1733478290893" duration="83000" />
-      <workItem from="1733478390161" duration="1899000" />
+      <workItem from="1733478390161" duration="2804000" />
     </task>
     <servers />
   </component>
