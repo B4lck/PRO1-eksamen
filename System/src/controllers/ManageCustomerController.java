@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Customer;
@@ -26,6 +27,8 @@ public class ManageCustomerController {
     private TextField phone;
     @FXML
     private TextField mail;
+    @FXML
+    private Text title;
 
     /**
      *
@@ -42,6 +45,15 @@ public class ManageCustomerController {
         this.model = model;
         this.customerId = customerId;
         this.callback = callback;
+
+        this.error.setVisible(false);
+
+        if (customerId != -1) {
+            this.name.setText(model.getCustomerList().getById(customerId).getName());
+            this.phone.setText(Long.toString(model.getCustomerList().getById(customerId).getPhone()));
+            this.mail.setText(model.getCustomerList().getById(customerId).getEmail());
+            this.title.setText("Rediger: " + model.getCustomerList().getById(customerId).getName());
+        }
     }
 
     public static void load(VIAPetsModel model, int customerId, ManageCustomerCallback callback) {
@@ -60,14 +72,6 @@ public class ManageCustomerController {
         }
     }
 
-    public void reset() {
-        if (customerId != -1) {
-            this.name.setText(model.getCustomerList().getById(customerId).getName());
-            this.phone.setText(Long.toString(model.getCustomerList().getById(customerId).getPhone()));
-            this.mail.setText(model.getCustomerList().getById(customerId).getEmail());
-        }
-    }
-
     public Region getRoot() {
         return root;
     }
@@ -79,10 +83,34 @@ public class ManageCustomerController {
 
     @FXML
     public void confirm() {
-        Customer c = model.getCustomerList().createNewCustomer(this.name.getText(), Long.parseLong(this.phone.getText()), this.mail.getText());
-        model.getCustomerList().add(c);
+        // Tjek for tomme input
+        if (this.name.getText().equals("")) {error.setVisible(true); error.setText("Indtast et navn"); return;}
+        if (this.mail.getText().equals("")) {error.setVisible(true); error.setText("Indtast en email adresse"); return;}
+        if (this.phone.getText().equals("")) {error.setVisible(true); error.setText("Indtast et tlf nummer"); return;}
+
+
+        long phoneParsed;
+        try {
+            phoneParsed = Long.parseLong(this.phone.getText());
+        } catch (Exception e) {
+            error.setVisible(true);
+            error.setText("Indtast et gyldigt tlf nummer");
+            return;
+        }
+
+        if (customerId == -1) {
+            Customer c = model.getCustomerList().createNewCustomer(this.name.getText(), phoneParsed, this.mail.getText());
+            customerId = c.getCustomerId();
+            model.getCustomerList().add(c);
+        } else {
+            Customer c = model.getCustomerList().getById(customerId);
+            c.setPhone(phoneParsed);
+            c.setEmail(mail.getText());
+            c.setName(name.getText());
+        }
+
         model.save();
-        callback.callback(c.getCustomerId());
+        callback.callback(customerId);
         ((Stage) root.getScene().getWindow()).close();
     }
 }

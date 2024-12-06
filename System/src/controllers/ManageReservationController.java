@@ -84,7 +84,7 @@ public class ManageReservationController {
                 selectedPosition = Integer.parseInt(newValue);
                 error.setVisible(false);
             } catch (NumberFormatException e) {
-                selectedPosition = 0;
+                selectedPosition = -1;
                 error.setVisible(true);
                 error.setText("Indtast kun et hel tal");
             }
@@ -134,7 +134,7 @@ public class ManageReservationController {
         // Tjek for tomme input
         if (selectedAnimalId == -1) {error.setVisible(true); error.setText("Vælg et dyr"); return;}
         if (selectedCustomerId == -1) {error.setVisible(true); error.setText("Vælg en kunde"); return;}
-        if (selectedPosition == 0) {error.setVisible(true); error.setText("Vælg en position"); return;}
+        if (selectedPosition <= 0 && !model.getAnimalList().getAnimalById(selectedAnimalId).getCategory().equals(Animal.CATEGORY_DEFAULT)) {error.setVisible(true); error.setText("Vælg en position"); return;}
 
         if (selectedReservation == null) {
             Reservation newReservation = new Reservation(selectedCustomerId, selectedAnimalId, new DateInterval(selectedStartDate, selectedEndDate));
