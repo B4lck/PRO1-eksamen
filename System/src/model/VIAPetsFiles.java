@@ -1,5 +1,8 @@
 package model;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,7 +76,11 @@ public class VIAPetsFiles {
             new File(saveLocation.toString()).mkdirs();
             saveFile.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
 
         String serialized = "";
@@ -102,7 +109,11 @@ public class VIAPetsFiles {
             fw.write(serialized);
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
     }
 
@@ -166,7 +177,11 @@ public class VIAPetsFiles {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 
@@ -182,7 +197,11 @@ public class VIAPetsFiles {
             new File(saveLocation.toString()).mkdirs();
             saveFile.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
 
         String serialized = "";
@@ -205,7 +224,11 @@ public class VIAPetsFiles {
             fw.write(serialized);
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
     }
 
@@ -242,7 +265,11 @@ public class VIAPetsFiles {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 
@@ -258,7 +285,11 @@ public class VIAPetsFiles {
             new File(saveLocation.toString()).mkdirs();
             saveFile.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
 
         String serialized = "";
@@ -281,7 +312,11 @@ public class VIAPetsFiles {
             fw.write(serialized);
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
     }
 
@@ -320,7 +355,11 @@ public class VIAPetsFiles {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 
@@ -336,7 +375,11 @@ public class VIAPetsFiles {
             new File(saveLocation.toString()).mkdirs();
             saveFile.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
 
         String serialized = "";
@@ -357,7 +400,11 @@ public class VIAPetsFiles {
             fw.write(serialized);
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
     }
 
@@ -393,7 +440,11 @@ public class VIAPetsFiles {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 
@@ -409,7 +460,11 @@ public class VIAPetsFiles {
             new File(saveLocation.toString()).mkdirs();
             saveFile.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
 
         String serialized = "";
@@ -431,7 +486,11 @@ public class VIAPetsFiles {
             fw.write(serialized);
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
         }
     }
 
@@ -470,7 +529,11 @@ public class VIAPetsFiles {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 

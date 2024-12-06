@@ -85,7 +85,11 @@ public class SalesFilteringController {
             ((SalesFilteringController) loader.getController()).init(root, model, callback);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 

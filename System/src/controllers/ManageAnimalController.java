@@ -110,7 +110,11 @@ public class ManageAnimalController {
             ((ManageAnimalController) loader.getController()).init(root, model, animalId, callback, forceSaleOrPension);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 

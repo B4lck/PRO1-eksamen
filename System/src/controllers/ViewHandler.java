@@ -2,6 +2,8 @@ package controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import model.VIAPetsModelManager;
@@ -23,13 +25,10 @@ public class ViewHandler {
      */
     public MainMenuController mainMenu;
     public AnimalsController animalsController;
-    public ManageAnimalController manageAnimalController;
     public ReservationsController reservationsController;
     public EmployeesController employeesController;
     public CustomersController customersController;
     public SalesController salesController;
-    public ManageEmployeeController manageEmployeeController;
-    public ManageCustomerController manageCustomerController;
 
     public ViewHandler(VIAPetsModelManager model) {
         this.model = model;
@@ -67,34 +66,6 @@ public class ViewHandler {
         primaryStage.show();
     }
 
-    // Skal eventuelt fjernes
-//    /**
-//     * Åben et view med data
-//     * @param id ID til view
-//     * @param data Data til view
-//     * @param <T> Typen skal matche hvad viewet forventer
-//     */
-//    public <T> void openView(String id, T data) {
-//        Region root = switch (id) {
-//            case "ManageAnimal" -> loadManageAnimal((int) data);
-//            default -> throw new IllegalArgumentException("View: " + id + " does not exist with data! Måske den mangler i openView med data?");
-//        };
-//
-//        currentScene.setRoot(root);
-//        primaryStage.setTitle("VIAPets");
-//        primaryStage.setScene(currentScene);
-//        primaryStage.setWidth(root.getPrefWidth());
-//        primaryStage.setHeight(root.getPrefHeight());
-//        primaryStage.show();
-//    }
-
-    /**
-     * Luk stage, afslutter programmet
-     */
-    public void closeView() {
-        primaryStage.close();
-    }
-
     /**
      * Load hovedmenu
      */
@@ -107,7 +78,11 @@ public class ViewHandler {
                 mainMenu = loader.getController();
                 mainMenu.init(this, model, root);
             } catch (Exception e) {
-                e.printStackTrace();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                errorAlert.setGraphic(null);
+                errorAlert.setHeaderText(null);
+                errorAlert.setTitle("Fejl");
+                errorAlert.showAndWait();
             }
         } else {
             mainMenu.reset();
@@ -127,7 +102,11 @@ public class ViewHandler {
                 animalsController = loader.getController();
                 animalsController.init(this, model, root);
             } catch (Exception e) {
-                e.printStackTrace();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                errorAlert.setGraphic(null);
+                errorAlert.setHeaderText(null);
+                errorAlert.setTitle("Fejl");
+                errorAlert.showAndWait();
             }
         } else {
             animalsController.reset();
@@ -147,7 +126,11 @@ public class ViewHandler {
                 reservationsController = loader.getController();
                 reservationsController.init(this, model, root);
             } catch (Exception e) {
-                e.printStackTrace();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                errorAlert.setGraphic(null);
+                errorAlert.setHeaderText(null);
+                errorAlert.setTitle("Fejl");
+                errorAlert.showAndWait();
             }
         } else {
             reservationsController.reset();
@@ -167,7 +150,11 @@ public class ViewHandler {
                 employeesController = loader.getController();
                 employeesController.init(this, model, root);
             } catch (Exception e) {
-                e.printStackTrace();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                errorAlert.setGraphic(null);
+                errorAlert.setHeaderText(null);
+                errorAlert.setTitle("Fejl");
+                errorAlert.showAndWait();
             }
         } else {
             employeesController.reset();
@@ -184,7 +171,11 @@ public class ViewHandler {
                 customersController = loader.getController();
                 customersController.init(this, model, root);
             } catch (Exception e) {
-                e.printStackTrace();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                errorAlert.setGraphic(null);
+                errorAlert.setHeaderText(null);
+                errorAlert.setTitle("Fejl");
+                errorAlert.showAndWait();
             }
         } else {
             customersController.reset();
@@ -201,7 +192,11 @@ public class ViewHandler {
                 salesController = loader.getController();
                 salesController.init(this, model, root);
             } catch (Exception e) {
-                e.printStackTrace();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                errorAlert.setGraphic(null);
+                errorAlert.setHeaderText(null);
+                errorAlert.setTitle("Fejl");
+                errorAlert.showAndWait();
             }
         } else {
             salesController.reset();

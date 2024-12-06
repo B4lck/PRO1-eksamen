@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
@@ -55,7 +57,11 @@ public class SelectEmployeeController {
             ((SelectEmployeeController) loader.getController()).init(model, root, callback);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
     
