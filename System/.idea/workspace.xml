@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/AnimalsFilteringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/AnimalsFilteringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/CustomersFilteringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/CustomersFilteringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageAnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageAnimalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageCustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageSaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageSaleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ReservationsFilteringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ReservationsFilteringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/SalesFilteringController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SalesFilteringController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/SelectAnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SelectAnimalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/SelectCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SelectCustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/SelectEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/SelectEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/VIAPetsFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/VIAPetsFiles.java" afterDir="false" />
-    </list>
+    <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
