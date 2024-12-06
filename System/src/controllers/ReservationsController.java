@@ -48,9 +48,9 @@ public class ReservationsController {
         this.model = model;
         this.root = root;
 
-        customerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getCustomerId()).getName()));
-        animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getCategory()));
-        animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName()));
+        customerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getCustomerId()) != null ? model.getCustomerList().getById(cellData.getValue().getCustomerId()).getName() : "Findes ikke..."));
+        animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()) != null ? model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getCategory() : "Findes ikke..."));
+        animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()) != null ? model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName() : "Findes ikke..."));
         startDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getStartDate().toString()));
         endDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getEndDate().toString()));
         positionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPositionId() == -1 ? "ingen position" : Integer.toString(cellData.getValue().getPositionId())));
