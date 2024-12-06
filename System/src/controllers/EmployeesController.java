@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
@@ -52,14 +54,36 @@ public class EmployeesController {
 
     @FXML
     public void createEmployee() {
-        viewHandler.openView("ManageEmployee");
+        ManageEmployeeController.load(model, -1, costumerId -> {
+            reset();
+            employeesTable.getSelectionModel().select(model.getEmployeeList().getById(costumerId));
+        });
     }
 
     @FXML
     public void editEmployee() {
+        int selectedEmployeeId = employeesTable.getSelectionModel().getSelectedItem().getEmployeeId();
+
+        ManageEmployeeController.load(model, selectedEmployeeId, costumerId -> {
+            reset();
+            employeesTable.getSelectionModel().select(model.getEmployeeList().getById(costumerId));
+        });
     }
 
     @FXML
     public void deleteEmployee() {
+        Employee selectedEmployee = employeesTable.getSelectionModel().getSelectedItem();
+
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på at du vil slette: " + selectedEmployee.getName(), ButtonType.YES, ButtonType.NO);
+        confirmation.setGraphic(null);
+        confirmation.setHeaderText(null);
+        confirmation.setTitle("Slet Medarbejder");
+        confirmation.showAndWait();
+
+        if (confirmation.getResult() == ButtonType.NO) {return;}
+
+        model.getEmployeeList().remove(selectedEmployee);
+        model.save();
+        reset();
     }
 }
