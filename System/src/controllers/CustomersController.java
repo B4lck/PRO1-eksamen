@@ -69,13 +69,16 @@ public class CustomersController {
             reset();
             customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
         });
-        reset();
     }
 
     @FXML
     public void editCustomer() {
         // TODO
-        viewHandler.openView("MainMenu");
+        Customer selectedCustomer = customersTable.getSelectionModel().getSelectedItem();
+        ManageCustomerController.load(model, selectedCustomer.getCustomerId(), customerId -> {
+            reset();
+            customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
+        });
     }
 
     @FXML

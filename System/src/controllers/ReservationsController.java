@@ -47,6 +47,7 @@ public class ReservationsController {
         animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName()));
         startDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getStartDate().toString()));
         endDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getEndDate().toString()));
+        positionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPositionId() == -1 ? "ingen position" : Integer.toString(cellData.getValue().getPositionId())));
 
         reset();
     }
