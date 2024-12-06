@@ -17,6 +17,9 @@ import model.*;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Controller til at oprette og redigere reservationer
+ */
 public class ManageReservationController {
     private Region root;
     private VIAPetsModel model;
@@ -29,6 +32,7 @@ public class ManageReservationController {
     private Date selectedEndDate;
     private int selectedPosition = -1;
 
+    // Elementer
     @FXML
     private Text title;
     @FXML
@@ -44,6 +48,11 @@ public class ManageReservationController {
     @FXML
     private Label error;
 
+    /**
+     * Åbner viewet til at oprette eller redigere reservationer
+     * @param model VIAPets modellen
+     * @param reservation Reservation der skal redigeres, eller null for at oprette en ny
+     */
     public static void load(VIAPetsModelManager model, Reservation reservation) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -60,11 +69,32 @@ public class ManageReservationController {
         }
     }
 
-    public void init(Region root, VIAPetsModelManager model, Reservation reservation) {
+    /**
+     * Init viewet
+     */
+    private void init(Region root, VIAPetsModelManager model, Reservation reservation) {
         this.model = model;
         this.root = root;
 
-        this.reset(reservation);
+        if (reservation != null) {
+            // Hvis redigering af reservation
+            // Sætter alt teksten til at være matchene for den åbnede reservation
+            this.selectedReservation = reservation;
+            this.selectedCustomerId = reservation.getCustomerId();
+            this.selectedAnimalId = reservation.getAnimalId();
+            this.selectCustomerButton.setText(model.getCustomerList().getById(reservation.getCustomerId()).getName());
+            this.selectAnimalButton.setText(model.getAnimalList().getAnimalById(reservation.getAnimalId()).getName());
+            this.positionSelector.setText(Integer.toString(reservation.getPositionId()));
+            this.dateStart.setValue(reservation.getPeriod().getStartDate().getLocalDate());
+            this.dateEnd.setValue(reservation.getPeriod().getEndDate().getLocalDate());
+            title.setText("Redigering af reservation");
+        } else {
+            this.dateStart.setValue(LocalDate.now());
+            this.dateEnd.setValue(LocalDate.now());
+            title.setText("Oprettelse af reservation");
+        }
+        
+        update();
 
         this.error.setVisible(false);
 
@@ -91,7 +121,10 @@ public class ManageReservationController {
         });
     }
 
-    public void update() {
+    /**
+     * Opdater felterne
+     */
+    private void update() {
         this.selectedStartDate = new Date(dateStart.getValue());
         this.selectedEndDate = new Date(dateEnd.getValue());
 
@@ -102,33 +135,17 @@ public class ManageReservationController {
         this.selectAnimalButton.setText(selectedAnimalId != -1 ? model.getAnimalList().getAnimalById(selectedAnimalId).getName() + "..." : "Vælg dyr");
     }
 
-    public void reset(Reservation reservation) {
-        if (reservation != null) {
-            // Hvis redigering af reservation
-            // Sætter alt teksten til at være matchene for den åbnede reservation
-            this.selectedReservation = reservation;
-            this.selectedCustomerId = reservation.getCustomerId();
-            this.selectedAnimalId = reservation.getAnimalId();
-            this.selectCustomerButton.setText(model.getCustomerList().getById(reservation.getCustomerId()).getName());
-            this.selectAnimalButton.setText(model.getAnimalList().getAnimalById(reservation.getAnimalId()).getName());
-            this.positionSelector.setText(Integer.toString(reservation.getPositionId()));
-            this.dateStart.setValue(reservation.getPeriod().getStartDate().getLocalDate());
-            this.dateEnd.setValue(reservation.getPeriod().getEndDate().getLocalDate());
-            title.setText("Redigering af reservation");
-        } else {
-            this.dateStart.setValue(LocalDate.now());
-            this.dateEnd.setValue(LocalDate.now());
-            title.setText("Oprettelse af reservation");
-        }
-        update();
-    }
-
-
+    /**
+     * Action til at annullere/lukke viewet
+     */
     @FXML
     public void close() {
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Action til at oprette/redigere reservation
+     */
     @FXML
     public void confirm() {
         // Tjek for tomme input
@@ -149,6 +166,9 @@ public class ManageReservationController {
         close();
     }
 
+    /**
+     * Action til at vælge dyr med select animal vælgeren
+     */
     @FXML
     public void selectAnimal() {
         SelectAnimalController.load(model, animalId -> {
@@ -167,6 +187,9 @@ public class ManageReservationController {
         }, false);
     }
 
+    /**
+     * Action til at oprette dyr direkte
+     */
     @FXML
     public void createAnimal() {
         ManageAnimalController.load(model, -1, animalId -> {
@@ -176,6 +199,9 @@ public class ManageReservationController {
         }, false);
     }
 
+    /**
+     * Action til at vælge kunde med select customer vælgeren
+     */
     @FXML
     public void selectCustomer() {
         SelectCustomerController.load(model, selectedCustomerId -> {
@@ -183,7 +209,10 @@ public class ManageReservationController {
             update();
         });
     }
-
+    
+    /**
+     * Action til at oprette medarbejder direkte
+     */
     @FXML
     public void createCustomer() {
         ManageCustomerController.load(model, -1, customerId -> {

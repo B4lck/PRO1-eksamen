@@ -15,6 +15,9 @@ import model.VIAPetsModel;
 
 import java.io.IOException;
 
+/**
+ * Controller til opret/rediger medarbejder
+ */
 public class ManageEmployeeController {
     private Region root;
     private VIAPetsModel model;
@@ -22,6 +25,7 @@ public class ManageEmployeeController {
     private int employeeId;
     private ManageEmployeeCallback callback;
     
+    // Elementer
     @FXML
     public Label error;
     @FXML
@@ -31,12 +35,40 @@ public class ManageEmployeeController {
     @FXML
     private Text title;
 
+    /**
+     * Callback der returnere nye/redigerede employeeId
+     */
     @FunctionalInterface
     public interface ManageEmployeeCallback {
         void callback(int employeeId);
     }
 
-    public void init(Region root, VIAPetsModel model, int employeeId, ManageEmployeeCallback callback) {
+    /**
+     * Åbn view til oprettelse eller redigering af medarbejder
+     * @param model VIAPetsModel
+     * @param employeeId Medarbejderen der skal redigeres, eller -1 for at oprette ny
+     * @param callback Callback der returnere nye/redigerede employeeId
+     */
+    public static void load(VIAPetsModel model, int employeeId, ManageEmployeeController.ManageEmployeeCallback callback) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ManageEmployeeController.class.getResource("/views/ManageEmployee.fxml"));
+            Region root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Opret/Rediger medarbejder");
+            stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
+            ((ManageEmployeeController) loader.getController()).init(root, model, employeeId, callback);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Init viewet
+     */
+    private void init(Region root, VIAPetsModel model, int employeeId, ManageEmployeeCallback callback) {
         this.root = root;
         this.model = model;
         this.employeeId = employeeId;
@@ -51,31 +83,17 @@ public class ManageEmployeeController {
         }
     }
 
-    public static void load(VIAPetsModel model, int customerId, ManageEmployeeController.ManageEmployeeCallback callback) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ManageEmployeeController.class.getResource("/views/ManageEmployee.fxml"));
-            Region root = loader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Opret/Rediger medarbejder");
-            stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
-            ((ManageEmployeeController) loader.getController()).init(root, model, customerId, callback);
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Region getRoot() {
-        return root;
-    }
-
+    /**
+     * Action til at lukke viewet
+     */
     @FXML
     public void close() {
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Action til at oprette eller redigere medarbejder
+     */
     @FXML
     public void confirm() {
         // Tjek for tomme inputs

@@ -14,11 +14,15 @@ import model.VIAPetsModel;
 
 import java.io.IOException;
 
+/**
+ * Controller til opret/rediger kunde
+ */
 public class ManageCustomerController {
     private Region root;
     private VIAPetsModel model;
     private int customerId;
 
+    // Elementer
     @FXML
     public Label error;
     @FXML
@@ -31,7 +35,7 @@ public class ManageCustomerController {
     private Text title;
 
     /**
-     *
+     * Callback der returnere det nye eller redigerede kundeid
      */
     @FunctionalInterface
     public interface ManageCustomerCallback {
@@ -40,22 +44,11 @@ public class ManageCustomerController {
 
     private ManageCustomerCallback callback;
 
-    public void init(Region root, VIAPetsModel model, int customerId, ManageCustomerCallback callback) {
-        this.root = root;
-        this.model = model;
-        this.customerId = customerId;
-        this.callback = callback;
-
-        this.error.setVisible(false);
-
-        if (customerId != -1) {
-            this.name.setText(model.getCustomerList().getById(customerId).getName());
-            this.phone.setText(Long.toString(model.getCustomerList().getById(customerId).getPhone()));
-            this.mail.setText(model.getCustomerList().getById(customerId).getEmail());
-            this.title.setText("Rediger: " + model.getCustomerList().getById(customerId).getName());
-        }
-    }
-
+    /**
+     * Åbn opret/rediger kunde view
+     * @param customerId KundeID: -1 for at oprette kunde, ellers redigere den kunden med id'et
+     * @param callback Returnere det nye eller redigere kundeid
+     */
     public static void load(VIAPetsModel model, int customerId, ManageCustomerCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -72,22 +65,42 @@ public class ManageCustomerController {
         }
     }
 
-    public Region getRoot() {
-        return root;
+    /**
+     * Init
+     */
+    private void init(Region root, VIAPetsModel model, int customerId, ManageCustomerCallback callback) {
+        this.root = root;
+        this.model = model;
+        this.customerId = customerId;
+        this.callback = callback;
+
+        this.error.setVisible(false);
+
+        if (customerId != -1) {
+            this.name.setText(model.getCustomerList().getById(customerId).getName());
+            this.phone.setText(Long.toString(model.getCustomerList().getById(customerId).getPhone()));
+            this.mail.setText(model.getCustomerList().getById(customerId).getEmail());
+            this.title.setText("Rediger: " + model.getCustomerList().getById(customerId).getName());
+        }
     }
 
+    /**
+     * Action til at annullere/lukke viewet
+     */
     @FXML
-    public void back() {
+    public void close() {
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Action til at oprette kunde
+     */
     @FXML
     public void confirm() {
         // Tjek for tomme input
-        if (this.name.getText().equals("")) {error.setVisible(true); error.setText("Indtast et navn"); return;}
-        if (this.mail.getText().equals("")) {error.setVisible(true); error.setText("Indtast en email adresse"); return;}
-        if (this.phone.getText().equals("")) {error.setVisible(true); error.setText("Indtast et tlf nummer"); return;}
-
+        if (this.name.getText().isEmpty()) {error.setVisible(true); error.setText("Indtast et navn"); return;}
+        if (this.mail.getText().isEmpty()) {error.setVisible(true); error.setText("Indtast en email adresse"); return;}
+        if (this.phone.getText().isEmpty()) {error.setVisible(true); error.setText("Indtast et tlf nummer"); return;}
 
         long phoneParsed;
         try {

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 /**
- * View til valg af filtre for dyr oversigten
+ * Controller til valg af filtre for reservation oversigten
  */
 public class ReservationsFilteringController {
     private Region root;
@@ -26,6 +26,7 @@ public class ReservationsFilteringController {
     private FilteringCallback callback;
 
     /**
+     * En metode der returnere en filtreret reservationsliste
      */
     @FunctionalInterface
     public interface ReservationFilter {
@@ -41,7 +42,6 @@ public class ReservationsFilteringController {
     }
 
     int selectedOwner = -1;
-
     int selectedAnimal = -1;
 
     /**
@@ -81,13 +81,12 @@ public class ReservationsFilteringController {
     }
 
     /**
-     * Init viewet, reset behøves ikke, da der åbnes et nyt view hver gang
-     *
+     * Init viewet
      * @param root     FXML roden
      * @param model    Model
      * @param callback Tilbagekald med filter
      */
-    public void init(Region root, VIAPetsModel model, FilteringCallback callback) {
+    private void init(Region root, VIAPetsModel model, FilteringCallback callback) {
         this.root = root;
         this.model = model;
         this.callback = callback;
@@ -98,6 +97,9 @@ public class ReservationsFilteringController {
         endDate.setDisable(true);
     }
 
+    /**
+     * Action til at toggle periode vælgeren
+     */
     @FXML
     public void toggleDateFilter() {
         startDate.setDisable(!dateToggle.isSelected());
@@ -105,7 +107,7 @@ public class ReservationsFilteringController {
     }
     
     /**
-     * Vælg ejer
+     * Action til at vælge ejer
      */
     @FXML
     public void selectOwner() {
@@ -116,7 +118,7 @@ public class ReservationsFilteringController {
     }
 
     /**
-     * Ryd ejer
+     * Action til at rydde valgt ejer
      */
     @FXML
     public void clearOwner() {
@@ -125,7 +127,7 @@ public class ReservationsFilteringController {
     }
 
     /**
-     * Vælg dyr
+     * Action til at vælge dyr
      */
     @FXML
     public void selectAnimal() {
@@ -136,7 +138,7 @@ public class ReservationsFilteringController {
     }
 
     /**
-     * Ryd dyr
+     * Action til at rydde valgt dyr
      */
     @FXML
     public void clearAnimal() {
@@ -145,7 +147,7 @@ public class ReservationsFilteringController {
     }
 
     /**
-     * Nulstil
+     * Action til at nulstille filteret
      */
     @FXML
     public void clear() {
@@ -154,7 +156,7 @@ public class ReservationsFilteringController {
     }
 
     /**
-     * Luk
+     * Action til at lukke/annullere viewet
      */
     @FXML
     public void close() {

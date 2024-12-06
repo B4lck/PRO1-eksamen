@@ -15,6 +15,7 @@ public class SalesController {
     private Region root;
     private VIAPetsModelManager model;
 
+    // Elementer
     @FXML
     private Label filteringEnabledLabel;
     @FXML

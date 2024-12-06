@@ -10,11 +10,15 @@ import model.Customer;
 import model.CustomerList;
 import model.VIAPetsModelManager;
 
+/**
+ * Controller til oversigt af kunder
+ */
 public class CustomersController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
 
+    // Elementer
     @FXML
     private TableView<Customer> customersTable;
     @FXML
@@ -26,13 +30,15 @@ public class CustomersController {
     @FXML
     public Label filteringEnabledLabel;
 
+    // Liste til tabel
     private final ObservableList<Customer> list = FXCollections.observableArrayList();
 
-    /**
-     * Det nuværende filter
-     */
+    // Nuværende filter
     private CustomersFilteringController.CustomerFilter filter;
 
+    /**
+     * Init
+     */
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
@@ -45,6 +51,9 @@ public class CustomersController {
         reset();
     }
 
+    /**
+     * Opdatere tabellen
+     */
     public void reset() {
         list.clear();
         CustomerList customerList = model.getCustomerList();
@@ -53,34 +62,49 @@ public class CustomersController {
         customersTable.setItems(list);
     }
 
+    /**
+     * Returnere roden
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Action til at gå tilbage til hovedmenuen
+     */
     @FXML
     public void back() {
-        // TODO
         viewHandler.openView("MainMenu");
     }
 
+    /**
+     * Action til at oprette kunder
+     */
     @FXML
     public void createCustomer() {
         ManageCustomerController.load(model, -1, customerId -> {
             reset();
+            // Vælger den nye kunde i tabellen
             customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
         });
     }
 
+    /**
+     * Action til at ændre en kunde
+     */
     @FXML
     public void editCustomer() {
-        // TODO
         Customer selectedCustomer = customersTable.getSelectionModel().getSelectedItem();
         ManageCustomerController.load(model, selectedCustomer.getCustomerId(), customerId -> {
             reset();
+            // Vælger den redigerede kunde i tabellen
             customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
         });
     }
 
+    /**
+     * Action til at slette kunde
+     */
     @FXML
     public void deleteCustomer() {
         Customer selection = customersTable.getSelectionModel().getSelectedItem();
