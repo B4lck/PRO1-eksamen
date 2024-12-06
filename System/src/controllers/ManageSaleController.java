@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 import model.*;
 import java.io.IOException;
 
+/**
+ * Controller til at oprette og redigere salg
+ */
 public class ManageSaleController {
     private Region root;
     private VIAPetsModel model;
@@ -25,6 +28,7 @@ public class ManageSaleController {
     private int selectedEmployeeId = -1;
     private double selectedFinalPrice;
 
+    // Elementer
     @FXML
     private Text title;
     @FXML
@@ -38,6 +42,11 @@ public class ManageSaleController {
     @FXML
     private Label error;
 
+    /**
+     * Åbner view til at oprette og redigere salg
+     * @param model VIAPets Modellen
+     * @param sale Salget der skal redigeres, null for at oprette et nyt
+     */
     public static void load(VIAPetsModelManager model, Sale sale) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -54,11 +63,25 @@ public class ManageSaleController {
         }
     }
 
-    public void init(Region root, VIAPetsModelManager model, Sale sale) {
+    private void init(Region root, VIAPetsModelManager model, Sale sale) {
         this.model = model;
         this.root = root;
 
-        this.reset(sale);
+        if (sale != null) {
+            // Hvis redigering af reservation
+            // Sætter alt teksten til at være matchene for den åbnede reservation
+            this.selectedSale = sale;
+            this.selectedCustomerId = sale.getCustomerId();
+            this.selectedAnimalId = sale.getAnimalId();
+            this.selectedEmployeeId = sale.getEmployeeId();
+            this.selectedFinalPrice = sale.getFinalPrice();
+            this.priceTextField.setText(Double.toString(selectedFinalPrice));
+            title.setText("Redigering af reservation");
+        } else {
+            title.setText("Oprettelse af reservation");
+        }
+        
+        update();
 
         this.error.setVisible(false);
 
@@ -74,35 +97,26 @@ public class ManageSaleController {
         });
     }
 
-    public void update() {
+    /**
+     * Opdater
+     */
+    private void update() {
         this.selectCustomerButton.setText(selectedCustomerId != -1 ?model.getCustomerList().getById(selectedCustomerId).getName() + "..." : "Vælg kunde");
         this.selectAnimalButton.setText(selectedAnimalId != -1 ? model.getAnimalList().getAnimalById(selectedAnimalId).getName() + "..." : "Vælg dyr");
         this.selectEmployeeButton.setText(selectedEmployeeId != -1 ? model.getEmployeeList().getById(selectedEmployeeId).getName() + "..." : "Vælg medarbejder");
     }
 
-    public void reset(Sale sale) {
-        if (sale != null) {
-            // Hvis redigering af reservation
-            // Sætter alt teksten til at være matchene for den åbnede reservation
-            this.selectedSale = sale;
-            this.selectedCustomerId = sale.getCustomerId();
-            this.selectedAnimalId = sale.getAnimalId();
-            this.selectedEmployeeId = sale.getEmployeeId();
-            this.selectedFinalPrice = sale.getFinalPrice();
-            this.priceTextField.setText(Double.toString(selectedFinalPrice));
-            title.setText("Redigering af reservation");
-        } else {
-            title.setText("Oprettelse af reservation");
-        }
-        update();
-    }
-
-
+    /**
+     * Action til at lukke/annullere viewet
+     */
     @FXML
     public void close() {
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Action til at oprette eller redigere et salg
+     */
     @FXML
     public void confirm() {
         // Tjek for tomme inputs
@@ -118,11 +132,17 @@ public class ManageSaleController {
             selectedSale.set(selectedFinalPrice, selectedAnimalId, selectedCustomerId, selectedEmployeeId, selectedSale.getDateOfSale());
         }
 
+        Animal animal = model.getAnimalList().getAnimalById(selectedAnimalId);
+        animal.convertToOwnedAnimal(selectedCustomerId);
+
         model.getAnimalList().getAnimalById(selectedAnimalId).setOwnerId(selectedCustomerId);
         model.save();
         close();
     }
 
+    /**
+     * Action til at vælge dyr med select animal vælgeren
+     */
     @FXML
     public void selectAnimal() {
         SelectAnimalController.load(model, animalId -> {
@@ -144,6 +164,9 @@ public class ManageSaleController {
         }, true);
     }
 
+    /**
+     * Action til at oprette dyr direkte
+     */
     @FXML
     public void createAnimal() {
         ManageAnimalController.load(model, -1, animalId -> {
@@ -152,6 +175,9 @@ public class ManageSaleController {
         }, true);
     }
 
+    /**
+     * Action til at vælge kunde med select customer vælgeren
+     */
     @FXML
     public void selectCustomer() {
         SelectCustomerController.load(model, selectedCustomerId -> {
@@ -160,6 +186,9 @@ public class ManageSaleController {
         });
     }
 
+    /**
+     * Action til at oprette medarbejder direkte
+     */
     @FXML
     public void createCustomer() {
         ManageCustomerController.load(model, -1, selectedCustomerId -> {
@@ -168,6 +197,9 @@ public class ManageSaleController {
         });
     }
 
+    /**
+     * Action til at vælge medarbejder med select employee vælgeren
+     */
     @FXML
     public void selectEmployee(){
         SelectEmployeeController.load(model, selectedEmployeeId -> {

@@ -8,13 +8,18 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.Customer;
 import model.CustomerList;
+import model.Reservation;
 import model.VIAPetsModelManager;
 
+/**
+ * Controller til oversigt af kunder
+ */
 public class CustomersController {
     private ViewHandler viewHandler;
     private Region root;
     private VIAPetsModelManager model;
 
+    // Elementer
     @FXML
     private TableView<Customer> customersTable;
     @FXML
@@ -26,13 +31,15 @@ public class CustomersController {
     @FXML
     public Label filteringEnabledLabel;
 
+    // Liste til tabel
     private final ObservableList<Customer> list = FXCollections.observableArrayList();
 
-    /**
-     * Det nuværende filter
-     */
+    // Nuværende filter
     private CustomersFilteringController.CustomerFilter filter;
 
+    /**
+     * Init
+     */
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
@@ -45,6 +52,9 @@ public class CustomersController {
         reset();
     }
 
+    /**
+     * Opdatere tabellen
+     */
     public void reset() {
         list.clear();
         CustomerList customerList = model.getCustomerList();
@@ -53,31 +63,49 @@ public class CustomersController {
         customersTable.setItems(list);
     }
 
+    /**
+     * Returnere roden
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Action til at gå tilbage til hovedmenuen
+     */
     @FXML
     public void back() {
-        // TODO
         viewHandler.openView("MainMenu");
     }
 
+    /**
+     * Action til at oprette kunder
+     */
     @FXML
     public void createCustomer() {
         ManageCustomerController.load(model, -1, customerId -> {
             reset();
+            // Vælger den nye kunde i tabellen
             customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
         });
-        reset();
     }
 
+    /**
+     * Action til at ændre en kunde
+     */
     @FXML
     public void editCustomer() {
-        // TODO
-        viewHandler.openView("MainMenu");
+        Customer selectedCustomer = customersTable.getSelectionModel().getSelectedItem();
+        ManageCustomerController.load(model, selectedCustomer.getCustomerId(), customerId -> {
+            reset();
+            // Vælger den redigerede kunde i tabellen
+            customersTable.getSelectionModel().select(model.getCustomerList().getById(customerId));
+        });
     }
 
+    /**
+     * Action til at slette kunde
+     */
     @FXML
     public void deleteCustomer() {
         Customer selection = customersTable.getSelectionModel().getSelectedItem();
@@ -90,13 +118,24 @@ public class CustomersController {
 
         // Stop hvis bruger har valgt nej
         if (confirmationAlert.getResult() == ButtonType.NO) return;
-        model.getCustomerList().removeById(selection.getCustomerId());
 
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION, selection.getName() + " er slettet", ButtonType.OK);
         successAlert.setGraphic(null);
         successAlert.setHeaderText(null);
         successAlert.setTitle("Slet kunden");
         successAlert.show();
+
+        Reservation[] futureReservations = model.getReservationList().getReservationsForOwner(selection.getCustomerId()).getReservationsInFuture().getAllReservations();
+        if (futureReservations.length > 0) {
+            Alert warning = new Alert(Alert.AlertType.INFORMATION,
+                    selection.getName() + " kunne ikke slettes, da de har en reservation i fremtiden", ButtonType.OK);
+            warning.setGraphic(null);
+            warning.setHeaderText(null);
+            warning.setTitle("Kunne ikke slettes");
+            warning.show();
+            return;
+        }
+        model.getCustomerList().removeById(selection.getCustomerId());
 
         model.save();
 

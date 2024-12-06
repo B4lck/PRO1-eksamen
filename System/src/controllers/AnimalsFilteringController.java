@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * View til valg af filtre for dyr oversigten
+ * Controller til valg af filtre for dyr oversigten
  */
 public class AnimalsFilteringController {
     private Region root;
@@ -100,9 +97,9 @@ public class AnimalsFilteringController {
 
     /**
      * Indlæser og åbner AnimalsFilteringGUI
-     *
      * @param model    Modellen
      * @param callback Filteret returneres via et callback når brugeren har valgt muligheder og trykket OK
+     * @param forceSaleOrPension Hvis null, slås denne funktion fra. Hvis true SKAL man oprette et dyr til salg, og hvis false SKAL man oprette et dyr til pasning.
      */
     public static void load(VIAPetsModel model, FilteringCallback callback, Boolean forceSaleOrPension) {
         try {
@@ -121,13 +118,12 @@ public class AnimalsFilteringController {
     }
 
     /**
-     * Init viewet, reset behøves ikke, da der åbnes et nyt view hver gang
-     *
+     * Init viewet
      * @param root     FXML roden
      * @param model    Model
      * @param callback Tilbagekald med filter
      */
-    public void init(Region root, VIAPetsModel model, FilteringCallback callback, Boolean forceSaleOrPension) {
+    private void init(Region root, VIAPetsModel model, FilteringCallback callback, Boolean forceSaleOrPension) {
         this.root = root;
         this.model = model;
         this.callback = callback;
@@ -162,7 +158,7 @@ public class AnimalsFilteringController {
     }
 
     /**
-     * Nulstil
+     * Action til at nulstille filtreringen
      */
     @FXML
     public void clear() {
@@ -171,7 +167,7 @@ public class AnimalsFilteringController {
     }
 
     /**
-     * Luk
+     * Action til at lukke/annullere filtreringen
      */
     @FXML
     public void close() {
@@ -183,6 +179,22 @@ public class AnimalsFilteringController {
      */
     @FXML
     public void confirm() {
+        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+        double minimum;
+        double maximum;
+        try {
+            minimum = format.parse(minimumPriceSelector.getText()).doubleValue();
+            maximum = format.parse(maximumPriceSelector.getText()).doubleValue();
+        } catch (Exception e) {
+            // Vis error alert
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Kunne ikke filtre i pris, ulovligt format.", ButtonType.YES, ButtonType.NO);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke filtre i pris");
+            errorAlert.showAndWait();
+            return;
+        }
+        
         this.callback.callback((animalList) -> {
             // Filtrer kategorier
             String categoryChoice = categoryDisplayToIds.get(categorySelector.getValue());
@@ -198,15 +210,6 @@ public class AnimalsFilteringController {
             }
 
             // Filtrer penge
-            NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
-            double minimum = 0;
-            double maximum = 99999;
-            try {
-                minimum = format.parse(minimumPriceSelector.getText()).doubleValue();
-                maximum = format.parse(maximumPriceSelector.getText()).doubleValue();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
             animalList = animalList.getAnimalsByPrice(minimum, maximum);
 
             // Filtrer efter navne

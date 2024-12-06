@@ -16,6 +16,7 @@ public class ReservationsController {
     private Region root;
     private VIAPetsModelManager model;
 
+    // Elementer
     @FXML
     public Label filteringEnabledLabel;
     @FXML
@@ -33,24 +34,33 @@ public class ReservationsController {
     @FXML
     private TableColumn<Reservation, String> positionColumn;
 
+    // Liste til tabel
     private final ObservableList<Reservation> list = FXCollections.observableArrayList();
 
+    // Nuværende filter
     private ReservationsFilteringController.ReservationFilter filter;
 
+    /**
+     * Init viewet
+     */
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
 
-        customerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getCustomerId()).getName()));
-        animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getCategory()));
-        animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName()));
+        customerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getCustomerId()) != null ? model.getCustomerList().getById(cellData.getValue().getCustomerId()).getName() : "Findes ikke..."));
+        animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()) != null ? model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getCategory() : "Findes ikke..."));
+        animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()) != null ? model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName() : "Findes ikke..."));
         startDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getStartDate().toString()));
         endDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeriod().getEndDate().toString()));
+        positionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPositionId() == -1 ? "ingen position" : Integer.toString(cellData.getValue().getPositionId())));
 
         reset();
     }
 
+    /**
+     * Reset viewet / Opdater tabellen
+     */
     public void reset() {
         list.clear();
         ReservationList reservations = model.getReservationList();
@@ -59,15 +69,24 @@ public class ReservationsController {
         reservationsTable.setItems(list);
     }
 
+    /**
+     * Returner roden
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Action til at gå tilbage til hovedmenuen
+     */
     @FXML
     public void back() {
         viewHandler.openView("MainMenu");
     }
 
+    /**
+     * Action til at filtre for i dag
+     */
     @FXML
     public void filterToday() {
         if (filter == null) {
@@ -81,6 +100,9 @@ public class ReservationsController {
         reset();
     }
 
+    /**
+     * Action til at åbne filter vælgeren
+     */
     @FXML
     public void filterReservations() {
         ReservationsFilteringController.load(model, filter -> {
@@ -91,12 +113,18 @@ public class ReservationsController {
         reset();
     }
 
+    /**
+     * Action til at oprette en ny reservation
+     */
     @FXML
     public void createReservation() {
         ManageReservationController.load(model, null);
         reset();
     }
 
+    /**
+     * Action til at redigere en reservation
+     */
     @FXML
     public void editReservation() {
         Reservation selectedReservation = reservationsTable.getSelectionModel().getSelectedItem();
@@ -104,6 +132,9 @@ public class ReservationsController {
         reset();
     }
 
+    /**
+     * Action til at slette en reservation
+     */
     @FXML
     public void deleteReservation() {
         Reservation selectedReservation = reservationsTable.getSelectionModel().getSelectedItem();

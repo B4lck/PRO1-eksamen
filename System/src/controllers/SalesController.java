@@ -4,12 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.Sale;
+import model.SalesList;
 import model.VIAPetsModelManager;
 
 public class SalesController {
@@ -17,6 +15,9 @@ public class SalesController {
     private Region root;
     private VIAPetsModelManager model;
 
+    // Elementer
+    @FXML
+    private Label filteringEnabledLabel;
     @FXML
     private TableView<Sale> salesTable;
     @FXML
@@ -33,17 +34,19 @@ public class SalesController {
     private TableColumn<Sale, String> priceColumn;
 
     private final ObservableList<Sale> list = FXCollections.observableArrayList();
+    
+    private SalesFilteringController.SalesFilter filter;
 
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
 
-        customerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getCustomerId()).getName()));
-        animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getCategory()));
-        animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName()));
+        customerNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getCustomerList().getById(cellData.getValue().getCustomerId()) != null ? model.getCustomerList().getById(cellData.getValue().getCustomerId()).getName() : "Findes ikke..."));
+        animalCategoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()) != null ? model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getCategory() : "Findes ikke..."));
+        animalNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()) != null ? model.getAnimalList().getAnimalById(cellData.getValue().getAnimalId()).getName() : "Findes ikke..."));
         dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDateOfSale().toString()));
-        employeeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getEmployeeList().getById(cellData.getValue().getEmployeeId()).getName()));
+        employeeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(model.getEmployeeList().getById(cellData.getValue().getEmployeeId()) != null ? model.getEmployeeList().getById(cellData.getValue().getEmployeeId()).getName() : "Findes ikke..."));
         priceColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getFinalPrice())));
 
         reset();
@@ -51,7 +54,11 @@ public class SalesController {
 
     public void reset() {
         list.clear();
-        list.addAll(model.getSalesList().getList());
+
+        SalesList salesList = model.getSalesList();
+        if (filter != null) salesList = filter.filterList(salesList);
+        
+        list.addAll(salesList.getAllSales());
 
         salesTable.setItems(list);
     }
@@ -92,5 +99,17 @@ public class SalesController {
         model.getSalesList().remove(selectedSale);
         model.save();
         reset();
+    }
+
+    /**
+     * Action til at åbne filter vælgeren
+     */
+    @FXML
+    public void filterSales() {
+        SalesFilteringController.load(model, (filter) -> {
+            this.filter = filter;
+            filteringEnabledLabel.setText(filter == null ? "" : "Aktivt filter");
+            reset();
+        });
     }
 }

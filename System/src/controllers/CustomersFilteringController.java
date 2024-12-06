@@ -12,7 +12,7 @@ import model.*;
 import java.io.IOException;
 
 /**
- * View til valg af filtre for dyr oversigten
+ * Controller til valg af filtre for kunder oversigten
  */
 public class CustomersFilteringController {
     private Region root;
@@ -49,6 +49,7 @@ public class CustomersFilteringController {
     public TextField emailField;
 
     /**
+     * Åben et nyt vindue til at filtrer kunder
      * @param model    Modellen
      * @param callback Filteret returneres via et callback når brugeren har valgt muligheder og trykket OK
      */
@@ -69,20 +70,19 @@ public class CustomersFilteringController {
     }
 
     /**
-     * Init viewet, reset behøves ikke, da der åbnes et nyt view hver gang
-     *
+     * Init viewet
      * @param root     FXML roden
      * @param model    Model
      * @param callback Tilbagekald med filter
      */
-    public void init(Region root, VIAPetsModel model, FilteringCallback callback) {
+    private void init(Region root, VIAPetsModel model, FilteringCallback callback) {
         this.root = root;
         this.model = model;
         this.callback = callback;
     }
 
     /**
-     * Nulstil
+     * Action til at nulstille filtreringen
      */
     @FXML
     public void clear() {
@@ -91,7 +91,7 @@ public class CustomersFilteringController {
     }
 
     /**
-     * Luk
+     * Action til at lukke/annullere filtreringen
      */
     @FXML
     public void close() {
@@ -110,8 +110,6 @@ public class CustomersFilteringController {
                 customerList = customerList.getCustomersByPhone(Long.parseLong(phoneField.getText()));
             if (!emailField.getText().isEmpty())
                 customerList = customerList.getCustomersByEmail(emailField.getText());
-
-
             return customerList;
         });
 

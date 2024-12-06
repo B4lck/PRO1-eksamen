@@ -57,7 +57,7 @@ public class ManageAnimalController {
     public Button createCustomer;
 
     /**
-     *
+     * Callback der returner det nye eller redigerede animalId
      */
     @FunctionalInterface
     public interface ManageAnimalCallback {
@@ -93,8 +93,10 @@ public class ManageAnimalController {
     /**
      * Indlæser og åbner ManageAnimalGUI
      *
-     * @param model    Modellen
-     * @param animalId ID på det dyr der skal redigeres, eller -1 for at oprette et nyt dyr
+     * @param model              Modellen
+     * @param animalId           ID på det dyr der skal redigeres, eller -1 for at oprette et nyt dyr
+     * @param callback           Et callback, der returnere det nye eller redigerede animalId
+     * @param forceSaleOrPension Hvis null, slås denne funktion fra. Hvis true SKAL man oprette et dyr til salg, og hvis false SKAL man oprette et dyr til pasning.
      */
     public static void load(VIAPetsModel model, int animalId, ManageAnimalCallback callback, Boolean forceSaleOrPension) {
         try {
@@ -117,13 +119,13 @@ public class ManageAnimalController {
      *
      * @param animalId Skal have et animalId der peger på et dyr eller -1 for at oprette nyt dyr
      */
-    public void init(Region root, VIAPetsModel model, int animalId, ManageAnimalCallback callback, Boolean forceSaleOrPension) {
+    private void init(Region root, VIAPetsModel model, int animalId, ManageAnimalCallback callback, Boolean forceSaleOrPension) {
         this.model = model;
         this.root = root;
         this.callback = callback;
 
         this.reset(animalId);
-        
+
         if (forceSaleOrPension != null) {
             notForSale.setDisable(true);
             notForSale.setSelected(!forceSaleOrPension);
@@ -161,6 +163,7 @@ public class ManageAnimalController {
                 }
             }
         });
+        
         update();
     }
 
@@ -321,6 +324,9 @@ public class ManageAnimalController {
         });
     }
 
+    /**
+     * Action til at oprette en kunde/ejer
+     */
     @FXML
     public void createCustomer() {
         ManageCustomerController.load(model, -1, customerId -> {

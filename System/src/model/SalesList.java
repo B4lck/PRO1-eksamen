@@ -194,11 +194,25 @@ public class SalesList {
      * @param max Maximum pris
      * @return En ny SalesList
      */
-    public SalesList getSalesByPrice(int min, int max) {
+    public SalesList getSalesByPrice(double min, double max) {
         SalesList list = new SalesList();
         for (Sale sale : sales) {
             if (sale.getFinalPrice() >= min && sale.getFinalPrice() <= max) {
                 list.add(sale);
+            }
+        }
+        return list;
+    }
+    
+    public SalesList getSalesByCategory(String category, AnimalList animals) {
+        Animal[] animalsFromCategory = animals.getAnimalsFromCategory(category).getAllAnimals();
+        SalesList list = new SalesList();
+        for (Sale sale : sales) {
+            for (Animal animal : animalsFromCategory) {
+                if (animal.getAnimalId() == sale.getAnimalId()) {
+                    list.add(sale);
+                    break;
+                }
             }
         }
         return list;

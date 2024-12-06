@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="370.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SalesFilteringController">
+    <VBox layoutX="14.0" layoutY="12.0" prefWidth="320.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrer i salg">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="128.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="110.0" vgrow="SOMETIMES" />
+                <RowConstraints prefHeight="80.0" vgrow="SOMETIMES" />
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Label text="Filtrer efter salgsdato" />
+            <GridPane GridPane.columnIndex="1">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="96.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <CheckBox fx:id="dateToggle" mnemonicParsing="false" onAction="#toggleDateFilter" text="Efter periode?">
+                    <padding>
+                        <Insets bottom="5.0" />
+                    </padding>
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                </CheckBox>
+                <Label text="Vis alle imellem" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                </Label>
+                <DatePicker fx:id="startDate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="og" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                </Label>
+                <DatePicker fx:id="endDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <GridPane.margin>
+                    <Insets bottom="10.0" top="10.0" />
+                </GridPane.margin>
+            </GridPane>
+            <Label text="Filtrer efter pris" GridPane.rowIndex="1" />
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="96.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <Label text="Minimum pris" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                </Label>
+                <TextField fx:id="minimumPrice" text="0,00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Maximum pris" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets right="10.0" />
+                    </GridPane.margin>
+                </Label>
+                <TextField fx:id="maximumPrice" text="99999,00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <GridPane.margin>
+                    <Insets bottom="10.0" top="10.0" />
+                </GridPane.margin>
+            </GridPane>
+            <Label text="Filtrer efter kunde" GridPane.rowIndex="2" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Button fx:id="ownerSelector" mnemonicParsing="false" onAction="#selectOwner" prefWidth="170.0" text="Vælg ejer" />
+                <Button mnemonicParsing="false" onAction="#clearOwner" prefWidth="70.0" text="Ryd" />
+            </HBox>
+            <Label text="Filtrer efter dyr type" GridPane.rowIndex="3" />
+            <ChoiceBox prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="categorySelector" />
+            <Label text="Filtrer efter medarbejder" GridPane.rowIndex="4" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <Button fx:id="employeeSelector" onAction="#selectEmployee" mnemonicParsing="false" prefWidth="170.0" text="Vælg medarbejder" />
+                <Button mnemonicParsing="false" onAction="#clearEmployee" prefWidth="70.0" text="Ryd" />
+            </HBox>
+        </GridPane>
+        <HBox alignment="BOTTOM_RIGHT" prefHeight="33.0" prefWidth="360.0" spacing="10.0">
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#clear" text="Nulstil" />
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#close" text="Annullere" />
+            <Button minWidth="60.0" mnemonicParsing="false" onAction="#confirm" text="OK" />
+        </HBox>
+    </VBox>
+</AnchorPane>
