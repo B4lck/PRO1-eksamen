@@ -6,23 +6,26 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Animal;
-import model.Customer;
 import model.Employee;
 import model.VIAPetsModel;
 
 import java.io.IOException;
 
+/**
+ * Controller til at vælge employees
+ */
 public class SelectEmployeeController {
     private Region root;
     private VIAPetsModel model;
 
+    // Elementer
     @FXML
     private TableView<Employee> employeeTable;
     @FXML
@@ -30,21 +33,18 @@ public class SelectEmployeeController {
     @FXML
     private TableColumn<Employee, String> descriptionColumn;
 
+    // Liste til tabel
     private final ObservableList<Employee> list = FXCollections.observableArrayList();
 
+    // Valgte callback
     private SelectedEmployeeCallback selectedAnimalCallback;
-
-    public void init(VIAPetsModel model, Region root, SelectedEmployeeCallback callback) {
-        this.model = model;
-        this.root = root;
-        this.selectedAnimalCallback = callback;
-
-        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        descriptionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
-
-        reset();
-    }
-
+    
+    /**
+     * Indlæser og åbner employee vælgeren
+     *
+     * @param model              Modellen
+     * @param callback           Et callback, der returnere det valgte employee id
+     */
     public static void load(VIAPetsModel model, SelectedEmployeeCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -57,36 +57,65 @@ public class SelectEmployeeController {
             ((SelectEmployeeController) loader.getController()).init(model, root, callback);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
+    
+    /**
+     * Init
+     */
+    private void init(VIAPetsModel model, Region root, SelectedEmployeeCallback callback) {
+        this.model = model;
+        this.root = root;
+        this.selectedAnimalCallback = callback;
 
-    public void reset() {
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        descriptionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
+
+        reset();
+    }
+
+    /**
+     * Opdatere tabellen
+     */
+    private void reset() {
         list.clear();
         list.addAll(model.getEmployeeList().getAllEmployees());
         employeeTable.setItems(list);
     }
 
+    /**
+     * Callback der returnere det valgte medarbejder id
+     */
     @FunctionalInterface
     public interface SelectedEmployeeCallback {
         void callback(int animalId);
     }
 
-    public Region getRoot() {
-        return root;
-    }
-
+    /**
+     * Action til at lukke viewet
+     */
     @FXML
-    public void back() {
+    public void close() {
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Action til at bekræfte valgte medarbejder
+     */
     @FXML
     public void confirm() {
         selectedAnimalCallback.callback(getSelectedAnimalId());
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    /**
+     * Hjælpemetode der giver id'et af det nuværende valg
+     */
     public int getSelectedAnimalId() {
         // TODO
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();

@@ -42,7 +42,7 @@ public class AnimalBird extends Animal {
 
     /**
      * Set om fuglen er tæmmet eller ej
-     * @param tamed
+     * @param tamed Tam?
      */
     public void setTamed(boolean tamed) {
         this.tamed = tamed;

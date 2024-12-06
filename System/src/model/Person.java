@@ -2,7 +2,7 @@ package model;
 
 public class Person {
     /**
-     * @param name
+     * Navn på person
      */
     private String name;
 

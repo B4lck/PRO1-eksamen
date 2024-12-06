@@ -3,9 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -52,7 +50,7 @@ public class ManageEmployeeController {
     public static void load(VIAPetsModel model, int employeeId, ManageEmployeeController.ManageEmployeeCallback callback) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ManageEmployeeController.class.getResource("/views/ManageEmployee.fxml"));
+            loader.setLocation(ManageEmployeeController.class.getResource("/views/ManageEmployeeGUI.fxml"));
             Region root = loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -61,7 +59,11 @@ public class ManageEmployeeController {
             ((ManageEmployeeController) loader.getController()).init(root, model, employeeId, callback);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 

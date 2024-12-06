@@ -69,7 +69,7 @@ public class ManageAnimalController {
     /**
      * Kategorier af dyr
      */
-    String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
+    private final String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
 
     /**
      * Hjælpe methode til at få kategori id'er ud fra vist string
@@ -110,14 +110,16 @@ public class ManageAnimalController {
             ((ManageAnimalController) loader.getController()).init(root, model, animalId, callback, forceSaleOrPension);
             stage.showAndWait();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
         }
     }
 
     /**
      * Init
-     *
-     * @param animalId Skal have et animalId der peger på et dyr eller -1 for at oprette nyt dyr
      */
     private void init(Region root, VIAPetsModel model, int animalId, ManageAnimalCallback callback, Boolean forceSaleOrPension) {
         this.model = model;
