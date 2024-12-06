@@ -4,13 +4,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.Date;
 import model.Reservation;
+import model.ReservationList;
 import model.VIAPetsModelManager;
 
 public class ReservationsController {
@@ -18,6 +16,8 @@ public class ReservationsController {
     private Region root;
     private VIAPetsModelManager model;
 
+    @FXML
+    public Label filteringEnabledLabel;
     @FXML
     private TableView<Reservation> reservationsTable;
     @FXML
@@ -35,6 +35,8 @@ public class ReservationsController {
 
     private final ObservableList<Reservation> list = FXCollections.observableArrayList();
 
+    private ReservationsFilteringController.ReservationFilter filter;
+
     public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
@@ -51,7 +53,9 @@ public class ReservationsController {
 
     public void reset() {
         list.clear();
-        list.addAll(model.getReservationList().getList());
+        ReservationList reservations = model.getReservationList();
+        if (filter != null) reservations = filter.filterList(reservations);
+        list.addAll(reservations.getAllReservations());
         reservationsTable.setItems(list);
     }
 
@@ -62,6 +66,29 @@ public class ReservationsController {
     @FXML
     public void back() {
         viewHandler.openView("MainMenu");
+    }
+
+    @FXML
+    public void filterToday() {
+        if (filter == null) {
+            filter = list -> list.getReservationsForDate(new Date());
+            filteringEnabledLabel.setText("Viser i dag");
+        }
+        else {
+            filter = null;
+            filteringEnabledLabel.setText("");
+        }
+        reset();
+    }
+
+    @FXML
+    public void filterReservations() {
+        ReservationsFilteringController.load(model, filter -> {
+            this.filter = filter;
+            filteringEnabledLabel.setText(filter == null ? "" : "Aktivt filter");
+            reset();
+        });
+        reset();
     }
 
     @FXML

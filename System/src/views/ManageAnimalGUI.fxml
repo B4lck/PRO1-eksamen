@@ -76,7 +76,7 @@
                   GridPane.rowIndex="11">
                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="209.0" text="Vælg kunde"
                         fx:id="selectCustomer" onAction="#selectCustomer"/>
-                <Button mnemonicParsing="false" text="Opret ny kunde" fx:id="createCustomer"/>
+                <Button onAction="#createCustomer" mnemonicParsing="false" text="Opret ny kunde" fx:id="createCustomer"/>
             </HBox>
         </GridPane>
         <HBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="458.0" spacing="10.0">

@@ -161,6 +161,7 @@ public class ManageAnimalController {
                 }
             }
         });
+        update();
     }
 
     /**
@@ -315,6 +316,14 @@ public class ManageAnimalController {
     @FXML
     public void selectCustomer() {
         SelectCustomerController.load(model, (customerId) -> {
+            selectedOwnerId = customerId;
+            update();
+        });
+    }
+
+    @FXML
+    public void createCustomer() {
+        ManageCustomerController.load(model, -1, customerId -> {
             selectedOwnerId = customerId;
             update();
         });

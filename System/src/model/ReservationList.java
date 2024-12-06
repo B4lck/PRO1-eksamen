@@ -172,7 +172,7 @@ public class ReservationList {
     }
 
     /**
-     * Henter alle reservationer, indenfor en given periode
+     * Henter alle reservationer, der skærer perioden
      *
      * @param period DateInterval over periode
      * @return ReservationList

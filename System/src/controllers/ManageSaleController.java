@@ -148,7 +148,6 @@ public class ManageSaleController {
     public void createAnimal() {
         ManageAnimalController.load(model, -1, animalId -> {
             this.selectedAnimalId = animalId;
-            model.save();
             update();
         }, true);
     }
@@ -163,7 +162,10 @@ public class ManageSaleController {
 
     @FXML
     public void createCustomer() {
-        // TODO
+        ManageCustomerController.load(model, -1, selectedCustomerId -> {
+            this.selectedCustomerId = selectedCustomerId;
+            update();
+        });
     }
 
     @FXML
