@@ -6,21 +6,42 @@ import java.nio.file.Paths;
 
 public class VIAPetsFiles {
 
+    /**
+     * Instans variabel over modellen der skal gemmes
+     */
     private VIAPetsModel model;
+    /**
+     * Instans variabel over stien, hvor filerne gemmes
+     */
     private Path saveLocation = Paths.get(System.getProperty("user.home"), "VIAPets");
 
+    /**
+     * Konstruktør
+     * @param model model der skal gemmes
+     */
     public VIAPetsFiles(VIAPetsModel model) {
         this.model = model;
     }
 
+    /**
+     * Retunere positionen hvor filerne gemmes
+     * @return Path hvor filerne gemmes
+     */
     public Path getSaveLocation() {
         return saveLocation;
     }
 
+    /**
+     * Sætter positionen hvor filerne gemmes
+     * @param saveLocation Path til hvor filerne skal gemmes
+     */
     public void setSaveLocation(Path saveLocation) {
         this.saveLocation = saveLocation;
     }
-    
+
+    /**
+     * Gemmer alle listerne
+     */
     public void saveAll() {
         saveAnimals();
         saveSales();
@@ -28,7 +49,10 @@ public class VIAPetsFiles {
         saveCustomers();
         saveEmployees();
     }
-    
+
+    /**
+     * Loader alle listerne
+     */
     public void loadAll() {
         loadAnimals();
         loadSales();
@@ -37,6 +61,9 @@ public class VIAPetsFiles {
         loadEmployees();
     }
 
+    /**
+     * Gemmer alle dyr
+     */
     public void saveAnimals() {
 
         File saveFile = new File(saveLocation.toFile(), "animals.csv");
@@ -79,6 +106,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Loader alle dyrene
+     */
     public void loadAnimals() {
         File saveFile = new File(saveLocation.toFile(), "animals.csv");
 
@@ -140,6 +170,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Gemmer alle salg
+     */
     public void saveSales() {
 
         File saveFile = new File(saveLocation.toFile(), "sales.csv");
@@ -176,6 +209,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Loader alle salg
+     */
     public void loadSales() {
         File saveFile = new File(saveLocation.toFile(), "sales.csv");
 
@@ -210,6 +246,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Gemmer alle reservationerne
+     */
     public void saveReservations() {
 
         File saveFile = new File(saveLocation.toFile(), "reservations.csv");
@@ -246,6 +285,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Loader alle reservationerne
+     */
     public void loadReservations() {
         File saveFile = new File(saveLocation.toFile(), "reservations.csv");
 
@@ -282,6 +324,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Gemmer alle kunderne
+     */
     public void saveCustomers() {
 
         File saveFile = new File(saveLocation.toFile(), "customers.csv");
@@ -316,6 +361,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Loader alle kunderne
+     */
     public void loadCustomers() {
         File saveFile = new File(saveLocation.toFile(), "customers.csv");
 
@@ -349,6 +397,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Gemmer alle medarbejderne
+     */
     public void saveEmployees() {
 
         File saveFile = new File(saveLocation.toFile(), "employees.csv");
@@ -384,6 +435,9 @@ public class VIAPetsFiles {
         }
     }
 
+    /**
+     * Loader alle medarbejderne
+     */
     public void loadEmployees() {
         File saveFile = new File(saveLocation.toFile(), "employees.csv");
 

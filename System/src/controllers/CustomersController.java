@@ -91,7 +91,7 @@ public class CustomersController {
         confirmationAlert.setHeaderText(null);
         confirmationAlert.setTitle("Slet Kunden");
         confirmationAlert.showAndWait();
-        
+
         // Stop hvis bruger har valgt nej
         if (confirmationAlert.getResult() == ButtonType.NO) return;
 
