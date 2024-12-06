@@ -21,7 +21,7 @@ public class SalesList {
     }
 
     /**
-     * Fjerner et salg via referencel
+     * Fjerner et salg via reference
      * @param sale En reference til det salg der skal fjernes
      */
     public void remove(Sale sale) {

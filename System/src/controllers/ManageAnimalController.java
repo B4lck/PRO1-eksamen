@@ -69,7 +69,7 @@ public class ManageAnimalController {
     /**
      * Kategorier af dyr
      */
-    String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
+    private final String[] animalTypes = {"(andet)", "Fisk", "Fugl", "Reptil"};
 
     /**
      * Hjælpe methode til at få kategori id'er ud fra vist string

@@ -1,2 +1,2 @@
-# PRO1-eksamen
-Programmerings Eksamen første semester 2024
+# SEP1-eksamen
+Semester projekt eksamen - første semester 2024

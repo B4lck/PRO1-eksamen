@@ -12,7 +12,7 @@ public class VIAPetsFiles {
     /**
      * Instans variabel over modellen der skal gemmes
      */
-    private VIAPetsModel model;
+    private final VIAPetsModel model;
     /**
      * Instans variabel over stien, hvor filerne gemmes
      */
@@ -27,7 +27,7 @@ public class VIAPetsFiles {
     }
 
     /**
-     * Retunere positionen hvor filerne gemmes
+     * Returnerer positionen hvor filerne gemmes
      * @return Path hvor filerne gemmes
      */
     public Path getSaveLocation() {
@@ -83,30 +83,19 @@ public class VIAPetsFiles {
             errorAlert.showAndWait();
         }
 
-        String serialized = "";
+        StringBuilder serialized = new StringBuilder();
 
-        serialized += "Id;Kategori;Navn;Til Salg?;Pris;Ejer ID;Mad;Kommentar;Fødselsdagsdato;Oprettelsesdato;Billede URL\n";
+        serialized.append("Id;Kategori;Navn;Til Salg?;Pris;Ejer ID;Mad;Kommentar;Fødselsdagsdato;Oprettelsesdato;Billede URL\n");
 
 
         for (Animal animal : model.getAnimalList().getAllAnimals()) {
-            serialized += escape(Integer.toString(animal.getAnimalId())) + ";"
-                    + escape(animal.getCategory()) + ";"
-                    + escape(animal.getName()) + ";"
-                    + escape(Boolean.toString(animal.isForSale())) + ";"
-                    + escape(animal.isForSale() ? Double.toString(animal.getPrice()) : "0") + ";"
-                    + escape(animal.isForSale() ? "-1" : Integer.toString(animal.getOwnerId())) + ";"
-                    + escape(animal.getFood()) + ";"
-                    + escape(animal.getComment()) + ";"
-                    + escape(animal.getBirthday().toString()) + ";"
-                    + escape(animal.getCreationDate().toString()) + ";"
-                    + escape(animal.getImageUrl())
-                    + "\n";
+            serialized.append(escape(Integer.toString(animal.getAnimalId()))).append(";").append(escape(animal.getCategory())).append(";").append(escape(animal.getName())).append(";").append(escape(Boolean.toString(animal.isForSale()))).append(";").append(escape(animal.isForSale() ? Double.toString(animal.getPrice()) : "0")).append(";").append(escape(animal.isForSale() ? "-1" : Integer.toString(animal.getOwnerId()))).append(";").append(escape(animal.getFood())).append(";").append(escape(animal.getComment())).append(";").append(escape(animal.getBirthday().toString())).append(";").append(escape(animal.getCreationDate().toString())).append(";").append(escape(animal.getImageUrl())).append("\n");
         }
 
         try {
             FileWriter fw = new FileWriter(saveFile);
             fw.flush();
-            fw.write(serialized);
+            fw.write(serialized.toString());
             fw.close();
         } catch (IOException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
@@ -204,24 +193,19 @@ public class VIAPetsFiles {
             errorAlert.showAndWait();
         }
 
-        String serialized = "";
+        StringBuilder serialized = new StringBuilder();
 
-        serialized += "Pris;Dyrets Id;Kundens Id;Medarbejderens Id;Dato for salg\n";
+        serialized.append("Pris;Dyrets Id;Kundens Id;Medarbejderens Id;Dato for salg\n");
 
 
         for (Sale sale : model.getSalesList().getAllSales()) {
-            serialized += escape(Double.toString(sale.getFinalPrice())) + ";"
-                    + escape(Integer.toString(sale.getAnimalId())) + ";"
-                    + escape(Integer.toString(sale.getCustomerId())) + ";"
-                    + escape(Integer.toString(sale.getEmployeeId())) + ";"
-                    + escape(sale.getDateOfSale().toString()) + ";"
-                    + "\n";
+            serialized.append(escape(Double.toString(sale.getFinalPrice()))).append(";").append(escape(Integer.toString(sale.getAnimalId()))).append(";").append(escape(Integer.toString(sale.getCustomerId()))).append(";").append(escape(Integer.toString(sale.getEmployeeId()))).append(";").append(escape(sale.getDateOfSale().toString())).append(";").append("\n");
         }
 
         try {
             FileWriter fw = new FileWriter(saveFile);
             fw.flush();
-            fw.write(serialized);
+            fw.write(serialized.toString());
             fw.close();
         } catch (IOException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
@@ -292,24 +276,19 @@ public class VIAPetsFiles {
             errorAlert.showAndWait();
         }
 
-        String serialized = "";
+        StringBuilder serialized = new StringBuilder();
 
-        serialized += "Dyrets ID;Kundens ID;Startdato;Slutdato;Position\n";
+        serialized.append("Dyrets ID;Kundens ID;Startdato;Slutdato;Position\n");
 
 
         for (Reservation reservation : model.getReservationList().getAllReservations()) {
-            serialized += escape(Integer.toString(reservation.getAnimalId())) + ";"
-                    + escape(Integer.toString(reservation.getCustomerId())) + ";"
-                    + escape(reservation.getPeriod().getStartDate().toString()) + ";"
-                    + escape(reservation.getPeriod().getEndDate().toString()) + ";"
-                    + escape(Integer.toString(reservation.getPositionId())) + ";"
-                    + "\n";
+            serialized.append(escape(Integer.toString(reservation.getAnimalId()))).append(";").append(escape(Integer.toString(reservation.getCustomerId()))).append(";").append(escape(reservation.getPeriod().getStartDate().toString())).append(";").append(escape(reservation.getPeriod().getEndDate().toString())).append(";").append(escape(Integer.toString(reservation.getPositionId()))).append(";").append("\n");
         }
 
         try {
             FileWriter fw = new FileWriter(saveFile);
             fw.flush();
-            fw.write(serialized);
+            fw.write(serialized.toString());
             fw.close();
         } catch (IOException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
@@ -382,22 +361,18 @@ public class VIAPetsFiles {
             errorAlert.showAndWait();
         }
 
-        String serialized = "";
+        StringBuilder serialized = new StringBuilder();
 
-        serialized += "Kundens ID;Navn;Telefon nr.;Email\n";
+        serialized.append("Kundens ID;Navn;Telefon nr.;Email\n");
 
         for (Customer customer : model.getCustomerList().getAllCustomers()) {
-            serialized += escape(Integer.toString(customer.getCustomerId())) + ";"
-                    + escape(customer.getName()) + ";"
-                    + escape(Long.toString(customer.getPhone())) + ";"
-                    + escape(customer.getEmail()) + ";"
-                    + "\n";
+            serialized.append(escape(Integer.toString(customer.getCustomerId()))).append(";").append(escape(customer.getName())).append(";").append(escape(Long.toString(customer.getPhone()))).append(";").append(escape(customer.getEmail())).append(";").append("\n");
         }
 
         try {
             FileWriter fw = new FileWriter(saveFile);
             fw.flush();
-            fw.write(serialized);
+            fw.write(serialized.toString());
             fw.close();
         } catch (IOException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
@@ -467,23 +442,19 @@ public class VIAPetsFiles {
             errorAlert.showAndWait();
         }
 
-        String serialized = "";
+        StringBuilder serialized = new StringBuilder();
 
-        serialized += "Medarbejderens ID;Navn;Beskrivelse;Portrait URL\n";
+        serialized.append("Medarbejderens ID;Navn;Beskrivelse;Portrait URL\n");
 
 
         for (Employee employee : model.getEmployeeList().getAllEmployees()) {
-            serialized += escape(Integer.toString(employee.getEmployeeId())) + ";"
-                    + escape(employee.getName()) + ";"
-                    + escape(employee.getDescription()) + ";"
-                    + escape(employee.getPortraitUrl()) + ";"
-                    + "\n";
+            serialized.append(escape(Integer.toString(employee.getEmployeeId()))).append(";").append(escape(employee.getName())).append(";").append(escape(employee.getDescription())).append(";").append(escape(employee.getPortraitUrl())).append(";").append("\n");
         }
 
         try {
             FileWriter fw = new FileWriter(saveFile);
             fw.flush();
-            fw.write(serialized);
+            fw.write(serialized.toString());
             fw.close();
         } catch (IOException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
