@@ -1,0 +1,48 @@
+.TXT {
+    margin-left: 30px;
+    margin-top: 45px;
+
+}
+h1{
+    color: black;
+    
+}
+p{
+    color: black;
+}
+
+.kontakt{
+    margin-left: 30px;
+    margin-top: 45px;
+
+}
+a{
+    color: blue;
+}
+.map {
+float: right;
+margin-right: 50px;
+margin-top: 75px;
+}
+.header > a {
+    color: black !important;
+}
+.leftSide {
+    float: left;
+    margin-top: 45px;
+}
+b {
+    color: black;
+}
+@media only screen and (max-width: 600px) {
+    .map{
+        clear: both;
+        width: 100%;
+        margin: 0px;
+
+    }
+    .leftSide{
+        clear: both;
+    }
+
+  }
