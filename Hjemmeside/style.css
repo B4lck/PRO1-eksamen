@@ -23,7 +23,7 @@ body {
     a {
         text-align: center;
         width: calc((80vw - var(--logo-width))/4);
-        color: white;
+        color: black;
     }
 
     .logo {
