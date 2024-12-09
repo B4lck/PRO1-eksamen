@@ -19,7 +19,6 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    background-color: #D3D3D3;
 
     a {
         text-align: center;
@@ -130,4 +129,5 @@ a {
     background: darkgrey;
     padding: 50px;
     margin-top: 0;
+    clear: both;
 }

@@ -20,9 +20,9 @@ a{
     color: blue;
 }
 .map {
-float: right;
-margin-right: 50px;
-margin-top: 75px;
+    float: right;
+    margin: 75px 50px;
+    width: 50%;
 }
 .header > a {
     color: black !important;
