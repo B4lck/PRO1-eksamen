@@ -19,11 +19,12 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px 0;
+    background-color: #D3D3D3;
 
     a {
         text-align: center;
         width: calc((80vw - var(--logo-width))/4);
-        color: black;
+        color: White;
     }
 
     .logo {
