@@ -28,6 +28,11 @@ body {
 
     .logo {
         width: var(--logo-width);
+        transition: 300ms;
+    }
+
+    .logo:hover {
+        transform: scale(1.1);
     }
 }
 
@@ -49,23 +54,79 @@ a {
     position: relative;
     width: 50%;
     padding: 10px;
-    margin: 50vh auto;
-    background-color: rgba(255,255,255,0.1);
+    margin: 50vh auto auto auto;
 
     .row {
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 30px;
+        margin: 30px 10px;
     }
 }
 
 .animalObject {
+    width: 33%;
     padding: 5px;
-    background: grey;
+    background: darkgrey;
+    img {
+        width: 100%;
+        height: 100%;
+    }
     .left {
+        width: 50%;
+        float: left;
         h2 {
+            float: left;
             color: black;
-
+            font-size: 1.2rem;
+        }
+        h3 {
+            float: right;
+            color: black;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        p {
+            clear: both;
+            color: black;
         }
     }
+    .right {
+        width: 50%;
+        float: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: end;
+        height: 100%;
+        .beforePrice {
+            width: 100%;
+            color: grey;
+            text-align: center;
+            text-wrap: nowrap;
+            text-decoration: line-through;
+        }
+        .saveText {
+            background-color: red;
+            color: yellow;
+            padding: 2px 15px;
+        }
+    }
+
+    button {
+        width: 100%;
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-weight: bold;
+    }
+}
+
+.footer {
+    background: darkgrey;
+    padding: 50px;
+    margin-top: 0;
 }
