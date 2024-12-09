@@ -26,14 +26,14 @@ public class DateInterval {
      * @return Start Dato
      */
     public Date getStartDate() {
-        return startDate;
+        return startDate.copy();
     }
 
     /**
      * @return Slut Dato
      */
     public Date getEndDate() {
-        return endDate;
+        return endDate.copy();
     }
 
     /**
