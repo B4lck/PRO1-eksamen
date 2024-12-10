@@ -1,6 +1,7 @@
 :root {
     --logo-width: 250px;
     --logo-height: 143px;
+    --footer-color: #d3d3d3;
 }
 
 * {
@@ -34,7 +35,7 @@ body {
     }
 
     .logo:hover {
-        transform: rotate(25deg);
+        transform: rotate(25deg) scale(0.9);
     }
 }
 
@@ -71,7 +72,7 @@ a {
     animation: fadeInFromBottom 3s;
     width: 33%;
     padding: 5px;
-    background: darkgrey;
+    background: var(--footer-color);
     transition: 300ms;
     img {
         width: 100%;
@@ -135,7 +136,7 @@ a {
 
 .footer {
     width: 100%;
-    background: darkgrey;
+    background: var(--footer-color);
     padding: 50px;
     margin-top: 0;
     clear: both;
@@ -165,4 +166,42 @@ a {
     .animalsContainer {
         width: 80%;
     }
+
+    #burger-icon {
+        display: block!important;
+    }
+
+    .header > a{
+        display: none;
+    }
+
+    .header {
+        justify-content: space-evenly;
+    }
+}
+
+#burger-icon {
+    display: none;
+}
+
+.navbar {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    transition: 300ms;
+    transform: translate(-100%, 0);
+    background: white;
+    z-index: 99;
+    padding: 30px 100px;
+    height: 100%;
+    a, h1 {
+        color: black;
+        margin-bottom: 50px;
+    }
+}
+
+.openNavbar {
+    transform: translate(0);
 }

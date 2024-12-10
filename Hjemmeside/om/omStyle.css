@@ -37,3 +37,17 @@ p, h1, h2, a {
         margin-right: 40px;
     }
 }
+
+@media only screen and (max-width: 800px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .employeeContainer {
+        width: 100%;
+    }
+
+    .storyContainer {
+        width: 100%;
+    }
+}
