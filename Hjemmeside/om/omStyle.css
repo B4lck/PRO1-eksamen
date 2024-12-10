@@ -11,9 +11,7 @@
     box-sizing: border-box;
 }
 
-p,
-h1,
-h2 {
+p, h1, h2, a {
     color: black !important;
 }
 
