@@ -1,48 +1,37 @@
-.TXT {
-    margin-left: 30px;
-    margin-top: 45px;
-
-}
-h1{
-    color: black;
-    
-}
-p{
-    color: black;
+.content {
+    width: 100vw;
+    display: flex;
+    align-items: flex-start;
+    justify-items: center;
 }
 
-.kontakt{
-    margin-left: 30px;
-    margin-top: 45px;
-
-}
-a{
-    color: blue;
-}
-.map {
-    float: right;
-    margin: 75px 50px;
+.storyContainer {
     width: 50%;
+    padding: 30px;
+    box-sizing: border-box;
 }
-.header > a {
+
+p,
+h1,
+h2 {
     color: black !important;
 }
-.leftSide {
-    float: left;
-    margin-top: 45px;
-}
-b {
-    color: black;
-}
-@media only screen and (max-width: 600px) {
-    .map{
-        clear: both;
-        width: 100%;
-        margin: 0px;
 
-    }
-    .leftSide{
-        clear: both;
-    }
+.employeeContainer {
+    width: 50%;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
 
-  }
+}
+
+.employee {
+    display: flex;
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+}
