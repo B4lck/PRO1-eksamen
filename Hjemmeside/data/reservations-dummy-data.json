@@ -3,6 +3,10 @@
     {
       "date": "1/12/2024",
       "reserved": true
+    },
+    {
+      "date": "31/12/2024",
+      "reserved": true
     }
   ]
 }
