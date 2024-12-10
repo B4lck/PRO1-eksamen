@@ -36,13 +36,34 @@
                 Horsens 8700 <br> </p>
         </div>
     </div>
-    <img src="/img/maps.png" alt="a picture of the place" class="map">
-
+    <div class="mapContainer">
+        <div id="demoMap" class="map"></div>
+    </div>
     <div class="footer">
         <h1>VIAPets</h1>
         <p>CVR: 12 34 56 78</p>
         <p>Kontakt: </p>
     </div>
+    <script src="/lib/openlayers-2/OpenLayers.js"></script>
+    <script>
+        map = new OpenLayers.Map("demoMap");
+        map.addLayer(new OpenLayers.Layer.OSM());
+        map.zoomToMaxExtent();
+
+        let lat = 55.863312;
+        let lon = 9.837212;
+        let zoom = 14;
+
+        let fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+        let toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+        let position = new OpenLayers.LonLat(lon, lat).transform(fromProjection, toProjection);
+
+        let markers = new OpenLayers.Layer.Markers("Markers");
+        map.addLayer(markers);
+        markers.addMarker(new OpenLayers.Marker(position));
+
+        map.setCenter(position, zoom);
+    </script>
 </body>
 
 </html>
