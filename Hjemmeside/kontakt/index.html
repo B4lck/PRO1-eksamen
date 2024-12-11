@@ -10,17 +10,25 @@
 </head>
 
 <body>
-    <div class="header">
-        <a href="/dyr">Vores dyr</a>
-        <a href="/pasning">Pasning</a>
-        <div class="logo">
-            <a href="/">
-                <img src="/img/logo-orange.svg" alt="logo">
-            </a>
-        </div>
-        <a href="/om">Om os</a>
-        <a href="/kontakt">Kontakt</a>
+<div class="header">
+    <img src="/img/burger-icon.png" alt="burger menu ikon" id="burger-icon">
+    <a href="/dyr">Vores dyr</a>
+    <a href="/pasning">Pasning</a>
+    <div class="logo">
+        <a href="/">
+            <img src="/img/logo-orange.svg" alt="logo">
+        </a>
     </div>
+    <a href="/om">Om os</a>
+    <a href="/kontakt">Kontakt</a>
+</div>
+<div class="navbar" id="navbar">
+    <h1>Menu</h1>
+    <a href="/dyr">Vores dyr</a>
+    <a href="/pasning">Pasning</a>
+    <a href="/om">Om os</a>
+    <a href="/kontakt">Kontakt</a>
+</div>
     <div class="leftSide">
         <div class="infoContainer">
             <h1>Her kan du kontakte os!</h1>
@@ -65,6 +73,7 @@
 
         map.setCenter(position, zoom);
     </script>
+<script src="/script.js"></script>
 </body>
 
 </html>
