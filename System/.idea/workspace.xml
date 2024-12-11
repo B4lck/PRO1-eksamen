@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DateInterval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DateInterval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/ManageSaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageSaleController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +29,12 @@
     &quot;assignee&quot;: &quot;B4lck&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/B4lck/PRO1-eksamen.git&quot;,
-    &quot;accountId&quot;: &quot;3c0a7bea-ecbe-4af2-a26d-9afeb13c07de&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/B4lck/SEP1-eksamen.git",
+    "accountId": "3c0a7bea-ecbe-4af2-a26d-9afeb13c07de"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -124,6 +123,7 @@
       <workItem from="1733478290893" duration="83000" />
       <workItem from="1733478390161" duration="4699000" />
       <workItem from="1733511106445" duration="156000" />
+      <workItem from="1733909721900" duration="364000" />
     </task>
     <servers />
   </component>

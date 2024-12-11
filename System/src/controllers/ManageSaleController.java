@@ -52,7 +52,7 @@ public class ManageSaleController {
             Region root = loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Opret/Rediger reservation");
+            stage.setTitle("Opret/Rediger salg");
             stage.setScene(new Scene(root, root.getPrefWidth(), root.getPrefHeight()));
             ((ManageSaleController) loader.getController()).init(root, model, sale);
             stage.showAndWait();
@@ -78,9 +78,9 @@ public class ManageSaleController {
             this.selectedEmployeeId = sale.getEmployeeId();
             this.selectedFinalPrice = sale.getFinalPrice();
             this.priceTextField.setText(Double.toString(selectedFinalPrice));
-            title.setText("Redigering af reservation");
+            title.setText("Redigering af salg");
         } else {
-            title.setText("Oprettelse af reservation");
+            title.setText("Oprettelse af salg");
         }
         
         update();
