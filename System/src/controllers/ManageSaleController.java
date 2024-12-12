@@ -45,7 +45,7 @@ public class ManageSaleController {
      * @param model VIAPets Modellen
      * @param sale Salget der skal redigeres, null for at oprette et nyt
      */
-    public static void load(VIAPetsModelManager model, Sale sale) {
+    public static void load(VIAPetsModel model, Sale sale) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ManageSaleController.class.getResource("/views/ManageSaleGUI.fxml"));
@@ -65,7 +65,7 @@ public class ManageSaleController {
         }
     }
 
-    private void init(Region root, VIAPetsModelManager model, Sale sale) {
+    private void init(Region root, VIAPetsModel model, Sale sale) {
         this.model = model;
         this.root = root;
 

@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Region;
-import model.VIAPetsModelManager;
+import model.VIAPetsModel;
 
 /**
  * Controller til hovedmenuen
@@ -16,7 +16,7 @@ public class MainMenuController {
     /**
      * Init
      */
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModel model, Region root) {
         this.viewHandler = viewHandler;
         this.root = root;
     }

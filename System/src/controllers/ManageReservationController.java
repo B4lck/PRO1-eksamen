@@ -50,7 +50,7 @@ public class ManageReservationController {
      * @param model VIAPets modellen
      * @param reservation Reservation der skal redigeres, eller null for at oprette en ny
      */
-    public static void load(VIAPetsModelManager model, Reservation reservation) {
+    public static void load(VIAPetsModel model, Reservation reservation) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ManageReservationController.class.getResource("/views/ManageReservationGUI.fxml"));
@@ -73,7 +73,7 @@ public class ManageReservationController {
     /**
      * Init viewet
      */
-    private void init(Region root, VIAPetsModelManager model, Reservation reservation) {
+    private void init(Region root, VIAPetsModel model, Reservation reservation) {
         this.model = model;
         this.root = root;
 

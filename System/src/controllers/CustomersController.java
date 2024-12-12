@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
-import model.Customer;
-import model.CustomerList;
-import model.Reservation;
-import model.VIAPetsModelManager;
+import model.*;
 
 /**
  * Controller til oversigt af kunder
@@ -17,7 +14,7 @@ import model.VIAPetsModelManager;
 public class CustomersController {
     private ViewHandler viewHandler;
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     // Elementer
     @FXML
@@ -40,7 +37,7 @@ public class CustomersController {
     /**
      * Init
      */
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModel model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;

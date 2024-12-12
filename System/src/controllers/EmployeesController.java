@@ -10,7 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
 import model.Employee;
-import model.VIAPetsModelManager;
+import model.VIAPetsModel;
 
 /**
  * Controller til medarbejder oversigt
@@ -18,7 +18,7 @@ import model.VIAPetsModelManager;
 public class EmployeesController {
     private ViewHandler viewHandler;
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     // Elementer
     @FXML
@@ -37,7 +37,7 @@ public class EmployeesController {
      * @param model VIAPets Modellen
      * @param root Roden
      */
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModel model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;

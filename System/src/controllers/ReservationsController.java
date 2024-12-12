@@ -9,12 +9,12 @@ import javafx.scene.layout.Region;
 import model.Date;
 import model.Reservation;
 import model.ReservationList;
-import model.VIAPetsModelManager;
+import model.VIAPetsModel;
 
 public class ReservationsController {
     private ViewHandler viewHandler;
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     // Elementer
     @FXML
@@ -43,7 +43,7 @@ public class ReservationsController {
     /**
      * Init viewet
      */
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModel model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;

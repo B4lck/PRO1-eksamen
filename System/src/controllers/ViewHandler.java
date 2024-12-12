@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import model.VIAPetsModelManager;
+import model.VIAPetsModel;
 
 /**
  * Håndter alle views i programmet
@@ -18,7 +18,7 @@ public class ViewHandler {
     /**
      * Model
      */
-    private final VIAPetsModelManager model;
+    private final VIAPetsModel model;
 
     /**
      * Controllers
@@ -30,7 +30,7 @@ public class ViewHandler {
     public CustomersController customersController;
     public SalesController salesController;
 
-    public ViewHandler(VIAPetsModelManager model) {
+    public ViewHandler(VIAPetsModel model) {
         this.model = model;
         this.currentScene = new Scene(new Region());
     }
