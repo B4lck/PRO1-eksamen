@@ -155,6 +155,20 @@ public class ManageReservationController {
         if (selectedPosition <= 0 && !model.getAnimalList().getAnimalById(selectedAnimalId).getCategory().equals(Animal.CATEGORY_DEFAULT)) {error.setVisible(true); error.setText("Vælg en position"); return;}
 
         if (selectedReservation == null) {
+            // Tjek om der er plads
+            int cases = model.getReservationList().checkForSpace(model.getAnimalList().getAnimalById(selectedAnimalId).getCategory(),new DateInterval(selectedStartDate, selectedEndDate), model.getAnimalList());
+            if (cases != -1) {
+                Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Der er ikke tilstrækkelig plads i den angivne periode. \nDu har allerede " + cases + " reservationer af den kategori i den periode. \nTryk 'Yes' for at forsætte alligevel.", ButtonType.YES, ButtonType.NO);
+                confirmationAlert.setGraphic(null);
+                confirmationAlert.setHeaderText(null);
+                confirmationAlert.setTitle("Grænsen for denne kategori er nået i denne periode");
+                confirmationAlert.showAndWait();
+
+                // Stop hvis bruger har valgt nej
+                if (confirmationAlert.getResult() == ButtonType.NO) return;
+            }
+
+            // Ellers opret nyt dyr
             Reservation newReservation = new Reservation(selectedCustomerId, selectedAnimalId, new DateInterval(selectedStartDate, selectedEndDate));
             newReservation.setPositionId(selectedPosition);
             model.getReservationList().add(newReservation);

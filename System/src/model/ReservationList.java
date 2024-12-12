@@ -5,7 +5,12 @@ import java.util.Collections;
 
 public class ReservationList {
     private final ArrayList<Reservation> reservations = new ArrayList<>();
-    
+
+    private static final int MAX_NUMBER_OF_ANIMALS = 30;
+    private static final int MAX_NUMBER_OF_BIRDS = 10;
+    private static final int MAX_NUMBER_OF_FISH = 10;
+    private static final int MAX_NUMBER_OF_REPTILES = 10;
+
     public void clear() {
         reservations.clear();
     }
@@ -228,6 +233,32 @@ public class ReservationList {
             }
         }
         return reservationList;
+    }
+
+    /**
+     * Tjekker om der er plads til bestemt dyr i periode, ud fra den kategori
+     * @param category Kategori for dyr
+     * @param period Periode for reservationen
+     * @param animalList Liste for at hente data fra dyr
+     * @return -1 hvis der er plads, ellers returnere den hvor mange pladser der er optaget
+     */
+    public int checkForSpace(String category, DateInterval period, AnimalList animalList) {
+        ArrayList<Reservation> reservations = getReservationsForPeriod(period).getList();
+
+        int cases = 0;
+        for (Reservation reservation : reservations) {
+            if (animalList.getAnimalById(reservation.getAnimalId()).getCategory().equals(category)) {
+                cases++;
+            }
+        }
+
+        return switch (category) {
+            case Animal.CATEGORY_DEFAULT -> cases >= ReservationList.MAX_NUMBER_OF_ANIMALS ? cases : -1;
+            case Animal.CATEGORY_BIRD    -> cases >= ReservationList.MAX_NUMBER_OF_BIRDS ? cases : -1;
+            case Animal.CATEGORY_FISH    -> cases >= ReservationList.MAX_NUMBER_OF_FISH ? cases : -1;
+            case Animal.CATEGORY_REPTILE -> cases >= ReservationList.MAX_NUMBER_OF_REPTILES ? cases : -1;
+            default -> -1;
+        };
     }
 
     public ArrayList<Reservation> getList() {
