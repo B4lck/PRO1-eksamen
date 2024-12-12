@@ -26,10 +26,5 @@ replay_pid*
 
 /System/.idea
 
-
-* linguist-vendored
-*.java linguist-vendored=false
-
-
 out
 
