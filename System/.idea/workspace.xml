@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageReservationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/ReservationList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ReservationList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +126,7 @@
       <workItem from="1733511106445" duration="156000" />
       <workItem from="1733909721900" duration="441000" />
       <workItem from="1733911345946" duration="1786000" />
-      <workItem from="1733995590788" duration="5404000" />
+      <workItem from="1733995590788" duration="9707000" />
     </task>
     <servers />
   </component>

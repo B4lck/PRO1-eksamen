@@ -224,6 +224,10 @@ public class ReservationList {
         return reservationList;
     }
 
+    /**
+     * Henter alle reservationer fra og med dags dato
+     * @return ReservationList
+     */
     public ReservationList getReservationsInFuture() {
         Date today = new Date();
         ReservationList reservationList = new ReservationList();
@@ -243,10 +247,10 @@ public class ReservationList {
      * @return -1 hvis der er plads, ellers returnere den hvor mange pladser der er optaget
      */
     public int checkForSpace(String category, DateInterval period, AnimalList animalList) {
-        ArrayList<Reservation> reservations = getReservationsForPeriod(period).getList();
+        ReservationList reservations = getReservationsForPeriod(period);
 
         int cases = 0;
-        for (Reservation reservation : reservations) {
+        for (Reservation reservation : reservations.getList()) {
             if (animalList.getAnimalById(reservation.getAnimalId()).getCategory().equals(category)) {
                 cases++;
             }
@@ -261,6 +265,10 @@ public class ReservationList {
         };
     }
 
+    /**
+     * Henter reservations som array liste
+     * @return ArrayList<Reservation>
+     */
     public ArrayList<Reservation> getList() {
         return reservations;
     }
