@@ -249,12 +249,7 @@ public class ReservationList {
     public int checkForSpace(String category, DateInterval period, AnimalList animalList) {
         ReservationList reservations = getReservationsForPeriod(period);
 
-        int cases = 0;
-        for (Reservation reservation : reservations.getList()) {
-            if (animalList.getAnimalById(reservation.getAnimalId()).getCategory().equals(category)) {
-                cases++;
-            }
-        }
+        int cases = reservations.getNumberOfReservationsFromCategory(category, animalList);
 
         return switch (category) {
             case Animal.CATEGORY_DEFAULT -> cases >= ReservationList.MAX_NUMBER_OF_ANIMALS ? cases : -1;
@@ -263,6 +258,22 @@ public class ReservationList {
             case Animal.CATEGORY_REPTILE -> cases >= ReservationList.MAX_NUMBER_OF_REPTILES ? cases : -1;
             default -> -1;
         };
+    }
+
+    /**
+     * Henter antallet af reservationer ud fra angiven dyre kategori
+     * @param category Kategori for dyr
+     * @param animalList Liste for at hente data fra dyr
+     * @return Antal reservationer med given kategori fra dyr
+     */
+    public int getNumberOfReservationsFromCategory(String category, AnimalList animalList) {
+        ReservationList reservationsFromCategory = new ReservationList();
+        for (Reservation reservation : reservations) {
+            if (animalList.getAnimalById(reservation.getAnimalId()).getCategory().equals(category)) {
+                reservationsFromCategory.add(reservation);
+            }
+        }
+        return reservationsFromCategory.getList().size();
     }
 
     /**
