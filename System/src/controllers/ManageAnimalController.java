@@ -165,7 +165,7 @@ public class ManageAnimalController {
                 }
             }
         });
-        
+
         update();
     }
 
