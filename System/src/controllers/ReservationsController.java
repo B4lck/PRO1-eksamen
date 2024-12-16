@@ -170,5 +170,7 @@ public class ReservationsController {
         successAlert.show();
 
         reset();
+
+        model.save();
     }
 }
