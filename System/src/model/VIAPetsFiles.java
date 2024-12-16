@@ -530,7 +530,7 @@ public class VIAPetsFiles {
 
         StringBuilder serialized = new StringBuilder();
 
-        serialized.append("Start;Slut\n");
+        serialized.append("Id;Kategori;Navn;Pris;Kommentar;Fødselsdagsdato;Billede URL\n");
 
 
         for (Animal animal : model.getAnimalList().getAnimalsForSale().getAllAnimals()) {
@@ -577,7 +577,7 @@ public class VIAPetsFiles {
 
         StringBuilder serialized = new StringBuilder();
 
-        serialized.append("Id;Kategori;Navn;Pris;Kommentar;Fødselsdagsdato;Billede URL\n");
+        serialized.append("Start Dato;Slut Dato\n");
 
 
         for (Reservation reservation : model.getReservationList().getAllReservations()) {
