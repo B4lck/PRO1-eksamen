@@ -1,3 +1,37 @@
 .header a{
     color: black;
 }
+
+.calender {
+    * {
+        color: black;
+    }
+
+    width: 60%;
+    position: relative;
+    margin: auto auto 50px auto;
+    #calender {
+        width: 100%;
+        border: 1px black solid;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        .row {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            align-items: center;
+            .col {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.today {
+    font-weight: bold;
+}
+
+.full {
+    color: red;
+}

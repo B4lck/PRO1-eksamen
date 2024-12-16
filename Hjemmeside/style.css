@@ -135,6 +135,7 @@ a {
 }
 
 .footer {
+    position: absolute;
     width: 100%;
     background: var(--footer-color);
     padding: 50px;
