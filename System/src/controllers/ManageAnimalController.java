@@ -270,6 +270,17 @@ public class ManageAnimalController {
      */
     @FXML
     public void createEdit() {
+        // Advar hvis ingen ejer er valgt
+        if (notForSale.isSelected() && selectedOwnerId == -1) {
+            Alert successAlert = new Alert(Alert.AlertType.WARNING, "Ingen ejer er valgt!", ButtonType.OK);
+            successAlert.setGraphic(null);
+            successAlert.setHeaderText(null);
+            successAlert.setTitle("Fejl");
+            successAlert.show();
+            return;
+        }
+
+        // Opret dyr
         if (currentAnimalId == -1) {
             Animal newAnimal;
             if (notForSale.isSelected()) {
@@ -289,7 +300,9 @@ public class ManageAnimalController {
             if (newAnimal instanceof AnimalReptile) ((AnimalReptile) newAnimal).setVenomous(venomous.isSelected());
 
             model.getAnimalList().add(newAnimal);
-        } else {
+        }
+        // Rediger dyr
+        else {
             Animal animal = model.getAnimalList().getAnimalById(currentAnimalId);
 
             if (notForSale.isSelected() == animal.isForSale()) {

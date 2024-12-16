@@ -537,6 +537,7 @@ public class VIAPetsFiles {
             serialized.append(escape(Integer.toString(animal.getAnimalId()))).append(";")
                     .append(escape(animal.getCategory())).append(";")
                     .append(escape(animal.getName())).append(";")
+                    .append(escape(animal.getComment())).append(";")
                     .append(escape(Double.toString(animal.getPrice()))).append(";")
                     .append(escape(animal.getBirthday().toString())).append(";")
                     .append(escape(animal.getImageUrl())).append("\n");
@@ -578,8 +579,7 @@ public class VIAPetsFiles {
         StringBuilder serialized = new StringBuilder();
 
         serialized.append("Start Dato;Slut Dato\n");
-
-
+        
         for (Reservation reservation : model.getReservationList().getAllReservations()) {
             serialized.append(escape(reservation.getPeriod().getStartDate().toString())).append(";")
                     .append(escape(reservation.getPeriod().getEndDate().toString())).append("\n");
