@@ -51,6 +51,8 @@ public class VIAPetsFiles {
         saveReservations();
         saveCustomers();
         saveEmployees();
+        saveAnimalsForPublic();
+        saveReservationsForPublic();
     }
 
     /**
@@ -427,7 +429,6 @@ public class VIAPetsFiles {
      * Gemmer alle medarbejderne
      */
     public void saveEmployees() {
-
         File saveFile = new File(saveLocation.toFile(), "employees.csv");
 
         try {
@@ -504,6 +505,96 @@ public class VIAPetsFiles {
             errorAlert.setGraphic(null);
             errorAlert.setHeaderText(null);
             errorAlert.setTitle("Fejl");
+            errorAlert.showAndWait();
+        }
+    }
+
+    /**
+     * Gem animals for offentligheden
+     */
+    public void saveAnimalsForPublic() {
+
+        File saveFile = new File(saveLocation.toFile(), "animals_public.csv");
+
+        try {
+            saveFile.setWritable(true);
+            new File(saveLocation.toString()).mkdirs();
+            saveFile.createNewFile();
+        } catch (IOException e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
+        }
+
+        StringBuilder serialized = new StringBuilder();
+
+        serialized.append("Id;Kategori;Navn;Pris;Kommentar;Fødselsdagsdato;Billede URL\n");
+
+
+        for (Animal animal : model.getAnimalList().getAnimalsForSale().getAllAnimals()) {
+            serialized.append(escape(Integer.toString(animal.getAnimalId()))).append(";")
+                    .append(escape(animal.getCategory())).append(";")
+                    .append(escape(animal.getName())).append(";")
+                    .append(escape(Integer.toString(animal.getOwnerId()))).append(";")
+                    .append(escape(animal.getBirthday().toString())).append(";")
+                    .append(escape(animal.getImageUrl())).append("\n");
+        }
+
+        try {
+            FileWriter fw = new FileWriter(saveFile);
+            fw.flush();
+            fw.write(serialized.toString());
+            fw.close();
+        } catch (IOException e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
+        }
+    }
+
+    /**
+     * Gem reservation for offentligheden
+     */
+    public void saveReservationsForPublic() {
+
+        File saveFile = new File(saveLocation.toFile(), "reservations_public.csv");
+
+        try {
+            saveFile.setWritable(true);
+            new File(saveLocation.toString()).mkdirs();
+            saveFile.createNewFile();
+        } catch (IOException e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
+            errorAlert.showAndWait();
+        }
+
+        StringBuilder serialized = new StringBuilder();
+
+        serialized.append("Id;Kategori;Navn;Pris;Kommentar;Fødselsdagsdato;Billede URL\n");
+
+
+        for (Reservation reservation : model.getReservationList().getAllReservations()) {
+            serialized.append(escape(reservation.getPeriod().getStartDate().toString())).append(";")
+                    .append(escape(reservation.getPeriod().getEndDate().toString())).append("\n");
+        }
+
+        try {
+            FileWriter fw = new FileWriter(saveFile);
+            fw.flush();
+            fw.write(serialized.toString());
+            fw.close();
+        } catch (IOException e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            errorAlert.setGraphic(null);
+            errorAlert.setHeaderText(null);
+            errorAlert.setTitle("Kunne ikke gemme");
             errorAlert.showAndWait();
         }
     }
