@@ -50,7 +50,7 @@ public class ManageReservationController {
      * @param model VIAPets modellen
      * @param reservation Reservation der skal redigeres, eller null for at oprette en ny
      */
-    public static void load(VIAPetsModelManager model, Reservation reservation) {
+    public static void load(VIAPetsModel model, Reservation reservation) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ManageReservationController.class.getResource("/views/ManageReservationGUI.fxml"));
@@ -73,7 +73,7 @@ public class ManageReservationController {
     /**
      * Init viewet
      */
-    private void init(Region root, VIAPetsModelManager model, Reservation reservation) {
+    private void init(Region root, VIAPetsModel model, Reservation reservation) {
         this.model = model;
         this.root = root;
 
@@ -155,6 +155,20 @@ public class ManageReservationController {
         if (selectedPosition <= 0 && !model.getAnimalList().getAnimalById(selectedAnimalId).getCategory().equals(Animal.CATEGORY_DEFAULT)) {error.setVisible(true); error.setText("Vælg en position"); return;}
 
         if (selectedReservation == null) {
+            // Tjek om der er plads
+            int cases = model.getReservationList().checkForSpace(model.getAnimalList().getAnimalById(selectedAnimalId).getCategory(),new DateInterval(selectedStartDate, selectedEndDate), model.getAnimalList());
+            if (cases != -1) {
+                Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Der er ikke tilstrækkelig plads i den angivne periode. \nDu har allerede " + cases + " reservationer af den kategori i den periode. \nTryk 'Yes' for at forsætte alligevel.", ButtonType.YES, ButtonType.NO);
+                confirmationAlert.setGraphic(null);
+                confirmationAlert.setHeaderText(null);
+                confirmationAlert.setTitle("Grænsen for denne kategori er nået i denne periode");
+                confirmationAlert.showAndWait();
+
+                // Stop hvis bruger har valgt nej
+                if (confirmationAlert.getResult() == ButtonType.NO) return;
+            }
+
+            // Ellers opret nyt dyr
             Reservation newReservation = new Reservation(selectedCustomerId, selectedAnimalId, new DateInterval(selectedStartDate, selectedEndDate));
             newReservation.setPositionId(selectedPosition);
             model.getReservationList().add(newReservation);

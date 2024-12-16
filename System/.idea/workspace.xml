@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/controllers/ManageSaleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/ManageSaleController.java" afterDir="false" />
-    </list>
+    <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +30,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/B4lck/SEP1-eksamen.git",
-    "accountId": "3c0a7bea-ecbe-4af2-a26d-9afeb13c07de"
+    "accountId": "95a969b6-f7e3-422d-8ce7-69f471b5e127"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -95,8 +93,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
       </set>
     </attachedChunks>
   </component>
@@ -123,7 +121,11 @@
       <workItem from="1733478290893" duration="83000" />
       <workItem from="1733478390161" duration="4699000" />
       <workItem from="1733511106445" duration="156000" />
-      <workItem from="1733909721900" duration="364000" />
+      <workItem from="1733909721900" duration="441000" />
+      <workItem from="1733911345946" duration="1786000" />
+      <workItem from="1733995590788" duration="11809000" />
+      <workItem from="1734079113308" duration="1879000" />
+      <workItem from="1734295518190" duration="181000" />
     </task>
     <servers />
   </component>

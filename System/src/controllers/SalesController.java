@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.Sale;
 import model.SalesList;
-import model.VIAPetsModelManager;
+import model.VIAPetsModel;
 
 /**
  * Controller til oversigt af salg
@@ -16,7 +16,7 @@ import model.VIAPetsModelManager;
 public class SalesController {
     private ViewHandler viewHandler;
     private Region root;
-    private VIAPetsModelManager model;
+    private VIAPetsModel model;
 
     // Elementer
     @FXML
@@ -42,7 +42,7 @@ public class SalesController {
     // Nuværende filter
     private SalesFilteringController.SalesFilter filter;
 
-    public void init(ViewHandler viewHandler, VIAPetsModelManager model, Region root) {
+    public void init(ViewHandler viewHandler, VIAPetsModel model, Region root) {
         this.viewHandler = viewHandler;
         this.model = model;
         this.root = root;
