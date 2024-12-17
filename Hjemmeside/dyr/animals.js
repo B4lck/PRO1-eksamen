@@ -66,21 +66,20 @@ function updateAnimals() {
 
         let animal = animals[i];
         let animalObject = document.createElement("div");
-
-        animalObject.innerHTML = "" +
-            "<img src='" + animal.url + "' alt='" + animal.name + "'>" +
-            "<div class='left'>" +
-                "<h2>" + animal.name + "</h2>" +
-                "<h3>" + yearSince(animal.birthday) + " år</h3>" +
-                "<p>" + animal.price + ",-- kr.</p>" +
-            "</div>" +
-            "<div class='right'>" +
-                "<p class='beforePrice'></p>" +
-                "<p class='saveText'></p>" +
-            "</div>" +
-            "<button>Læs mere</button>";
-
         animalObject.classList.add("animal");
+        animalObject.innerHTML = `
+                    <img src='${animal.url}' alt='${animal.name}'>
+                    <div class='left'>
+                        <h2>${animal.name}</h2>
+                        <h3>${yearSince(animal.birthday)} år</h3>
+                        <p>${animal.price},-- kr.</p>
+                    </div>
+                    <div class='right'>
+                        <p class='beforePrice'></p>
+                        <p class='saveText'></p>
+                    </div>
+                    <button>Læs mere</button>`;
+
         row.appendChild(animalObject);
     }
     document.getElementById("container").appendChild(row);
