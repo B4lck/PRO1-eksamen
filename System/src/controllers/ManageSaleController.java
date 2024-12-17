@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
+
 import java.io.IOException;
 
 /**
@@ -42,8 +43,9 @@ public class ManageSaleController {
 
     /**
      * Åbner view til at oprette og redigere salg
+     *
      * @param model VIAPets Modellen
-     * @param sale Salget der skal redigeres, null for at oprette et nyt
+     * @param sale  Salget der skal redigeres, null for at oprette et nyt
      */
     public static void load(VIAPetsModel model, Sale sale) {
         try {
@@ -77,19 +79,19 @@ public class ManageSaleController {
             this.selectedAnimalId = sale.getAnimalId();
             this.selectedEmployeeId = sale.getEmployeeId();
             this.selectedFinalPrice = sale.getFinalPrice();
-            this.priceTextField.setText(Double.toString(selectedFinalPrice));
+            this.priceTextField.setText(String.format("%.2f", selectedFinalPrice));
             title.setText("Redigering af salg");
         } else {
             title.setText("Oprettelse af salg");
         }
-        
+
         update();
 
         this.error.setVisible(false);
 
         priceTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                selectedFinalPrice = Double.parseDouble(newValue);
+                selectedFinalPrice = Double.parseDouble(newValue.replace(',', '.'));
                 error.setVisible(false);
             } catch (NumberFormatException e) {
                 selectedFinalPrice = -1;
@@ -103,7 +105,7 @@ public class ManageSaleController {
      * Opdater
      */
     private void update() {
-        this.selectCustomerButton.setText(selectedCustomerId != -1 ?model.getCustomerList().getById(selectedCustomerId).getName() + "..." : "Vælg kunde");
+        this.selectCustomerButton.setText(selectedCustomerId != -1 ? model.getCustomerList().getById(selectedCustomerId).getName() + "..." : "Vælg kunde");
         this.selectAnimalButton.setText(selectedAnimalId != -1 ? model.getAnimalList().getAnimalById(selectedAnimalId).getName() + "..." : "Vælg dyr");
         this.selectEmployeeButton.setText(selectedEmployeeId != -1 ? model.getEmployeeList().getById(selectedEmployeeId).getName() + "..." : "Vælg medarbejder");
         this.priceTextField.setText(String.format("%.2f", selectedFinalPrice));
@@ -123,10 +125,26 @@ public class ManageSaleController {
     @FXML
     public void confirm() {
         // Tjek for tomme inputs
-        if (selectedFinalPrice == 0){error.setVisible(true); error.setText("Indtast en pris"); return;}
-        if (selectedCustomerId == -1){error.setVisible(true); error.setText("Vælg en kunde"); return;}
-        if (selectedAnimalId == -1){error.setVisible(true); error.setText("Vælg et dyr"); return;}
-        if (selectedEmployeeId == -1){error.setVisible(true); error.setText("Vælg en medarbejder"); return;}
+        if (selectedFinalPrice == 0) {
+            error.setVisible(true);
+            error.setText("Indtast en pris");
+            return;
+        }
+        if (selectedCustomerId == -1) {
+            error.setVisible(true);
+            error.setText("Vælg en kunde");
+            return;
+        }
+        if (selectedAnimalId == -1) {
+            error.setVisible(true);
+            error.setText("Vælg et dyr");
+            return;
+        }
+        if (selectedEmployeeId == -1) {
+            error.setVisible(true);
+            error.setText("Vælg en medarbejder");
+            return;
+        }
 
         if (selectedSale == null) {
             Sale newSale = new Sale(selectedFinalPrice, selectedAnimalId, selectedCustomerId, 1, new Date());
@@ -150,7 +168,7 @@ public class ManageSaleController {
     public void selectAnimal() {
         SelectAnimalController.load(model, animalId -> {
             this.selectedAnimalId = animalId;
-            
+
             Animal animal = model.getAnimalList().getAnimalById(animalId);
 
             if (!animal.isForSale()) {
@@ -160,7 +178,7 @@ public class ManageSaleController {
             } else {
                 error.setVisible(false);
             }
-            
+
             // Udfyld prisen på dyret
             this.selectedFinalPrice = animal.getPrice();
 
@@ -205,7 +223,7 @@ public class ManageSaleController {
      * Action til at vælge medarbejder med select employee vælgeren
      */
     @FXML
-    public void selectEmployee(){
+    public void selectEmployee() {
         SelectEmployeeController.load(model, selectedEmployeeId -> {
             this.selectedEmployeeId = selectedEmployeeId;
             update();
