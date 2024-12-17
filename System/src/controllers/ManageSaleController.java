@@ -147,7 +147,7 @@ public class ManageSaleController {
         }
 
         if (selectedSale == null) {
-            Sale newSale = new Sale(selectedFinalPrice, selectedAnimalId, selectedCustomerId, 1, new Date());
+            Sale newSale = new Sale(selectedFinalPrice, selectedAnimalId, selectedCustomerId, selectedEmployeeId, new Date());
             model.getSalesList().add(newSale);
         } else {
             selectedSale.set(selectedFinalPrice, selectedAnimalId, selectedCustomerId, selectedEmployeeId, selectedSale.getDateOfSale());
