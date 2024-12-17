@@ -109,8 +109,14 @@ fetch("/data/reservations_public.csv")
         let cols = rows[i].split(";");
         if (cols.length === 2) {
 
-            reservations.push(new Reservation(new Date(cols[0]), new Date(cols[1])));
+            reservations.push(new Reservation(parseDate(cols[0]), parseDate(cols[1])));
         }
     }
     updateKalender();
 })
+
+
+function parseDate(dateString) {
+    let [d, m, y] = dateString.split("/").map(str => parseInt(str));
+    return new Date(y, m - 1, d); // Minus 1, fordi javascript starter januar som 0.
+}
