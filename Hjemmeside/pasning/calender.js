@@ -29,8 +29,7 @@ function updateKalender() {
     const daysInMonth = getDaysInMonth(today.getFullYear(), today.getMonth());
 
     let row;
-    console.log(ugeDag);
-    for (let i = -ugeDag, j = 0; i < daysInMonth + (daysInMonth + ugeDag) % 7; i++, j++) {
+    for (let i = -ugeDag, j = 0; i < daysInMonth + 7 -((daysInMonth + ugeDag) % 7); i++, j++) {
         if (j % 7 === 0) {
             row = document.createElement("div");
             row.className = "row";
