@@ -92,13 +92,15 @@ class Reservation {
 }
 
 function isFull(date) {
+    const maxNumberOfCases = 30;
+
     let cases = 0;
     for (let reservation of reservations) {
         if (reservation.contains(date)) {
             cases++;
         }
     }
-    return cases >= 30;
+    return cases >= maxNumberOfCases;
 }
 
 fetch("/data/reservations_public.csv")
