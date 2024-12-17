@@ -51,6 +51,13 @@ function europeanToAmericanDate(date) {
 }
 
 function updateAnimals() {
+    // Slet alle eksisterende rows
+    let rows = document.getElementsByClassName("row");
+    for (let r of rows) {
+        r.remove();
+    }
+
+    // Tilføj dyr til siden
     let row;
     for (let i = 0; i < animals.length; i++) {
         if (i % 4 === 0) {
