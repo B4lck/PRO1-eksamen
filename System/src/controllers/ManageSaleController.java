@@ -106,6 +106,7 @@ public class ManageSaleController {
         this.selectCustomerButton.setText(selectedCustomerId != -1 ?model.getCustomerList().getById(selectedCustomerId).getName() + "..." : "Vælg kunde");
         this.selectAnimalButton.setText(selectedAnimalId != -1 ? model.getAnimalList().getAnimalById(selectedAnimalId).getName() + "..." : "Vælg dyr");
         this.selectEmployeeButton.setText(selectedEmployeeId != -1 ? model.getEmployeeList().getById(selectedEmployeeId).getName() + "..." : "Vælg medarbejder");
+        this.priceTextField.setText(String.format("%.2f", selectedFinalPrice));
     }
 
     /**
@@ -149,18 +150,19 @@ public class ManageSaleController {
     public void selectAnimal() {
         SelectAnimalController.load(model, animalId -> {
             this.selectedAnimalId = animalId;
+            
+            Animal animal = model.getAnimalList().getAnimalById(animalId);
 
-            if (model.getAnimalList().getAnimalById(animalId).getOwnerId() != -1) {
-                this.selectedAnimalId = -1;
-                error.setVisible(true);
-                error.setText("Dette dyr er ikke til salg, da det allerede har en ejer");
-            } else if (!model.getAnimalList().getAnimalById(animalId).isForSale()) {
+            if (!animal.isForSale()) {
                 this.selectedAnimalId = -1;
                 error.setVisible(true);
                 error.setText("Dette dyr er ikke til salg");
             } else {
                 error.setVisible(false);
             }
+            
+            // Udfyld prisen på dyret
+            this.selectedFinalPrice = animal.getPrice();
 
             update();
         }, true);
