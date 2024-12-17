@@ -83,6 +83,7 @@ public class ManageReservationController {
             this.selectedReservation = reservation;
             this.selectedCustomerId = reservation.getCustomerId();
             this.selectedAnimalId = reservation.getAnimalId();
+            this.selectedPosition = reservation.getPositionId();
             this.selectCustomerButton.setText(model.getCustomerList().getById(reservation.getCustomerId()).getName());
             this.selectAnimalButton.setText(model.getAnimalList().getAnimalById(reservation.getAnimalId()).getName());
             this.positionSelector.setText(Integer.toString(reservation.getPositionId()));
