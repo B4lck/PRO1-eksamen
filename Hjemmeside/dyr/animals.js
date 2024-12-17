@@ -44,7 +44,7 @@ function yearSince(date) {
 }
 
 function parseDate(dateString) {
-    let [d,m,y] = dateString.split("-").map(str => parseInt(str));
+    let [d,m,y] = dateString.split("/").map(str => parseInt(str));
     return new Date(y,m-1,d);
 }
 

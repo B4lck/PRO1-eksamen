@@ -117,6 +117,6 @@ fetch("/data/reservations_public.csv")
 
 
 function parseDate(dateString) {
-    let [d, m, y] = dateString.split("-").map(str => parseInt(str));
+    let [d, m, y] = dateString.split("/").map(str => parseInt(str));
     return new Date(y, m - 1, d); // Minus 1, fordi javascript starter januar som 0.
 }
