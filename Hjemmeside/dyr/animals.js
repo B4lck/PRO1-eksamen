@@ -30,7 +30,7 @@ fetch("/data/animals_public.csv")
         for (let i = 1; i<rows.length; i++) {
             let cols = rows[i].split(";");
             if (cols.length > 0) {
-                animals.push(new Animal(cols[0], cols[1], cols[2], cols[3], cols[4], europeanToAmericanDate(cols[5]), cols[6]));
+                animals.push(new Animal(cols[0], cols[1], cols[2], cols[3], cols[4], parseDate(cols[5]), cols[6]));
             }
         }
         updateAnimals();
@@ -43,11 +43,9 @@ function yearSince(date) {
     return age;
 }
 
-function europeanToAmericanDate(date) {
-    const d = date.slice(0,2);
-    const m = date.slice(3,5);
-    const y = date.slice(6,10);
-    return new Date(y,m,d)
+function parseDate(dateString) {
+    let [d,m,y] = dateString.split("-").map(str => parseInt(str));
+    return new Date(y,m-1,d);
 }
 
 function updateAnimals() {
