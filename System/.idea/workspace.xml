@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="" />
+    <list default="true" id="20324eac-2bd4-425c-bf27-8eb2814079f7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Hjemmeside/pasning/calender.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Hjemmeside/pasning/calender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,6 +128,8 @@
       <workItem from="1733911345946" duration="1786000" />
       <workItem from="1733995590788" duration="11809000" />
       <workItem from="1734079113308" duration="9219000" />
+      <workItem from="1734428810595" duration="252000" />
+      <workItem from="1734431824185" duration="1264000" />
     </task>
     <servers />
   </component>
