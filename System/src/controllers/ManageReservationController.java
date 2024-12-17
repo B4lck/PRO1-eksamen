@@ -189,15 +189,7 @@ public class ManageReservationController {
     public void selectAnimal() {
         SelectAnimalController.load(model, animalId -> {
            this.selectedAnimalId = animalId;
-
-           if (model.getAnimalList().getAnimalById(this.selectedAnimalId).isForSale()) {
-               error.setVisible(true);
-               error.setText("Dette dyr kan ikke vælges, da det er til salg");
-               this.selectedAnimalId = -1;
-           } else {
-               error.setVisible(false);
-               this.selectedCustomerId = model.getAnimalList().getAnimalById(animalId).getOwnerId();
-           }
+           if (animalId != -1) this.selectedCustomerId = model.getAnimalList().getAnimalById(animalId).getOwnerId();
 
            update();
         }, false);
