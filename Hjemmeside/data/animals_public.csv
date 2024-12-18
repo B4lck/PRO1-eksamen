@@ -1,3 +1,5 @@
 Id;Kategori;Navn;Pris;Kommentar;Fødselsdagsdato;Billede URL
-1;Default;Ninus;700.0;;06/12/2024;
-3;Bird;Pipper;1000000.0;;16/12/2024;
+1;Default;Ninus;700.0;Den bider;06/12/2024;
+3;Bird;Pipper;1000000.0;Gammel satan;16/12/2024;
+8;Default;Fluffy;100.0;Please ik luk ham ud af kælderen;17/12/2024;
+9;Fish;Kasper;1000.0;Pas på!!!;18/12/2024;

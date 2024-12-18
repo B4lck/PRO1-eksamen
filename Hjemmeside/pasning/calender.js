@@ -156,7 +156,6 @@ fetch("/data/reservations_public.csv")
     for (let i = 1; i < rows.length; i++) {
         let cols = rows[i].split(";");
         if (cols.length === 2) {
-
             reservations.push(new Reservation(parseDate(cols[0]), parseDate(cols[1])));
         }
     }

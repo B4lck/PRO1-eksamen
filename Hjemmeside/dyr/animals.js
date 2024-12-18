@@ -7,7 +7,7 @@ class Animal {
     birthday;
     url;
 
-    constructor(id, category, name, price, comment, birthday, url) {
+    constructor(id, category, name, price, comment, birthday) {
         this.id = id;
         this.category = category;
         this.name = name;
@@ -29,7 +29,7 @@ fetch("/data/animals_public.csv")
         let rows = data.split("\n");
         for (let i = 1; i<rows.length; i++) {
             let cols = rows[i].split(";");
-            if (cols.length > 0) {
+            if (cols.length > 1) {
                 animals.push(new Animal(cols[0], cols[1], cols[2], cols[3], cols[4], parseDate(cols[5]), cols[6]));
             }
         }
