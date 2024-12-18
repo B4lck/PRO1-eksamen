@@ -172,15 +172,21 @@ function parseDate(dateString) {
     return new Date(y, m - 1, d); // Minus 1, fordi javascript starter januar som 0.
 }
 
+/**
+ * Går til næste måned
+ */
 function nextMonth() {
     targetMonth++;
-    if (targetMonth >= 12) {
+    if (targetMonth > 11) {
         targetMonth = targetMonth % 12;
         targetYear++;
     }
     updateKalender();
 }
 
+/**
+ * Går til forrige måned
+ */
 function prevMonth() {
     targetMonth--;
     if (targetMonth < 0) {
