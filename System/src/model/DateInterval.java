@@ -48,8 +48,8 @@ public class DateInterval {
      * Få antal år mellem 2 datoer
      * @return Antal år mellem datoer
      */
-    public int getYearsBetween() {
-        return getLengthInDays() / 365;
+    public int getLengthInYears() {
+        return startDate.yearsBetween(endDate);
     }
 
     /**
