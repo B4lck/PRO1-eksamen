@@ -159,14 +159,14 @@ public class Animal {
      * Henter dyrets fødselsdagsdato
      */
     public Date getBirthday() {
-        return birthday;
+        return birthday.copy();
     }
 
     /**
      * Henter dyrets oprettelsesdato
      */
     public Date getCreationDate() {
-        return creationDate;
+        return creationDate.copy();
     }
 
     /**
@@ -240,7 +240,7 @@ public class Animal {
      * @param creationDate Oprettelsesdatoen
      */
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = creationDate.copy();
     }
 
     /**
@@ -249,7 +249,7 @@ public class Animal {
      * @param birthday Fødselsdagsdatoen
      */
     public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+        this.birthday = birthday.copy();
     }
 
     /**

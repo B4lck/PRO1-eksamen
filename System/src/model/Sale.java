@@ -41,7 +41,7 @@ public class Sale {
      * @return Date
      */
     public Date getDateOfSale() {
-        return dateOfSale;
+        return dateOfSale.copy();
     }
 
     /**
@@ -90,7 +90,7 @@ public class Sale {
         this.animalId = animalId;
         this.customerId = customerId;
         this.employeeId = employeeId;
-        this.dateOfSale = dateOfSale;
+        this.dateOfSale = dateOfSale.copy();
     }
 
     /**

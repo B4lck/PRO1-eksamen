@@ -70,6 +70,7 @@ public class AnimalList {
      * @param animal Dyret der skal tilføjes til listen
      */
     public void add(Animal animal) {
+        if (getAnimalById(animal.getAnimalId()) != null) throw new IllegalArgumentException("Et dyr findes allerede med dette id!");
         animals.add(animal);
     }
 
