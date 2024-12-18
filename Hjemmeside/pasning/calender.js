@@ -26,6 +26,7 @@ let targetYear = today.getFullYear();
  * Laver elementer i den meget flotte kalender
  */
 function updateKalender() {
+    // Reset kalenderen
     kalenderTarget.innerHTML = `
         <h2 id="month-title"></h2>
         <div class="row">
@@ -54,7 +55,7 @@ function updateKalender() {
             kalenderTarget.appendChild(row);
         }
 
-        const date = new Date(firstOfMonth.getFullYear(), firstOfMonth.getMonth(), 1 + i);
+        const date = new Date(targetYear, targetMonth, 1 + i);
         row.appendChild(createDayCol(date));
     }
 
