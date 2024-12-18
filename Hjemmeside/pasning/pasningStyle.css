@@ -1,3 +1,7 @@
+:root {
+    --calender-fade-time: 1s;
+}
+
 .header a{
     color: black;
 }
@@ -23,6 +27,7 @@
             .col {
                 width: 100%;
                 text-align: center;
+                animation: fade-in var(--calender-fade-time);
             }
         }
     }
@@ -42,4 +47,33 @@
 
 .open {
     color: green;
+}
+
+.calender-title-container {
+    display: flex;
+    gap: 30px;
+    box-sizing: border-box;
+    align-items: center;
+    button {
+        height: 50px;
+    }
+}
+
+.col-title {
+    width: 100%;
+    text-align: center;
+    animation: fade-in var(--calender-fade-time);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#month-title {
+    animation: fade-in var(--calender-fade-time);
 }
