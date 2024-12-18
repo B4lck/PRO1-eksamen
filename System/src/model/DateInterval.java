@@ -58,8 +58,8 @@ public class DateInterval {
      * @param endDate Nye slut dato
      */
     public void set(Date startDate, Date endDate) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        setStartDate(startDate);
+        setEndDate(endDate);
     }
 
     /**
@@ -67,7 +67,7 @@ public class DateInterval {
      * @param startDate Nye start dato
      */
     public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+        this.startDate = startDate.copy();
     }
 
     /**
@@ -75,7 +75,7 @@ public class DateInterval {
      * @param endDate Nye slut dato
      */
     public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+        this.endDate = endDate.copy();
     }
 
     /**
