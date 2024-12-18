@@ -134,6 +134,4 @@ public class CustomerList {
         }
         return list;
     }
-
-    public ArrayList<Customer> getList() {return this.customers;}
 }

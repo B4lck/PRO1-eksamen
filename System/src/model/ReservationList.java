@@ -273,14 +273,6 @@ public class ReservationList {
                 reservationsFromCategory.add(reservation);
             }
         }
-        return reservationsFromCategory.getList().size();
-    }
-
-    /**
-     * Henter reservations som array liste
-     * @return ArrayList<Reservation>
-     */
-    public ArrayList<Reservation> getList() {
-        return reservations;
+        return reservationsFromCategory.getAllReservations().length;
     }
 }

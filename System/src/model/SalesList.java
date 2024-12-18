@@ -229,8 +229,4 @@ public class SalesList {
         }
         return total;
     }
-
-    public ArrayList<Sale> getList() {
-        return sales;
-    }
 }
