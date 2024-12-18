@@ -537,8 +537,8 @@ public class VIAPetsFiles {
             serialized.append(escape(Integer.toString(animal.getAnimalId()))).append(";")
                     .append(escape(animal.getCategory())).append(";")
                     .append(escape(animal.getName())).append(";")
-                    .append(escape(animal.getComment())).append(";")
                     .append(escape(Double.toString(animal.getPrice()))).append(";")
+                    .append(escape(animal.getComment())).append(";")
                     .append(escape(animal.getBirthday().toString())).append(";")
                     .append(escape(animal.getImageUrl())).append("\n");
         }

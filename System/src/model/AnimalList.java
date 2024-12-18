@@ -289,19 +289,22 @@ public class AnimalList {
      * @return En ny AnimalList
      */
     public AnimalList getAnimalsByAge(int min, int max) {
+        // kaster fejl, hvis min er større end max. 1 til sammenligningen
         if (min > max) throw new IllegalArgumentException("Minimum age cannot be higher than maximum!");
 
-        Date today = new Date();
+        Date today = new Date(); // 1 – oprettelse
 
-        AnimalList list = new AnimalList();
+        AnimalList list = new AnimalList(); // 1 – oprettelse
+        
+        // n, for hver animal i for-løkken
         for (Animal animal : animals) {
-            int age = animal.getBirthday().yearsBetween(today);
-            if (age >= min && age <= max) {
-                list.add(animal);
+            int age = animal.getBirthday().yearsBetween(today); // 1 - kald
+            if (age >= min && age <= max) { // 2 - sammenligninger
+                list.add(animal); // 1 tilføj til liste
             }
         }
 
-        return list;
+        return list; // 1 return
     }
 
 

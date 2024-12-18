@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationsController">
-    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
         <VBox prefHeight="400.0" prefWidth="150.0" spacing="40.0">
             <padding>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
@@ -17,8 +17,8 @@
                 </font>
             </Text>
             <VBox prefHeight="50.0" prefWidth="100.0" spacing="10.0">
-                <Button mnemonicParsing="false" prefWidth="100.0" text="I dag" onAction="#filterToday" />
-                <Button mnemonicParsing="false" prefWidth="100.0" text="Søg og Filtrer" onAction="#filterReservations" />
+                <Button mnemonicParsing="false" onAction="#filterToday" prefWidth="100.0" text="I dag" />
+                <Button mnemonicParsing="false" onAction="#filterReservations" prefWidth="100.0" text="Søg og Filtrer" />
                 <Label fx:id="filteringEnabledLabel" textFill="#d79627">
                     <font>
                         <Font name="System Italic" size="14.0" />
@@ -32,7 +32,7 @@
             </VBox>
             <Button mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Tilbage" />
         </VBox>
-        <TableView fx:id="reservationsTable" prefHeight="400.0" prefWidth="750.0">
+        <TableView fx:id="reservationsTable" prefHeight="500.0" prefWidth="849.0">
             <columns>
                 <TableColumn fx:id="customerNameColumn" prefWidth="150.0" text="Kunde Navn" />
                 <TableColumn fx:id="animalCategoryColumn" prefWidth="100.0" text="Dyr Kategori" />
