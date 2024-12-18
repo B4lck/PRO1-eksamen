@@ -59,8 +59,15 @@ function createDayCol(date) {
     if (date.getMonth() !== today.getMonth()) {
         col.style.color = "darkgray";
     }
-    if (isFull(date)) {
-        col.classList.add("full");
+    switch (getStateOfDate(date)) {
+        case 3:
+            col.classList.add("full");
+            break;
+        case 2:
+            col.classList.add("almost-full");
+            break;
+        default:
+            col.classList.add("open");
     }
     col.innerText = date.getDate();
     return col;
@@ -91,16 +98,19 @@ class Reservation {
     }
 }
 
-function isFull(date) {
-    const maxNumberOfCases = 30;
+const maxNumberOfCases = 30;
+const almostFullCases = maxNumberOfCases * .7;
 
+function getStateOfDate(date) {
     let cases = 0;
     for (let reservation of reservations) {
         if (reservation.contains(date)) {
             cases++;
         }
     }
-    return cases >= maxNumberOfCases;
+    if (cases >= maxNumberOfCases) {return 3}
+    if (cases >= almostFullCases) {return 2}
+    return 1;
 }
 
 fetch("/data/reservations_public.csv")

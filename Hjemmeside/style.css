@@ -135,13 +135,13 @@ a {
 }
 
 .footer {
-    position: absolute;
     width: 100%;
     background: var(--footer-color);
     padding: 50px;
     margin-top: 0;
     clear: both;
     box-sizing: border-box;
+    color: white!important;
 
     * {
         color: white;

@@ -35,3 +35,11 @@
 .full {
     color: red;
 }
+
+.almost-full {
+    color: #c1c110;
+}
+
+.open {
+    color: green;
+}
