@@ -125,11 +125,6 @@ public class ManageSaleController {
     @FXML
     public void confirm() {
         // Tjek for tomme inputs
-        if (selectedFinalPrice == 0) {
-            error.setVisible(true);
-            error.setText("Indtast en pris");
-            return;
-        }
         if (selectedCustomerId == -1) {
             error.setVisible(true);
             error.setText("Vælg en kunde");
@@ -169,18 +164,8 @@ public class ManageSaleController {
         SelectAnimalController.load(model, animalId -> {
             this.selectedAnimalId = animalId;
 
-            Animal animal = model.getAnimalList().getAnimalById(animalId);
-
-            if (!animal.isForSale()) {
-                this.selectedAnimalId = -1;
-                error.setVisible(true);
-                error.setText("Dette dyr er ikke til salg");
-            } else {
-                error.setVisible(false);
-            }
-
             // Udfyld prisen på dyret
-            this.selectedFinalPrice = animal.getPrice();
+            if (animalId != -1) this.selectedFinalPrice = model.getAnimalList().getAnimalById(animalId).getPrice();
 
             update();
         }, true);

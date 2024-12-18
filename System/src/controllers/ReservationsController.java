@@ -149,7 +149,7 @@ public class ReservationsController {
         // Stop hvis bruger har valgt nej
         if (confirmationAlert.getResult() == ButtonType.NO) return;
 
-        // Stop hvis reservationen stadig ikke er over
+        // Vis hvis reservationen stadig ikke er over
         if (new Date().isBefore(selectedReservation.getPeriod().getEndDate())) {
             Alert secondConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Reservationen er ikke overstået endnu, er du sikker på du vil fjerne den?", ButtonType.YES, ButtonType.NO);
             secondConfirmationAlert.setGraphic(null);

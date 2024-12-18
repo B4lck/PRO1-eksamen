@@ -16,8 +16,10 @@
     }
 }
 
-p, h1, h2, a {
-    color: black !important;
+.content, .header {
+    p, h1, h2, a {
+        color: black !important;
+    }
 }
 
 .employeeContainer {

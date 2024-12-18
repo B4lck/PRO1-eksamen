@@ -79,7 +79,7 @@ public class Animal {
     }
 
     /**
-     * Konstruktør til dyr til salg
+     * Konstruktør til dyr til pasning
      *
      * @param name     Navnet på dyret
      * @param ownerId  Id til ejer af dyret
