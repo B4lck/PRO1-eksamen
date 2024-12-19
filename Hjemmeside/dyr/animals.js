@@ -14,7 +14,7 @@ class Animal {
         this.price = price;
         this.comment = comment;
         this.birthday = birthday;
-        this.url = "/img/kaninDyr.png"; // det er altid det samme billede
+        this.url = "/img/kaninDyr.jpg"; // det er altid det samme billede
     }
 }
 

@@ -70,14 +70,18 @@ function createDayCol(date) {
     let today = new Date();
     const col = document.createElement("div");
     col.className = "col";
+
+    // Hvis det er i dag
     if (date.getFullYear() === today.getFullYear() &&
         date.getMonth() === today.getMonth() &&
         date.getDate() === today.getDate()) {
         col.classList.add("today");
     }
+    // Hvis det ikke er i den måned man kigger i
     if (date.getMonth() !== targetMonth) {
         col.style.color = "darkgray";
     }
+    // Tjekker statussen for dagen
     switch (getStateOfDate(date)) {
         case 3:
             col.classList.add("full");
@@ -87,6 +91,15 @@ function createDayCol(date) {
             break;
         default:
             col.classList.add("open");
+    }
+    // Hvis det er før i dag
+    if (date.getFullYear() <= today.getFullYear() &&
+        date.getMonth() < today.getMonth() ) {
+        col.style.color = "darkgray";
+    } else if ( date.getFullYear() === today.getFullYear() &&
+                date.getMonth() === today.getMonth() &&
+                date.getDate() < today.getDate()) {
+        col.style.color = "darkgray";
     }
     col.innerText = date.getDate();
     return col;
