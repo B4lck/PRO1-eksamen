@@ -11,6 +11,9 @@ import model.Reservation;
 import model.ReservationList;
 import model.VIAPetsModel;
 
+/**
+ * Controller til oversigt af reservationer
+ */
 public class ReservationsController {
     private ViewHandler viewHandler;
     private Region root;

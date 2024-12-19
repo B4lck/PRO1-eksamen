@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * En periode angivet fra en start dato til og med en slut dato.
+ */
 public class DateInterval {
     /**
      * Start dato

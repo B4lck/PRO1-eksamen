@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+
+/**
+ * En liste der indeholder Customer objekter. Har metoder til at filtrere og sortere i listen.
+ * Kan laves om til en array med .getAllCustomers() metoden.
+ */
 public class CustomerList {
     /**
      * Liste over alle kunder

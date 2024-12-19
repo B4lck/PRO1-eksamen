@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * En liste der indeholder Animal objekter. Har metoder til at filtrere og sortere i listen.
+ * Kan laves om til en array med .getAllAnimals() metoden.
+ */
 public class AnimalList {
     private final ArrayList<Animal> animals = new ArrayList<>();
 

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Implementering af modellen VIAPetsModel
+ */
 public class VIAPetsModelManager implements VIAPetsModel {
     
     public final VIAPetsFiles fileManager = new VIAPetsFiles(this);

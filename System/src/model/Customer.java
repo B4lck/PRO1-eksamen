@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * En kunde
+ */
 public class Customer extends Person {
     /**
      * Kundens telefon nummer

@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * En liste der indeholder Reservation objekter. Har metoder til at filtrere og sortere i listen.
+ * Kan laves om til en array med .getAllReservations() metoden.
+ */
 public class ReservationList {
     private final ArrayList<Reservation> reservations = new ArrayList<>();
 
@@ -267,12 +271,12 @@ public class ReservationList {
      * @return Antal reservationer med given kategori fra dyr
      */
     public int getNumberOfReservationsFromCategory(String category, AnimalList animalList) {
-        ReservationList reservationsFromCategory = new ReservationList();
+        int count = 0;
         for (Reservation reservation : reservations) {
             if (animalList.getAnimalById(reservation.getAnimalId()).getCategory().equals(category)) {
-                reservationsFromCategory.add(reservation);
+                count ++;
             }
         }
-        return reservationsFromCategory.getAllReservations().length;
+        return count;
     }
 }

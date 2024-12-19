@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * En liste der indeholder Employee objekter. Har metoder til at filtrere og sortere i listen.
+ * Kan laves om til en array med .getAllEmployees() metoden.
+ */
 public class EmployeeList {
     /**
      * Liste over alle employees

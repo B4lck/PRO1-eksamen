@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * En liste der indeholder Sale objekter. Har metoder til at filtrere og sortere i listen.
+ * Kan laves om til en array med .getAllSales() metoden.
+ */
 public class SalesList {
     private final ArrayList<Sale> sales = new ArrayList<>();
     
