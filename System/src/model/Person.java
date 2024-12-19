@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * En person, som kan have et navn
+ */
 public class Person {
     /**
      * Navn på person

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * En reservation til pensionen.
+ */
 public class Reservation {
     /**
      * Id'et på terrariet/akvariet/fugleburet, -1 hvis det ikke har en position

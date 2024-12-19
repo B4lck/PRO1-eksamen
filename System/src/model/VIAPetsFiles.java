@@ -7,6 +7,9 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Gemmer og indlæser modellen fra filsystemet.
+ */
 public class VIAPetsFiles {
 
     /**
@@ -16,7 +19,7 @@ public class VIAPetsFiles {
     /**
      * Instans variabel over stien, hvor filerne gemmes
      */
-    private Path saveLocation = Paths.get(System.getProperty("user.home"), "VIAPets");
+    private final Path saveLocation = Paths.get(System.getProperty("user.home"), "VIAPets");
 
     /**
      * Konstruktør
@@ -32,14 +35,6 @@ public class VIAPetsFiles {
      */
     public Path getSaveLocation() {
         return saveLocation;
-    }
-
-    /**
-     * Sætter positionen hvor filerne gemmes
-     * @param saveLocation Path til hvor filerne skal gemmes
-     */
-    public void setSaveLocation(Path saveLocation) {
-        this.saveLocation = saveLocation;
     }
 
     /**

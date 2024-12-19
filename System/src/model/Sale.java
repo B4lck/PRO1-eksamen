@@ -2,6 +2,9 @@ package model;
 
 import java.util.Objects;
 
+/**
+ * Et salg
+ */
 public class Sale {
     /**
      * Endelige pris af salget

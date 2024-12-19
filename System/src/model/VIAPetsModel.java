@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Modellen
+ */
 public interface VIAPetsModel {
     AnimalList getAnimalList();
     ReservationList getReservationList();
